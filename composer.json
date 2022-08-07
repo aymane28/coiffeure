@@ -4,11 +4,12 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/annotations": "^1.0",
+        "doctrine/annotations": "^1.13",
         "doctrine/doctrine-bundle": "^2.6",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -23,6 +24,7 @@
         "symfony/form": "5.4.*",
         "symfony/framework-bundle": "5.4.*",
         "symfony/http-client": "5.4.*",
+        "symfony/http-kernel": "5.4.*",
         "symfony/intl": "5.4.*",
         "symfony/mailer": "5.4.*",
         "symfony/mime": "5.4.*",
@@ -98,6 +100,7 @@
         "symfony/debug-bundle": "5.4.*",
         "symfony/maker-bundle": "^1.0",
         "symfony/stopwatch": "5.4.*",
-        "symfony/web-profiler-bundle": "5.4.*"
+        "symfony/web-profiler-bundle": "5.4.*",
+        "theofidry/psysh-bundle": "^4.4"
     }
 }
