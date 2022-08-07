@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SalonController!{% endblock %}
+
+{% block body %}
+    <h1> Les salons</h1>
+    <div class="row">
+        {% for s in salon %}
+        <div class="col">
+            <div class="card">
+                <img src="https://picsum.photos/200/200" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title"> {{ s.name }} </h4>
+                    <h6 class="card-detail"> {{ s.adresse }}</h6>
+                    <h5 class="card-text"> {{ s.description }} </h5>
+                    <a href="#" class="btn btn-primary btn-sm"> Réserver</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

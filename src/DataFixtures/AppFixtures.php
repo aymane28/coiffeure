@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Salon;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -30,10 +31,18 @@ class AppFixtures extends Fixture
             $user->setPassword($hashedPassword);
             $user ->setName("user$i");
             $user ->setEmail("email$i@gmail.com");
-            
+
+            //salon
+            $salon= new salon();
+            $salon->setName("Salon$i");
+            $salon->setAdresse("$i avenue d'opéra");
+            $salon->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
 
             $manager->persist($user);
+            $manager->persist($salon);
         }
+
+
 
         $manager->flush();
     }
