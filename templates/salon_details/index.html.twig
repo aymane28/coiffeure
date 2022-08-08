@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SalonController!{% endblock %}
+
+{% block body %}
+    <h1> {{ salon.name }}</h1>
+    <div class="row">
+        <div class="row-4">
+            <img src="https://picsum.photos/200/200" class="img-fluid">
+        </div>
+            <div class="col">
+                <p> {{ salon.adresse }} </p>
+                {% if salon.ouverture == 'closed' %}
+                    <span class="badge badge-pill badge-danger">Fermé - ouvre à 10h00</span>
+                {% else %}
+                    <span class="badge badge-pill badge-success">Ouvert aujourd'hui</span>
+                {% endif %}
+                <p> {{ salon.description }} </p>
+                <a href="#" class="btn btn-success btn-lg"> Prendre RDV</a>
+
+                {% set newArray=[] %}
+                {% for service in salon.service  %}
+                {% for servicetype in service.relation %}
+                    {% if (service not in newArray) and servicetype.name != null %}
+                    <h2>{{ service.name }}</h2>
+                        {% set newArray = newArray|merge([service]) %}
+                    {% endif %}
+                {% endfor %}
+                    {% for servicetype in service.relation %}
+                        {% if servicetype.name != null %}
+                        <p>{{ servicetype.name }}</p>
+                        {% endif %}
+                {% endfor %}
+
+
+                {% endfor %}
+            </div>
+    </div>
+{% endblock %}
+
