@@ -4,7 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Salon;
 use App\Entity\Service;
+use App\Entity\Servicetype;
 use App\Entity\User;
+use ContainerQYER1SZ\getServicetypeRepositoryService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Prophecy\Comparator\Factory;
@@ -27,6 +29,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $salons =[];
+        $serviceTypes=[];
         for($i=0; $i<10; $i++){
             $user = new user();
             $plaintextPassword="password";
@@ -46,23 +49,40 @@ class AppFixtures extends Fixture
             $salon->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
             $salon->setSlug($this->slugger->slug($salon->getName()));
 
+
             //service
             $service= new service();
-            $service->setCoupe("Pampadour");
-            $service->setCoupe("Quiff");
-            $service->setCoupe("Undercut");
-            $service->setSoins("Points noirs");
-            $service->setSoins("Détox");
-            $service->setColoration("Couleur Stylist");
+            $service->setName("coupe");
+            $service->setName("Coloration");
+            $service->setName("Soin");
+
+            //serviceType
+            $serviceType= new servicetype();
+            $serviceType->setName("Pampadour");
+            $serviceType->setName("Quiff");
+            $serviceType->setName("Undercut");
+            $serviceType->setName("Points noirs");
+            $serviceType->setName("Détox");
+            $serviceType->setName("Couleur Stylist");
+            $serviceType->setPrice("10 euros");
+            $serviceType->setTime("30 min");
+
             //$service->setSlug($this->slugger->slug($service->getName()));
 
             $salons[]=$salon;
             foreach($salons as $salon){
                 $service->addSalon($salon);
             }
+
+            $serviceTypes[]=$serviceType;
+            foreach($serviceTypes as $serviceType){
+                $service->addRelation($serviceType);
+            }
+
             $manager->persist($user);
             $manager->persist($salon);
             $manager->persist($service);
+            $manager->persist($serviceType);
         }
 
 
