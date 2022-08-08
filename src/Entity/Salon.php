@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SalonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,21 @@ class Salon
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ouverture;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="salons")
+     */
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +103,41 @@ class Salon
     public function setOuverture(?string $ouverture): self
     {
         $this->ouverture = $ouverture;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, service>
+     */
+    public function getService(): Collection
+    {
+        return $this->service;
+    }
+
+    public function addService(service $service): self
+    {
+        if (!$this->service->contains($service)) {
+            $this->service[] = $service;
+        }
+        return $this;
+    }
+
+    public function removeService(service $service): self
+    {
+        $this->service->removeElement($service);
 
         return $this;
     }

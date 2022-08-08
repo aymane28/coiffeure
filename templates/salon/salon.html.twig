@@ -11,9 +11,15 @@
                 <img src="https://picsum.photos/200/200" class="img-fluid">
                 <div class="card-body">
                     <h4 class="card-title"> {{ s.name }} </h4>
+                    {% if s.ouverture == 'closed' %}
+                    <span class="badge badge-pill badge-danger">Fermé - ouvre à ..</span>
+                    {% else %}
+                    <span class="badge badge-pill badge-success">Ouvert aujourd'hui</span>
+                    {% endif %}
                     <h6 class="card-detail"> {{ s.adresse }}</h6>
                     <h5 class="card-text"> {{ s.description }} </h5>
-                    <a href="#" class="btn btn-primary btn-sm"> Réserver</a>
+                    <a href="{{ path('salon_details', {'slug': s.slug }) }}" class="btn btn-primary btn-sm"> Prendre RDV</a>
+
                 </div>
             </div>
         </div>
