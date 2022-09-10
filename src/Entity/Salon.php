@@ -49,6 +49,11 @@ class Salon
      */
     private $service;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phonenumber;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
@@ -138,6 +143,18 @@ class Salon
     public function removeService(service $service): self
     {
         $this->service->removeElement($service);
+
+        return $this;
+    }
+
+    public function getPhonenumber(): ?string
+    {
+        return $this->phonenumber;
+    }
+
+    public function setPhonenumber(?string $phonenumber): self
+    {
+        $this->phonenumber = $phonenumber;
 
         return $this;
     }

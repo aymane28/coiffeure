@@ -6,9 +6,10 @@
     <h1> {{ salon.name }}</h1>
     <div class="row">
         <div class="row-4">
-            <img src="https://picsum.photos/200/200" class="img-fluid">
+            <img src="https://picsum.photos/300/300" class="img-fluid"></br>
         </div>
             <div class="col">
+                <i class="fa fa-phone"> {{ salon.phonenumber }}</i>
                 <p> {{ salon.adresse }} </p>
                 {% if salon.ouverture == 'closed' %}
                     <span class="badge badge-pill badge-danger">Fermé - ouvre à 10h00</span>
@@ -16,24 +17,34 @@
                     <span class="badge badge-pill badge-success">Ouvert aujourd'hui</span>
                 {% endif %}
                 <p> {{ salon.description }} </p>
-                <a href="#" class="btn btn-success btn-lg"> Prendre RDV</a>
+
 
                 {% set newArray=[] %}
                 {% for service in salon.service  %}
-                {% for servicetype in service.relation %}
-                    {% if (service not in newArray) and servicetype.name != null %}
-                    <h2>{{ service.name }}</h2>
-                        {% set newArray = newArray|merge([service]) %}
-                    {% endif %}
-                {% endfor %}
                     {% for servicetype in service.relation %}
-                        {% if servicetype.name != null %}
-                        <p>{{ servicetype.name }}</p>
+                        {% if (service not in newArray) and servicetype.name != null %}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>{{ service.name }}</h2>
+                                </div>
+                                {% set newArray = newArray|merge([service]) %}
                         {% endif %}
-                {% endfor %}
+                    {% endfor %}
 
 
+                        {% for servicetype in service.relation %}
+                            {% if servicetype.name != null %}
+                                <div class="card-body">
+                                <p>{{ servicetype.name }}</p>
+                                    <p class="text-decoration-none"> {{ servicetype.price }}</p>
+                                    <p class="text-muted"><i class="fa fa-clock-o"></i> {{ servicetype.time }}</p>
+                                    <button type="button" class="btn btn-success float-right"><span class="fa fa-calendar"></span> Prendre RDV</button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                 {% endfor %}
+
+                </div>
             </div>
     </div>
 {% endblock %}

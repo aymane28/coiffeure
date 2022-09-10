@@ -55,6 +55,7 @@ class AppFixtures extends Fixture
             $service->setName("coupe");
             $service->setName("Coloration");
             $service->setName("Soin");
+            $service->setSlug($this->slugger->slug($service->getName()));
 
             //serviceType
             $serviceType= new servicetype();
@@ -66,6 +67,7 @@ class AppFixtures extends Fixture
             $serviceType->setName("Couleur Stylist");
             $serviceType->setPrice("10 euros");
             $serviceType->setTime("30 min");
+            $serviceType->setSlug($this->slugger->slug($serviceType->getName()));
 
             //$service->setSlug($this->slugger->slug($service->getName()));
 
@@ -84,9 +86,6 @@ class AppFixtures extends Fixture
             $manager->persist($service);
             $manager->persist($serviceType);
         }
-
-
-
         $manager->flush();
     }
 }
