@@ -1,28 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SalonController!{% endblock %}
+{% block title %}Salons{% endblock %}
 
 {% block body %}
-    <h1> Les salons</h1>
-    <div class="row">
-        {% for s in salon %}
-        <div class="col">
-            <div class="card">
-                <img src="https://picsum.photos/200/200" class="img-fluid">
-                <div class="card-body">
-                    <h4 class="card-title"> {{ s.name }} </h4>
-                    {% if s.ouverture == 'closed' %}
-                    <span class="badge badge-pill badge-danger">Fermé - ouvre à ..</span>
-                    {% else %}
-                    <span class="badge badge-pill badge-success">Ouvert aujourd'hui</span>
-                    {% endif %}
-                    <h6 class="card-detail"> {{ s.adresse }}</h6>
-                    <h5 class="card-text"> {{ s.description }} </h5>
-                    <a href="{{ path('salon_details', {'slug': s.slug }) }}" class="btn btn-primary btn-sm"> Prendre RDV</a>
 
-                </div>
+    <!-- Header-->
+    <header class="py-3" style="background-color: #FAAA80">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Prenez un rendez-vous</h1>
+                <p class="lead fw-normal text-white mb-0">Des salons de coiffure de qualité</p>
             </div>
         </div>
-        {% endfor %}
-    </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for s in salon %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://picsum.photos/200/200" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ s.name }}</h5>
+                                <!-- Product price-->
+                                {{ s.adresse }}
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-light mt-auto" style="background-color: #FAAA80" href="{{ path('salon_details', {'slug': s.slug }) }}"> Prendre un RDV <i class="fa fa-calendar" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Site de Aymane</p></div>
+    </footer>
+
 {% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+{% endblock %}
+
+
+

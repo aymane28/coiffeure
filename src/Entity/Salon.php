@@ -54,9 +54,15 @@ class Salon
      */
     private $phonenumber;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Calendar::class, inversedBy="salons")
+     */
+    private $calendrier;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
+        $this->calendrier = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -155,6 +161,30 @@ class Salon
     public function setPhonenumber(?string $phonenumber): self
     {
         $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, calendar>
+     */
+    public function getCalendrier(): Collection
+    {
+        return $this->calendrier;
+    }
+
+    public function addCalendrier(calendar $calendrier): self
+    {
+        if (!$this->calendrier->contains($calendrier)) {
+            $this->calendrier[] = $calendrier;
+        }
+
+        return $this;
+    }
+
+    public function removeCalendrier(calendar $calendrier): self
+    {
+        $this->calendrier->removeElement($calendrier);
 
         return $this;
     }

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SalonController extends AbstractController
 {
     /**
-     * @Route("/salon", name="salons")
+     * @Route("/salons", name="salons")
      */
     public function salon(SalonRepository $salonRepository): Response
     {

@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Calendar;
 use App\Entity\Salon;
 use App\Entity\Service;
 use App\Entity\Servicetype;
@@ -16,15 +17,14 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AppFixtures extends Fixture
 {
-
     protected $passwordHasher;
     protected $slugger;
+
     public function __construct(UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger)
     {
         $this->passwordHasher=$passwordHasher;
         $this->slugger=$slugger;
     }
-
 
     public function load(ObjectManager $manager): void
     {
@@ -49,7 +49,6 @@ class AppFixtures extends Fixture
             $salon->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
             $salon->setSlug($this->slugger->slug($salon->getName()));
 
-
             //service
             $service= new service();
             $service->setName("coupe");
@@ -65,11 +64,10 @@ class AppFixtures extends Fixture
             $serviceType->setName("Points noirs");
             $serviceType->setName("Détox");
             $serviceType->setName("Couleur Stylist");
-            $serviceType->setPrice("10 euros");
+            $serviceType->setPrice("10");
             $serviceType->setTime("30 min");
             $serviceType->setSlug($this->slugger->slug($serviceType->getName()));
 
-            //$service->setSlug($this->slugger->slug($service->getName()));
 
             $salons[]=$salon;
             foreach($salons as $salon){
@@ -86,6 +84,21 @@ class AppFixtures extends Fixture
             $manager->persist($service);
             $manager->persist($serviceType);
         }
+
+        //calendar
+        for($i=0; $i<23; $i++) {
+            $calendar = new calendar();
+            $calendar->setTime($i);
+            $calendar->setCommentaire("defaut");
+        }
+
+        $calendar->setDate("13-09-2022");
+        $calendar->setTime("10h");
+        $calendar->setTime("11h");
+        $calendar->setTime("12h");
+
+        $manager->persist($calendar);
+
         $manager->flush();
     }
 }

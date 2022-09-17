@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_label(form.name) }}
+
+<h1>{{ form_widget(form.name) }} </h1>
+    {{ form_label(form.price) }}
+    {{ form_widget(form.price) }}
+
+    {{ form_rest(form) }}
+    <button type="submit">Enregistrer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('test', {'id': 'Salon-numero-7'}) }}">click</a>
+{% endblock %}

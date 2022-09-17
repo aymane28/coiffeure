@@ -1,51 +1,161 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SalonController!{% endblock %}
+{% block title %}Salon détails{% endblock %}
+
 
 {% block body %}
-    <h1> {{ salon.name }}</h1>
-    <div class="row">
-        <div class="row-4">
-            <img src="https://picsum.photos/300/300" class="img-fluid"></br>
+
+    <!-- Page header with logo and tagline-->
+    <header class="py-3 border-bottom mb-4" style="background-color: #FAAA80">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder display-4 text-white">{{ salon.name }}</h1>
+                <p class="lead mb-0 text-white">{{ salon.adresse }}</p>
+            </div>
         </div>
-            <div class="col">
-                <i class="fa fa-phone"> {{ salon.phonenumber }}</i>
-                <p> {{ salon.adresse }} </p>
-                {% if salon.ouverture == 'closed' %}
-                    <span class="badge badge-pill badge-danger">Fermé - ouvre à 10h00</span>
-                {% else %}
-                    <span class="badge badge-pill badge-success">Ouvert aujourd'hui</span>
-                {% endif %}
-                <p> {{ salon.description }} </p>
-
-
-                {% set newArray=[] %}
-                {% for service in salon.service  %}
-                    {% for servicetype in service.relation %}
-                        {% if (service not in newArray) and servicetype.name != null %}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>{{ service.name }}</h2>
-                                </div>
-                                {% set newArray = newArray|merge([service]) %}
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://img.freepik.com/photos-gratuite/bel-homme-dans-salon-coiffure-coiffant-cheveux_1303-20978.jpg?w=740&t=st=1663192112~exp=1663192712~hmac=a2cba9a4a15c79497dd3f971b54a281df33f8216c493673c1d32619655ef752c" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img.freepik.com/photos-gratuite/femme-au-salon-coiffure_144627-8885.jpg?w=740&t=st=1663192149~exp=1663192749~hmac=f914e89551e7cebe7623fa94a4b1832efdab945ef46b0dc24ab589681486d55a" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img.freepik.com/photos-gratuite/salon-coiffure-feminine-faisant-coiffure-pour-femme-brune-dans-salon-beaute_176420-4465.jpg?w=740&t=st=1663192173~exp=1663192773~hmac=20333ab23ed07da5707aa75273867d8ac34cd4841fe90de42edb5d50101011d4" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                         <p class="font-monospace"> <i class="bi bi-geo-alt-fill"></i> {{ salon.adresse }}</p>
+                        <div class="mb-2"><i class="bi bi-telephone-fill"> 07 89 89 25 14</i></div>
+                        {% if salon.ouverture == 'closed' %}
+                            <h5> <span class="badge badge-pill badge-danger mb-2">Fermé - ouvre à 10h00</span></h5>
+                        {% else %}
+                           <h5> <span class="badge badge-pill badge-success mb-2"> Ouvert aujourd'hui</span></h5>
                         {% endif %}
+
+                        <!--<h2 class="card-title">Featured Post Title</h2>-->
+                        <p class="card-text">{{ salon.description }}</p>
+                       <!-- <a class="btn btn-secondary" href="#!">A propos du salon →</a> -->
+                    </div>
+                </div>
+
+                <h3>Réservez en ligne pour un RDV</h3>
+                <h6 class="font-weight-light mb-4">Confirmation immédiate</h6>
+                    <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    {% set newArray=[] %}
+                    {% for service in salon.service  %}
+                    {% for servicetype in service.relation %}
+
+                        {% set newArray = newArray|merge([service]) %}
+
+                    <div class="col-lg-6">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <!--<a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
+                            <div class="card-body">
+                                <div class="small text-muted">{{ service.name }}</div>
+                                <div class="row">
+                                <h2 class="card-title col-md-10 h5">{{ servicetype.name }}</h2>
+                                <h5 class="card-text fst-italic"> {{ servicetype.price }}{{ 'EUR'|currency_symbol }}</h5>
+                                <h7 class="card-subtitle offset-md-10 text-muted">{{ servicetype.time }} min</h7>
+                                </div>
+                                <a type="submit" class="btn btn-outline-light mt-auto" style="background-color: #FAAA80" href="{{ path('salon_rdv', {'slug': salon.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
                     {% endfor %}
 
 
-                        {% for servicetype in service.relation %}
-                            {% if servicetype.name != null %}
-                                <div class="card-body">
-                                <p>{{ servicetype.name }}</p>
-                                    <p class="text-decoration-none"> {{ servicetype.price }}</p>
-                                    <p class="text-muted"><i class="fa fa-clock-o"></i> {{ servicetype.time }}</p>
-                                    <button type="button" class="btn btn-success float-right"><span class="fa fa-calendar"></span> Prendre RDV</button>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                {% endfor %}
 
                 </div>
+                <!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                    </ul>
+                </nav>
             </div>
+            <!-- Side widgets-->
+
+
+                <div class="col-lg-4">
+                    {% set newArray=[] %}
+                    {% for service in salon.service  %}
+                    {% for servicetype in service.relation %}
+
+                    {% set newArray = newArray|merge([service]) %}
+                    <form method="post" action="{{ path('salon_rdv', {'slug': salon.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug, 'servicetypetime': servicetype.time}) }}">
+
+                        {% endfor %}
+                        {% endfor %}
+                <!-- Search widget-->
+
+
+
+            </form>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80" >Avis Utilisateurs<i class="bi bi-people float-right"></i></div>
+                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                </div>
+            </div>
+
+
+        </div>
     </div>
+
+    <form method="POST" action=" {{ path('app_login') }} ">
+        <input type="text" name="adresse" value="aymane">
+        <button type="submit">Envoyer</button>
+    </form>
+
 {% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+    <script>
+        function getTime() {
+            var inputtime = document.getElementById('time').value;
+            document.getElementById('valo').innerHTML=inputtime
+        }
+    </script>
+
+{% endblock %}
+
+
+
+
+
 
