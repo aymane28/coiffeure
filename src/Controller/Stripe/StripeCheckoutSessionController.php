@@ -19,6 +19,11 @@ class StripeCheckoutSessionController extends AbstractController
      */
     public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, SalonRepository $salonRepository, ServiceRepository  $serviceRepository)
     {
+
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $user = $this->getUser();
 
         Stripe::setApiKey('sk_test_51LgyVyCBvyNjF9Db7NwDCHwRGg7WoVGoMGG9IXsRJpeuMQBr31dmggShwYxMxqclexdPL8XmUpe9qgHZgSgRF4jf00TFewgS7J');
