@@ -93,9 +93,8 @@ class AppFixtures extends Fixture
         }
 
         $calendar->setDate("13-09-2022");
-        $calendar->setTime("10h");
-        $calendar->setTime("11h");
-        $calendar->setTime("12h");
+        $calendar->setTime("10");
+
 
         $manager->persist($calendar);
 
