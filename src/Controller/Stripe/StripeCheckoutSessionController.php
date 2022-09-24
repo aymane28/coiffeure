@@ -3,23 +3,29 @@
 namespace App\Controller\Stripe;
 
 use App\Controller\Services\RdvService;
-use App\Repository\SalonRepository;
+use App\Entity\Servicetype;
+use App\Repository\EtablissementRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\ServicetypeRepository;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class StripeCheckoutSessionController extends AbstractController
 {
     /**
-     * @Route("/checkout", name="checkout_session")
+     * @Route("/checkout/{name}", name="checkout_session")
      */
-    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, SalonRepository $salonRepository, ServiceRepository  $serviceRepository)
+    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, EtablissementRepository $salonRepository, ServiceRepository $serviceRepository, Request $request, $name)
     {
 
+        $servicetype = new Servicetype();
+        //dd($servicetype->getName());
+
+        dd($request);
         if(!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }

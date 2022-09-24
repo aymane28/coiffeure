@@ -35,7 +35,7 @@ class ServiceChoiceController extends AbstractController
                 'form' => $form ->createView()
             ]);*/
 
-            return $this->redirectToRoute('salon_details', [
+            return $this->redirectToRoute('etablissement_details', [
                 'slug'=> $id
             ]);
         }

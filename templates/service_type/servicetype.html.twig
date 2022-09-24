@@ -13,12 +13,12 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://picsum.photos/200/200" alt="..." /></div>
                 <div class="col-md-6">
-                    <div class="small mb-1">{{ service.name }}</div>
-                    <h1 class="display-5 fw-bolder mb-5">{{ salon.name }}</h1>
-                    <h5 class="fw-bolder mb-3">Service choisi: <span class="font-italic fw-light text-success"> {{ servtype.name }}</span></h5>
+                    <div class="small mb-1">{{ servicetype.service.name }}</div>
+                    <h1 class="display-5 fw-bolder mb-5">{{ etablissement.name }}</h1>
+                    <h5 class="fw-bolder mb-3">Service choisi: <span class="font-italic fw-light text-success"> {{ servicetype.name }}</span></h5>
                     <div class="fs-5 mb-5">
                         <!--<span class="text-decoration-line-through">$45.00</span>-->
-                        <h5 class="fw-bolder mb-3">Prix: <span class="font-italic fw-light text-success "> {{ servtype.price }} {{ 'EUR'|currency_symbol }}</span></h5>
+                        <h5 class="fw-bolder mb-3">Prix: <span class="font-italic fw-light text-success "> {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</span></h5>
                         <h6> Pour le :</h6> <p  class="font-italic fw-light text-success">{{ rdvdate|format_datetime('full', 'none', locale='en') }}</p> <h6>à </h6><p class="font-italic fw-light text-success">{{ rdvtime }}</p>
                     </div>
                     <div class="d-flex">
@@ -33,15 +33,9 @@
         </div>
     </section>
 
-
 {% endblock %}
 
 {% block javascripts %}
-
-    {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
 
         {{ parent() }}
         <script src="https://js.stripe.com/v3/"></script>
@@ -51,7 +45,7 @@
 
             var checkoutButton = document.getElementById("checkout-button");
             checkoutButton.addEventListener("click", function () {
-                fetch("/checkout", {
+                fetch("{{ path('checkout_session', {'name': servicetype.service.name}) }}", {
                     method: "POST",
                 })
                     .then(function (response) {

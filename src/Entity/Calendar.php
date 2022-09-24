@@ -30,9 +30,9 @@ class Calendar
     private $time;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Salon::class, mappedBy="calendrier")
+     * @ORM\ManyToMany(targetEntity=Etablissement::class, mappedBy="calendrier")
      */
-    private $salons;
+    private $etablissement;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -41,7 +41,7 @@ class Calendar
 
     public function __construct()
     {
-        $this->salons = new ArrayCollection();
+        $this->etablissement = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,27 +74,27 @@ class Calendar
     }
 
     /**
-     * @return Collection<int, Salon>
+     * @return Collection<int, Etablissement>
      */
-    public function getSalons(): Collection
+    public function getEtablissement(): Collection
     {
-        return $this->salons;
+        return $this->etablissement;
     }
 
-    public function addSalon(Salon $salon): self
+    public function addEtablissement(Etablissement $etablissement): self
     {
-        if (!$this->salons->contains($salon)) {
-            $this->salons[] = $salon;
-            $salon->addCalendrier($this);
+        if (!$this->etablissement->contains($etablissement)) {
+            $this->etablissement[] = $etablissement;
+            $etablissement->addCalendrier($this);
         }
 
         return $this;
     }
 
-    public function removeSalon(Salon $salon): self
+    public function removeEtablissement(Etablissement $etablissement): self
     {
-        if ($this->salons->removeElement($salon)) {
-            $salon->removeCalendrier($this);
+        if ($this->etablissement->removeElement($etablissement)) {
+            $etablissement->removeCalendrier($this);
         }
 
         return $this;

@@ -20,14 +20,14 @@ class Service
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Salon::class, mappedBy="service")
+     * @ORM\ManyToMany(targetEntity=Etablissement::class, mappedBy="service")
      */
-    private $salons;
+    private $etablissement;
 
     /**
      * @ORM\OneToMany(targetEntity=Servicetype::class, mappedBy="service")
      */
-    private $relation;
+    private $servicetype;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,8 +41,8 @@ class Service
 
     public function __construct()
     {
-        $this->salons = new ArrayCollection();
-        $this->relation = new ArrayCollection();
+        $this->etablissement = new ArrayCollection();
+        $this->servicetype = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,27 +51,27 @@ class Service
     }
 
     /**
-     * @return Collection<int, Salon>
+     * @return Collection<int, Etablissement>
      */
-    public function getSalons(): Collection
+    public function getEtablissement(): Collection
     {
-        return $this->salons;
+        return $this->etablissement;
     }
 
-    public function addSalon(Salon $salon): self
+    public function addEtablissement(Etablissement $etablissement): self
     {
-        if (!$this->salons->contains($salon)) {
-            $this->salons[] = $salon;
-            $salon->addService($this);
+        if (!$this->etablissement->contains($etablissement)) {
+            $this->etablissement[] = $etablissement;
+            $etablissement->addService($this);
         }
 
         return $this;
     }
 
-    public function removeSalon(Salon $salon): self
+    public function removeEtablissement(Etablissement $etablissement): self
     {
-        if ($this->salons->removeElement($salon)) {
-            $salon->removeService($this);
+        if ($this->etablissement->removeElement($etablissement)) {
+            $etablissement->removeService($this);
         }
 
         return $this;
@@ -80,27 +80,27 @@ class Service
     /**
      * @return Collection<int, servicetype>
      */
-    public function getRelation(): Collection
+    public function getServicetype(): Collection
     {
-        return $this->relation;
+        return $this->servicetype;
     }
 
-    public function addRelation(Servicetype $relation): self
+    public function addServicetype(Servicetype $servicetype): self
     {
-        if (!$this->relation->contains($relation)) {
-            $this->relation[] = $relation;
-            $relation->setService($this);
+        if (!$this->servicetype->contains($servicetype)) {
+            $this->servicetype[] = $servicetype;
+            $servicetype->setService($this);
         }
 
         return $this;
     }
 
-    public function removeRelation(servicetype $relation): self
+    public function removeServicetype(servicetype $servicetype): self
     {
-        if ($this->relation->removeElement($relation)) {
+        if ($this->servicetype->removeElement($servicetype)) {
             // set the owning side to null (unless already changed)
-            if ($relation->getService() === $this) {
-                $relation->setService(null);
+            if ($servicetype->getService() === $this) {
+                $servicetype->setService(null);
             }
         }
 

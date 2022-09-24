@@ -33,7 +33,7 @@ class Servicetype
     private $time;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="relation")
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="servicetype")
      */
     private $service;
 

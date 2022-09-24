@@ -2,20 +2,19 @@
 
 {% block title %}RDV détails{% endblock %}
 
-
 {% block body %}
 
     <!-- Page header with logo and tagline-->
-    <header class="py-3 border-bottom mb-4" style="background-color: #FAAA80">
+    <header class="py-1 border-bottom mb-4" style="background-color: #FAAA80">
         <div class="container">
             <div class="text-center my-5">
-                <h1 class="fw-bolder display-4 text-white">{{ salon.name }}</h1>
-                <p class="lead mb-0 text-white">{{ salon.adresse }}</p>
+                <h1 class="fw-bolder display-4 text-white">{{ etablissement.name }}</h1>
+                <p class="lead mb-0 text-white">{{ etablissement.adresse }}</p>
             </div>
         </div>
     </header>
     <!-- Page content-->
-            <form method="post" action="{{ path('payement_choice', {'slug': salon.slug, 'slugservice': service.slug, 'slugservicetype': servtype.slug}) }}">
+            <form method="post" action="{{ path('payement_choice', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': servicetype.service.slug, 'slugservicetype': servicetype.slug}) }}">
 
     <div class="container">
         <div class="row">
@@ -69,7 +68,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center ">
-                                    {% for s in servicetypee %}
+                                    {% for s in timeopen %}
                                         {% for i in 0..23 %}
                                             {% if i >= (s.time) %}
                                                 <input type="radio" id="time" name="timeinput" value="{{ i }}h" required>
@@ -90,16 +89,16 @@
 
             <div class="card mb-2 ">
             <div class="card-body">
-                <p class="font-monospace"> <i class="bi bi-geo-alt-fill"></i> {{ salon.adresse }}</p>
+                <p class="font-monospace"> <i class="bi bi-geo-alt-fill"></i> {{ etablissement.adresse }}</p>
                 <div class="mb-2"><i class="bi bi-telephone-fill"> 07 89 89 25 14</i></div>
-                {% if salon.ouverture == 'closed' %}
+                {% if etablissement.ouverture == 'closed' %}
                     <h5> <span class="badge badge-pill badge-success mb-2"> Fermé - ouvre à 10h00</span></h5>
                 {% else %}
                     <h5> <span class="badge badge-pill badge-success mb-2"> Ouvert aujourd'hui</span></h5>
                 {% endif %}
                 <!--<h2 class="card-title">Featured Post Title</h2>-->
-               <div class="mb-md-3"><p class="card-text">{{ salon.description }}</p></div>
-                <!-- <a class="btn btn-secondary" href="#!">A propos du salon →</a> -->
+               <div class="mb-md-3"><p class="card-text">{{ etablissement.description }}</p></div>
+                <!-- <a class="btn btn-secondary" href="#!">A propos du etablissement →</a> -->
                 <div class="input-group float-end">
                     <button class="btn btn-outline-dark flex-shrink-0" type="submit">Validez le RDV  →</button>
                 </div>
@@ -118,10 +117,7 @@
 
 {% block javascripts %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-
+    {{ parent() }}
     <script>
         function getTime() {
             var inputtime = document.getElementById('time').value;

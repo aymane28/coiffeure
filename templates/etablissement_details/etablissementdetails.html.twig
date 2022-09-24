@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissement détails{% endblock %}
+
+
+{% block body %}
+
+    <!-- Page header with logo and tagline-->
+    <header class="py-1 border-bottom mb-3" style="background-color: #FAAA80">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder display-4 text-white">{{ etablissement.name }}</h1>
+                <p class="lead mb-0 text-white">{{ etablissement.adresse }}</p>
+            </div>
+        </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://img.freepik.com/photos-gratuite/bel-homme-dans-salon-coiffure-coiffant-cheveux_1303-20978.jpg?w=740&t=st=1663192112~exp=1663192712~hmac=a2cba9a4a15c79497dd3f971b54a281df33f8216c493673c1d32619655ef752c" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img.freepik.com/photos-gratuite/femme-au-salon-coiffure_144627-8885.jpg?w=740&t=st=1663192149~exp=1663192749~hmac=f914e89551e7cebe7623fa94a4b1832efdab945ef46b0dc24ab589681486d55a" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img.freepik.com/photos-gratuite/salon-coiffure-feminine-faisant-coiffure-pour-femme-brune-dans-salon-beaute_176420-4465.jpg?w=740&t=st=1663192173~exp=1663192773~hmac=20333ab23ed07da5707aa75273867d8ac34cd4841fe90de42edb5d50101011d4" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+
+                        <p class="font-monospace"> <i class="bi bi-geo-alt-fill"></i> {{ etablissement.adresse }}</p>
+                        <div class="mb-2"><i class="bi bi-telephone-fill"> 07 89 89 25 14</i></div>
+                        {% if etablissement.ouverture == 'closed' %}
+                            <h5> <span class="badge badge-pill badge-danger mb-2">Fermé - ouvre à 10h00</span></h5>
+                        {% else %}
+                           <h5> <span class="badge badge-pill badge-success mb-2"> Ouvert aujourd'hui</span></h5>
+                        {% endif %}
+
+                        <!--<h2 class="card-title">Featured Post Title</h2>-->
+                        <p class="card-text">{{ etablissement.description }}</p>
+                       <!-- <a class="btn btn-secondary" href="#!">A propos du etablissement →</a> -->
+                    </div>
+                </div>
+
+                <h3>Réservez en ligne pour un RDV</h3>
+                <h6 class="font-weight-light mb-4">Confirmation immédiate</h6>
+                    <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    {% set newArray=[] %}
+                    {% for service in etablissement.service  %}
+                    {% for servicetype in service.relation %}
+
+                        {% set newArray = newArray|merge([service]) %}
+
+                    <div class="col-lg-6">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <!--<a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
+                            <div class="card-body">
+                                <div class="small text-muted">{{ service.name }}</div>
+                                <div class="row">
+                                <h2 class="card-title col-md-10 h5">{{ servicetype.name }}</h2>
+                                <h5 class="card-text fst-italic"> {{ servicetype.price }}{{ 'EUR'|currency_symbol }}</h5>
+                                <h7 class="card-subtitle offset-md-10 text-muted">{{ servicetype.time }} min</h7>
+                                </div>
+                                <a type="submit" class="btn btn-outline-light mt-auto" style="background-color: #FAAA80" href="{{ path('etablissement_rdv', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            <!-- Side widgets-->
+
+
+                <div class="col-lg-4">
+                    {% set newArray=[] %}
+                    {% for service in etablissement.service  %}
+                    {% for servicetype in service.relation %}
+
+                    {% set newArray = newArray|merge([service]) %}
+                    <form method="post" action="{{ path('etablissement_rdv', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug, 'servicetypetime': servicetype.time}) }}">
+
+                        {% endfor %}
+                        {% endfor %}
+
+                        <!-- Search widget-->
+
+
+
+            </form>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80" >Avis Utilisateurs<i class="bi bi-people float-right"></i></div>
+                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-white">Site développé par Aymane</div></div>
+                <div class="col-auto">
+                    <a class="link-light small text-success" href="https://www.instagram.com/aymane_afd/" >Instagram</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small text-success" href="https://twitter.com/aymane_afd">Twitter</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small text-success" href="https://www.linkedin.com/in/aymane-afdari/">Linkedin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script>
+        function getTime() {
+            var inputtime = document.getElementById('time').value;
+            document.getElementById('valo').innerHTML=inputtime
+        }
+    </script>
+
+{% endblock %}
+
+
+
+
+
+

@@ -13,7 +13,7 @@ class StripeCancelController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('stripe/stripe_cancel/index.html.twig', [
+        return $this->render('stripe/stripe_cancel/etablissementdetails.html.twig', [
             'controller_name' => 'StripeCancelController',
         ]);
     }

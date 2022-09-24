@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\LoginType;;
+use App\Form\LoginType;
+
+;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +23,9 @@ class LoginController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
 
-       /* if ($this->getUser()) {
-             return $this->redirectToRoute('app_validation_payment');
-         }*/
+        /* if ($this->getUser()) {
+              return $this->redirectToRoute('app_validation_payment');
+          }*/
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

@@ -13,7 +13,7 @@ class StripeSuccessController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('stripe/stripe_success/index.html.twig', [
+        return $this->render('stripe/stripe_success/etablissementdetails.html.twig', [
             'controller_name' => 'StripeSuccessController',
         ]);
     }

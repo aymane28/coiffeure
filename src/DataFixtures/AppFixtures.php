@@ -3,7 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Calendar;
-use App\Entity\Salon;
+use App\Entity\Etablissements;
+use App\Entity\Etablissementtype;
+use App\Entity\Etablissement;
 use App\Entity\Service;
 use App\Entity\Servicetype;
 use App\Entity\User;
@@ -28,8 +30,9 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $salons =[];
+        $etablissement =[];
         $serviceTypes=[];
+        $etablissements=[];
         for($i=0; $i<10; $i++){
             $user = new user();
             $plaintextPassword="password";
@@ -42,12 +45,12 @@ class AppFixtures extends Fixture
             $user ->setEmail("email$i@gmail.com");
 
 
-            //salon
-            $salon= new salon();
-            $salon->setName("Salon numéro $i");
-            $salon->setAdresse("$i avenue d'opéra");
-            $salon->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
-            $salon->setSlug($this->slugger->slug($salon->getName()));
+            //etablissements
+            $etablissement= new Etablissement();
+            $etablissement->setName("Etablissement numéro $i");
+            $etablissement->setAdresse("$i avenue d'opéra");
+            $etablissement->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
+            $etablissement->setSlug($this->slugger->slug($etablissement->getName()));
 
             //service
             $service= new service();
@@ -69,9 +72,20 @@ class AppFixtures extends Fixture
             $serviceType->setSlug($this->slugger->slug($serviceType->getName()));
 
 
-            $salons[]=$salon;
-            foreach($salons as $salon){
-                $service->addSalon($salon);
+            //Etablissementtype
+            $etablissementtype = new etablissementtype();
+            $etablissementtype->setName('Barbier');
+            $etablissementtype->setSlug($this->slugger->slug($etablissementtype->getName()));
+
+
+            $etablissements[]=$etablissement;
+            foreach($etablissements as $etablissement){
+                $etablissementtype->addEtablissement($etablissement);
+            }
+
+            $etablissements[]=$etablissement;
+            foreach($etablissements as $etablissement){
+                $service->addEtablissement($etablissement);
             }
 
             $serviceTypes[]=$serviceType;
@@ -80,9 +94,10 @@ class AppFixtures extends Fixture
             }
 
             $manager->persist($user);
-            $manager->persist($salon);
+            $manager->persist($etablissement);
             $manager->persist($service);
             $manager->persist($serviceType);
+            $manager->persist($etablissementtype);
         }
 
         //calendar
