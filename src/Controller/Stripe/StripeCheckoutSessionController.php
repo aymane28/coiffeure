@@ -17,15 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class StripeCheckoutSessionController extends AbstractController
 {
     /**
-     * @Route("/checkout/{name}", name="checkout_session")
+     * @Route("/checkout", name="checkout_session")
      */
-    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, EtablissementRepository $salonRepository, ServiceRepository $serviceRepository, Request $request, $name)
+    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, EtablissementRepository $salonRepository, ServiceRepository $serviceRepository, Request $request)
     {
 
         $servicetype = new Servicetype();
         //dd($servicetype->getName());
 
-        dd($request);
         if(!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }

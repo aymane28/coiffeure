@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Etablissement;
+use App\Entity\Service;
 use App\Form\AddEtablissementType;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,22 +29,24 @@ class AddEtablissementController extends AbstractController
     {
 
         $etablissement = new Etablissement();
+        $service = new Service();
         $form = $this -> createForm(AddEtablissementType::class, $etablissement);
         $form->handleRequest($request);
-
-        $service = $serviceRepository->findAll();
 
         //dd($service);
         if($form->isSubmitted() && $form->isValid()) {
             $etablissement->setSlug($this->slugger->slug($etablissement->getName()));
+
+            //$service->addEtablissement($etablissement);
+
+            $etablissement->setService($service);
+            //$entityManager->persist($service);
             $entityManager->persist($etablissement);
             $entityManager->flush();
-
         }
 
         return $this->renderForm('etablissement/addetablissement.html.twig', [
             'form' => $form,
-            'service' => $service
         ]);
 
     }

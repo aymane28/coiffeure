@@ -63,28 +63,25 @@
                     <!-- Nested row for non-featured blog posts-->
                 <div class="row">
                     {% set newArray=[] %}
-                    {% for service in etablissement.service  %}
-                    {% for servicetype in service.relation %}
+                    {% for servicetype in etablissement.service.servicetype %}
 
-                        {% set newArray = newArray|merge([service]) %}
 
                     <div class="col-lg-6">
                         <!-- Blog post-->
                         <div class="card mb-4">
                             <!--<a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
                             <div class="card-body">
-                                <div class="small text-muted">{{ service.name }}</div>
+                                <div class="small text-muted">{{ etablissement.service.name }}</div>
                                 <div class="row">
                                 <h2 class="card-title col-md-10 h5">{{ servicetype.name }}</h2>
                                 <h5 class="card-text fst-italic"> {{ servicetype.price }}{{ 'EUR'|currency_symbol }}</h5>
                                 <h7 class="card-subtitle offset-md-10 text-muted">{{ servicetype.time }} min</h7>
                                 </div>
-                                <a type="submit" class="btn btn-outline-light mt-auto" style="background-color: #FAAA80" href="{{ path('etablissement_rdv', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir →</a>
+                                <a type="submit" class="btn btn-outline-light mt-auto" style="background-color: #FAAA80" href="{{ path('etablissement_rdv', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': etablissement.service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir →</a>
                             </div>
                         </div>
                     </div>
 
-                    {% endfor %}
                     {% endfor %}
 
 
@@ -96,7 +93,7 @@
                 <div class="col-lg-4">
                     {% set newArray=[] %}
                     {% for service in etablissement.service  %}
-                    {% for servicetype in service.relation %}
+                    {% for servicetype in service.servicetype %}
 
                     {% set newArray = newArray|merge([service]) %}
                     <form method="post" action="{{ path('etablissement_rdv', {'slugetablissementtype': etablissement.etablissementtype.slug, 'slugetablissement': etablissement.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug, 'servicetypetime': servicetype.time}) }}">

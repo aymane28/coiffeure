@@ -19,10 +19,6 @@ class Service
      */
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Etablissement::class, mappedBy="service")
-     */
-    private $etablissement;
 
     /**
      * @ORM\OneToMany(targetEntity=Servicetype::class, mappedBy="service")
@@ -30,19 +26,25 @@ class Service
     private $servicetype;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Etablissement::class, mappedBy="service")
+     */
+    private $etablissement;
 
     public function __construct()
     {
         $this->etablissement = new ArrayCollection();
         $this->servicetype = new ArrayCollection();
+        $this->etablissements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,32 +52,6 @@ class Service
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Etablissement>
-     */
-    public function getEtablissement(): Collection
-    {
-        return $this->etablissement;
-    }
-
-    public function addEtablissement(Etablissement $etablissement): self
-    {
-        if (!$this->etablissement->contains($etablissement)) {
-            $this->etablissement[] = $etablissement;
-            $etablissement->addService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEtablissement(Etablissement $etablissement): self
-    {
-        if ($this->etablissement->removeElement($etablissement)) {
-            $etablissement->removeService($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, servicetype>
@@ -130,4 +106,42 @@ class Service
 
         return $this;
     }
+
+    public function setEtablissement(?Etablissement $etablissement): self
+    {
+        $this->etablissement = $etablissement;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Etablissement>
+     */
+    public function getEtablissement(): Collection
+    {
+        return $this->etablissement;
+    }
+
+    public function addEtablissement(Etablissement $etablissement): self
+    {
+        if (!$this->etablissement->contains($etablissement)) {
+            $this->etablissement[] = $etablissement;
+            $etablissement->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtablissement(Etablissement $etablissement): self
+    {
+        if ($this->etablissement->removeElement($etablissement)) {
+            // set the owning side to null (unless already changed)
+            if ($etablissement->getService() === $this) {
+                $etablissement->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

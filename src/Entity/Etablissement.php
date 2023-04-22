@@ -44,10 +44,6 @@ class Etablissement
      */
     private $slug;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="etablissement")
-     */
-    private $service;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -64,10 +60,14 @@ class Etablissement
      */
     private $etablissementtype;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="etablissement")
+     */
+    private $service;
+
 
     public function __construct()
     {
-        $this->service = new ArrayCollection();
         $this->calendrier = new ArrayCollection();
     }
 
@@ -136,28 +136,6 @@ class Etablissement
         return $this;
     }
 
-    /**
-     * @return Collection<int, service>
-     */
-    public function getService(): Collection
-    {
-        return $this->service;
-    }
-
-    public function addService(service $service): self
-    {
-        if (!$this->service->contains($service)) {
-            $this->service[] = $service;
-        }
-        return $this;
-    }
-
-    public function removeService(service $service): self
-    {
-        $this->service->removeElement($service);
-
-        return $this;
-    }
 
     public function getPhonenumber(): ?string
     {
@@ -207,4 +185,20 @@ class Etablissement
         return $this;
     }
 
+    public function getService(): ?service
+    {
+        return $this->service;
+    }
+
+    public function setService(?service $service): self
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->lala;
+    }
 }

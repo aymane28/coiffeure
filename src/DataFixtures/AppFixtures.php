@@ -90,7 +90,7 @@ class AppFixtures extends Fixture
 
             $serviceTypes[]=$serviceType;
             foreach($serviceTypes as $serviceType){
-                $service->addRelation($serviceType);
+                $service->addServicetype($serviceType);
             }
 
             $manager->persist($user);

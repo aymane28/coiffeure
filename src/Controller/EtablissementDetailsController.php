@@ -25,12 +25,13 @@ class EtablissementDetailsController extends AbstractController
     }
 
     /**
-     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}", name="etablissement_details", defaults={"servicetypetime" = "null", "date" = "null" })
+     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}", name="etablissement_details")
      */
     public function etablissementDetail(EtablissementRepository $etablissementRepository, $slugetablissementtype, $slugetablissement): Response
     {
-        $etablissement = $etablissementRepository->findOneBy(['slug' => $slugetablissement]);
 
+        $etablissement = $etablissementRepository->findOneBy(['slug' => $slugetablissement]);
+        //dd($etablissement);
         return $this->render('etablissement_details/etablissementdetails.html.twig', [
             'etablissement' => $etablissement
         ]);
@@ -44,8 +45,8 @@ class EtablissementDetailsController extends AbstractController
     {
         $etablissement = $etablissementRepository->findOneBy(['slug' => $slugetablissement]);
 
-        $servicetype = $servicetypeRepository->findOneBy((['slug' => $slugservicetype]));
 
+        $servicetype = $servicetypeRepository->findOneBy((['slug' => $slugservicetype]));
 
         $timeopen = $calendarRepository->findAll();
 
@@ -91,6 +92,6 @@ class EtablissementDetailsController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('validation_payment/validpayment.html.twig');
+        return $this->render('validation_payment/valipayedpayment.html.twig');
     }
 }
