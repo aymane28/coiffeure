@@ -2,6 +2,8 @@
 
 {% block title %}Inscription{% endblock %}
 
+{% block include_navbar %}{% endblock %}
+
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
@@ -13,7 +15,7 @@
                 <div class="col-lg-5 col-md-8 align-item-center">
                     <div class="border">
                         {{ form_start(registrationForm) }}
-                        <h3 class="p-4" style="background-color: #FAAA80">S'enregistrer'</h3>
+                        <h3 class="p-4" style="background-color: #FAAA80">S'enregistrer</h3>
                             <fieldset class="p-4">
                                 {{ form_row(registrationForm.email) }}
                                 {{ form_row(registrationForm.plainPassword, {

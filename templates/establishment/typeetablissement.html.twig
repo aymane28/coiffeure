@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissements{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .card {
+            border: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background-color: #FAAA80;
+            border-color: #FAAA80;
+        }
+
+        .btn:hover {
+            background-color: #d77945;
+            border-color: #d77945;
+        }
+
+        .btn-block {
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Header-->
+    <header class="py-3" style="background-color: #FAAA80">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Découvrez nos établissements</h1>
+                <p class="lead fw-normal text-white mb-0">Homme / Femme</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page content-->
+    <div class="container px-4 mt-5">
+        <div class="row row-cols-xl-3 justify-content-center">
+            {% for e in etablissementtype %}
+                <div class="col-md-3 mb-5">
+                    <div class="card ">
+                        <img class="card-img-top" src="https://www.perfectgentleman.fr/wp-content/uploads/2020/03/IMG-2007-2-1024x768.jpg" alt="Barbier">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ e.name }}</h5>
+                            <p class="card-text">Il y a 10 établissements</p>
+                            <a type="submit" class="btn btn-primary btn-block" href="{{ path('etablissements', {'slugetablissementtype': e.slug }) }}"> <i class="bi bi-shop"></i>
+                            Choisir</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

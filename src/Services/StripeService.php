@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 
 class StripeService
 {
@@ -19,11 +19,11 @@ class StripeService
         }
 
     /**
-     * @param Servicetype $servicetype
+     * @param ServiceType $servicetype
      * @return \Stripe\PaymentIntent
      * @throws \Stripe\Exception\ApiErrorException
      */
-        public function paymentIntent(Servicetype $servicetype): \Stripe\PaymentIntent
+        public function paymentIntent(ServiceType $servicetype): \Stripe\PaymentIntent
         {
             \Stripe\Stripe::setApiKey($this->privatekey);
 
@@ -58,10 +58,10 @@ class StripeService
 
     /**
      * @param array $stripeParameter
-     * @param Servicetype $servicetype
+     * @param ServiceType $servicetype
      * @return \Stripe\PaymentIntent|null
      */
-        public function stripe(array $stripeParameter, Servicetype $servicetype){
+        public function stripe(array $stripeParameter, ServiceType $servicetype){
             return $this->paiment(
                 $servicetype->getprice()*100,
                 $servicetype->getName(),

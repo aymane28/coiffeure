@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 use App\Form\ServiceChoice;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ class ServiceChoiceController extends AbstractController
      */
     public function show(Request $request, EntityManagerInterface $entityManager, $id){
 
-        $servicetype= new Servicetype();
+        $servicetype= new ServiceType();
 
         $form = $this ->createForm(ServiceChoice::class, $servicetype);
 

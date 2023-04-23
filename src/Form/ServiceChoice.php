@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,7 +25,7 @@ class ServiceChoice extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class'=> Servicetype::class
+            'data_class'=> ServiceType::class
         ]);
     }
 

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix payement{% endblock %}
+
+{% block scriptStripe %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block body %}
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-2">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://picsum.photos/200/200" alt="..." /></div>
+                <div class="col-md-6">
+                    <div class="small mb-1">{{ servicetype.service.name }}</div>
+                    <h1 class="display-5 fw-bolder mb-5">{{ establishment.name }}</h1>
+                    <h5 class="fw-bolder mb-3">Service choisi: <span class="font-italic fw-light text-success"> {{ servicetype.name }}</span></h5>
+                    <div class="fs-5 mb-5">
+                        <!--<span class="text-decoration-line-through">$45.00</span>-->
+                        <h5 class="fw-bolder mb-3">Prix: <span class="font-italic fw-light text-success "> {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</span></h5>
+                        <h6> Pour le :</h6> <p  class="font-italic fw-light text-success">{{ rdvdate|format_datetime('full', 'none', locale='en') }}</p> <h6>à </h6><p class="font-italic fw-light text-success">{{ rdvtime }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <form action="/checkout" method="POST">
+                            <button class="btn btn-outline-dark flex-shrink-0 mr-3" type="submit" id="checkout-button"> <i class="bi bi-credit-card"></i> Payer en ligne</button>
+                        </form>
+                        </a>
+                        <a class="btn btn-outline-dark flex-shrink-0" type="button" href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur place</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+
+        {{ parent() }}
+        <script src="https://js.stripe.com/v3/"></script>
+
+        <script>
+            const stripe = Stripe("pk_test_51LgyVyCBvyNjF9DbOT8IGbWgWnffaTcOr0LGmU7vu7vE1VL9qmpQAeWRcpEK3vBX4lbJ0nIVJFEmHrgo2JsjQO2200pMvtgeoW");
+
+            var checkoutButton = document.getElementById("checkout-button");
+            checkoutButton.addEventListener("click", function () {
+                fetch("{{ path('checkout_session', {'name': servicetype.service.name}) }}", {
+                    method: "POST",
+                })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (session) {
+                        return stripe.redirectToCheckout({ sessionId: session.id });
+                    })
+                    .then(function (result) {
+                        // If redirectToCheckout fails due to a browser or network
+                        // error, you should display the localized error message to your
+                        // customer using error.message.
+                        if (result.error) {
+                            alert(result.error.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error("Error:", error);
+                    });
+            });
+        </script>
+
+{% endblock %}
+
+
+
+
+
+

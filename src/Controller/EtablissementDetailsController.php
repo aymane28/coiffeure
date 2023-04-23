@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 use App\Repository\CalendarRepository;
-use App\Repository\EtablissementRepository;
+use App\Repository\EstablishmentRepository;
 use App\Repository\EtablissementtypeRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\ServicetypeRepository;
@@ -31,9 +31,9 @@ class EtablissementDetailsController extends AbstractController
     {
 
         $etablissement = $etablissementRepository->findOneBy(['slug' => $slugetablissement]);
-        //dd($etablissement);
+        //dd($establishment);
         return $this->render('etablissement_details/etablissementdetails.html.twig', [
-            'etablissement' => $etablissement
+            'establishment' => $etablissement
         ]);
     }
 
@@ -52,9 +52,9 @@ class EtablissementDetailsController extends AbstractController
 
         $slugservice = $request->attributes->get('slugservice');
 
-        return $this->render('date_heure/dateheure.html.twig', [
+        return $this->render('date_heure/appointment.html.twig', [
             'servicetype' => $servicetype,
-            'etablissement' => $etablissement,
+            'establishment' => $etablissement,
             'timeopen' => $timeopen,
             'slugservice' => $slugservice
         ]);
@@ -64,7 +64,7 @@ class EtablissementDetailsController extends AbstractController
     /**
      * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}/{slugservice}/{slugservicetype}/payement", name="payement_choice")
      */
-    public function payement(ServicetypeRepository $servicetypeRepository, EtablissementRepository $etablissementRepository, $slugservice, $slugservicetype, Request $request, $slugetablissement, $slugetablissementtype): Response
+    public function payement(ServiceTypeRepository $servicetypeRepository, EtablissementRepository $etablissementRepository, $slugservice, $slugservicetype, Request $request, $slugetablissement, $slugetablissementtype): Response
     {
 
         $etablissement = $etablissementRepository->findOneBy(['slug' => $slugetablissement]);
@@ -75,9 +75,9 @@ class EtablissementDetailsController extends AbstractController
 
         $rdvtime = $request->request->get('timeinput');
 
-        return $this->render('service_type/servicetype.html.twig', [
+        return $this->render('service_type/cart.html.twig', [
             'servicetype' => $servicetype,
-            'etablissement' => $etablissement,
+            'establishment' => $etablissement,
             'rdvdate' => $rdvdate,
             'rdvtime' => $rdvtime,
         ]);
@@ -92,6 +92,6 @@ class EtablissementDetailsController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('validation_payment/valipayedpayment.html.twig');
+        return $this->render('validation_payment/validpayment.html.twig');
     }
 }

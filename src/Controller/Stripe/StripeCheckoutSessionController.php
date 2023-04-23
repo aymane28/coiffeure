@@ -3,10 +3,10 @@
 namespace App\Controller\Stripe;
 
 use App\Controller\Services\RdvService;
-use App\Entity\Servicetype;
-use App\Repository\EtablissementRepository;
+use App\Entity\ServiceType;
+use App\Repository\EstablishmentRepository;
 use App\Repository\ServiceRepository;
-use App\Repository\ServicetypeRepository;
+use App\Repository\ServiceTypeRepository;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,10 +19,10 @@ class StripeCheckoutSessionController extends AbstractController
     /**
      * @Route("/checkout", name="checkout_session")
      */
-    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, EtablissementRepository $salonRepository, ServiceRepository $serviceRepository, Request $request)
+    public function checkout(RdvService $rdvService, ServicetypeRepository $servicetypeRepository, EstablishmentRepository $establishmentRepository, ServiceRepository $serviceRepository, Request $request)
     {
 
-        $servicetype = new Servicetype();
+        $servicetype = new ServiceType();
         //dd($servicetype->getName());
 
         if(!$this->getUser()) {

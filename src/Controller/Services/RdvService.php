@@ -2,7 +2,7 @@
 
 namespace App\Controller\Services;
 
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 use App\Repository\ServicetypeRepository;
 
 class RdvService
@@ -10,7 +10,7 @@ class RdvService
 
     public function getDetailsRdv($servicetypee){
 
-        $servicetypee= new Servicetype();
+        $servicetypee= new ServiceType();
 
         $sevicetypeprice= $servicetypee->getPrice();
 

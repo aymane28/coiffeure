@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Etablissement;
-use App\Entity\Service;
-use App\Form\AddEtablissementType;
+use App\Entity\Establishment;
+
+use App\Form\AddEstablishmentType;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -25,29 +26,20 @@ class AddEtablissementController extends AbstractController
     /**
      * @Route("/addEtablissement", name="add_etablissement")
      */
-    public function addEtablissement(SluggerInterface $slugger, Request $request, ServiceRepository $serviceRepository, EntityManagerInterface $entityManager)
+    public function __invoke(Request $request, ServiceRepository $serviceRepository, EntityManagerInterface $entityManager): Response
     {
-
-        $etablissement = new Etablissement();
-        $service = new Service();
-        $form = $this -> createForm(AddEtablissementType::class, $etablissement);
+        $establishment = new Establishment();
+        $form = $this -> createForm(AddEstablishmentType::class, $establishment);
         $form->handleRequest($request);
 
-        //dd($service);
         if($form->isSubmitted() && $form->isValid()) {
-            $etablissement->setSlug($this->slugger->slug($etablissement->getName()));
-
-            //$service->addEtablissement($etablissement);
-
-            $etablissement->setService($service);
-            //$entityManager->persist($service);
-            $entityManager->persist($etablissement);
+            $establishment->setSlug($this->slugger->slug($establishment->getName()));
+            $entityManager->persist($establishment);
             $entityManager->flush();
         }
 
-        return $this->renderForm('etablissement/addetablissement.html.twig', [
+        return $this->renderForm('establishment/addestablishment.html.twig', [
             'form' => $form,
         ]);
-
     }
 }

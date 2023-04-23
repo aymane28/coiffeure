@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <section class="login py-5 border-top-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-md-8 align-item-center">
+                    <div class="border">
+                        {{ form_start(form) }}
+                        <h3 class="p-4" style="background-color: #FAAA80"><i class="bi bi-shop"></i> Ajouter votre
+                            établissement</h3>
+                        <fieldset class="p-4">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.name, {
+                                        "help": "Nom de votre établissement",
+                                        "label": "Nom",
+                                        "required": true,
+                                        "attr": {
+                                            "placeholder": "8 avenue d'opéra"
+                                        },
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.address, {
+                                        "help": "Adresse complete",
+                                        "label": "Adresse",
+                                        "required": true,
+                                        "attr": {
+                                            "placeholder": "Adresse"
+                                        },
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.opening, {
+                                        "help": "Heure d'ouverture",
+                                        "label": "Ouverture",
+                                        "required": true,
+                                        "attr": {
+                                            "placeholder": "Ouverture"
+                                        },
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.phoneNumber, {
+                                        "help": "Exemple: 0711111111",
+                                        "label": "Numéro de téléphone",
+                                        "required": true,
+                                        "attr": {
+                                            "placeholder": "Téléphone"
+                                        },
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.service, {
+                                        "label": "Service",
+                                        "required": true,
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.establishmentType, {
+                                        "label": "Type d'établissement",
+                                        "required": true,
+                                        "params": {
+                                            "raw_label": true
+                                        }
+                                    }) }}</div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_row(form.description, {
+                                    "help": "Description de l'établissement",
+                                    "label": "Description",
+                                    "required": true,
+                                    "attr": {
+                                        "placeholder": "Description"
+                                    },
+                                    "params": {
+                                        "raw_label": true
+                                    }
+                                }) }}</div>
+                            {{ form_widget(form.submit, {
+                                'submit': 'Click me',
+                                "attr": {
+                                    "class": "btn font-weight-bold mt-3",
+                                    "style": "background-color: #FAAA80"
+                                }}) }}
+                        </fieldset>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

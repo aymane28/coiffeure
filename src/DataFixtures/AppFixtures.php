@@ -4,10 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Calendar;
 use App\Entity\Etablissements;
-use App\Entity\Etablissementtype;
-use App\Entity\Etablissement;
+use App\Entity\EstablishmentType;
+use App\Entity\Establishment;
 use App\Entity\Service;
-use App\Entity\Servicetype;
+use App\Entity\ServiceType;
 use App\Entity\User;
 use ContainerQYER1SZ\getServicetypeRepositoryService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -30,10 +30,10 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $etablissement =[];
+        $establishment =[];
         $serviceTypes=[];
-        $etablissements=[];
-        for($i=0; $i<10; $i++){
+        $establishments=[];
+        for($i=0; $i<5; $i++){
             $user = new user();
             $plaintextPassword="password";
             $hashedPassword = $this->passwordHasher->hashPassword(
@@ -46,11 +46,13 @@ class AppFixtures extends Fixture
 
 
             //etablissements
-            $etablissement= new Etablissement();
-            $etablissement->setName("Etablissement numéro $i");
-            $etablissement->setAdresse("$i avenue d'opéra");
-            $etablissement->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
-            $etablissement->setSlug($this->slugger->slug($etablissement->getName()));
+            $establishment= new Establishment();
+            $establishment->setName("Establishment numéro $i");
+            $establishment->setAddress("$i avenue d'opéra");
+            $establishment->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
+            $establishment->setSlug($this->slugger->slug($establishment->getName()));
+            $establishment->setOpening("open");
+            $establishment->setPhoneNumber("0766666666");
 
             //service
             $service= new service();
@@ -60,7 +62,7 @@ class AppFixtures extends Fixture
             $service->setSlug($this->slugger->slug($service->getName()));
 
             //serviceType
-            $serviceType= new servicetype();
+            $serviceType= new ServiceType();
             $serviceType->setName("Pampadour");
             $serviceType->setName("Quiff");
             $serviceType->setName("Undercut");
@@ -72,32 +74,32 @@ class AppFixtures extends Fixture
             $serviceType->setSlug($this->slugger->slug($serviceType->getName()));
 
 
-            //Etablissementtype
-            $etablissementtype = new etablissementtype();
-            $etablissementtype->setName('Barbier');
-            $etablissementtype->setSlug($this->slugger->slug($etablissementtype->getName()));
+            //EstablishmentType
+            $establishmentType = new EstablishmentType();
+            $establishmentType->setName('Barbier');
+            $establishmentType->setSlug($this->slugger->slug($establishmentType->getName()));
 
 
-            $etablissements[]=$etablissement;
-            foreach($etablissements as $etablissement){
-                $etablissementtype->addEtablissement($etablissement);
+            $establishments[]=$establishment;
+            foreach($establishments as $establishment){
+                $establishmentType->addEstablishment($establishment);
             }
 
-            $etablissements[]=$etablissement;
-            foreach($etablissements as $etablissement){
-                $service->addEtablissement($etablissement);
+            $establishments[]=$establishment;
+            foreach($establishments as $establishment){
+                $service->addEstablishment($establishment);
             }
 
             $serviceTypes[]=$serviceType;
             foreach($serviceTypes as $serviceType){
-                $service->addServicetype($serviceType);
+                $service->addServiceType($serviceType);
             }
 
             $manager->persist($user);
-            $manager->persist($etablissement);
+            $manager->persist($establishment);
             $manager->persist($service);
             $manager->persist($serviceType);
-            $manager->persist($etablissementtype);
+            $manager->persist($establishmentType);
         }
 
         //calendar
