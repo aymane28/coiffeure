@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AppointmentController extends AbstractController
@@ -20,17 +21,40 @@ class AppointmentController extends AbstractController
      * @ParamConverter("service", options={"mapping": {"slugservice": "slug"}})
      * @ParamConverter("serviceType", options={"mapping": {"slugservicetype": "slug"}})
      */
-    public function __invoke(Establishment $establishment, Service $service, ServiceType $serviceType, CalendarRepository $calendarRepository, Request $request): Response
+    public function __invoke(Establishment $establishment, Service $service, ServiceType $serviceType, CalendarRepository $calendarRepository, Request $request, SessionInterface $session): Response
     {
-        $timeopen = $calendarRepository->findAll();
-
-        $slugservice = $request->attributes->get('slugservice');
+        $timeOpen = $calendarRepository->findAll();
 
         return $this->render('appointment/appointment.html.twig', [
             'servicetype' => $serviceType,
             'establishment' => $establishment,
-            'timeopen' => $timeopen,
-            'slugservice' => $slugservice
+            'timeopen' => $timeOpen
         ]);
+    }
+
+    /**
+     * @Route("/add-to-cart/{id}/{slugservicetype}/{slugservice}", name="add_to_cart")
+     * @ParamConverter("service", options={"mapping": {"slugservice": "slug"}})
+     * @ParamConverter("serviceType", options={"mapping": {"slugservicetype": "slug"}})
+     */
+    public function addToCart(Establishment $establishment, ServiceType $serviceType, Service $service, Request $request, SessionInterface $session): Response
+    {
+        $rdvDate = $request->request->get('rdvDate');
+        $rdvTime = $request->request->get('rdvTime');
+        $session->remove('cart');
+
+        $cart = [
+            $establishment->getId() => [
+                'establishment' => $establishment,
+                'serviceType' => $serviceType,
+                'service' => $service,
+                'rdvDate' => $rdvDate,
+                'rdvTime' => $rdvTime
+            ]
+        ];
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('cart');
     }
 }

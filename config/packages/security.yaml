@@ -18,8 +18,8 @@ security:
             #lazy: true
             #provider: users_in_memory
             form_login:
-                login_path: login
-                check_path: login
+                login_path: app_login
+                check_path: app_login
             entry_point: form_login
             logout:
                 path: app_logout

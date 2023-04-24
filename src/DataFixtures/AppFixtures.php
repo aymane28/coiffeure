@@ -41,8 +41,11 @@ class AppFixtures extends Fixture
                 $plaintextPassword
             );
             $user->setPassword($hashedPassword);
-            $user ->setName("user$i");
+            $user ->setFirstName("firstName$i");
+            $user->setLastName("lastName$i");
             $user ->setEmail("email$i@gmail.com");
+            $user->setCreatedAt(new \DateTimeImmutable());
+            $user->setPhoneNumber('0766666666');
 
 
             //etablissements
@@ -53,6 +56,7 @@ class AppFixtures extends Fixture
             $establishment->setSlug($this->slugger->slug($establishment->getName()));
             $establishment->setOpening("open");
             $establishment->setPhoneNumber("0766666666");
+            $establishment->setCreatedBy($user);
 
             //service
             $service= new service();

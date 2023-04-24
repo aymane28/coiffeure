@@ -47,18 +47,17 @@
                         </button>
                     </div>
                     <div class="card-body">
-
-                        <p class="font-monospace"><i class="bi bi-geo-alt-fill"></i> {{ establishment.address }}</p>
+                        <h6 class="mb-3">
+                            <i class="bi bi-geo-alt-fill"
+                               style="color: #c21a1a"></i> {{ establishment.address }}
+                        </h6>
                         <div class="mb-2"><i class="bi bi-telephone-fill"> 07 89 89 25 14</i></div>
                         {% if establishment.opening == 'closed' %}
                             <h5><span class="badge badge-pill badge-danger mb-2">Fermé - ouvre à 10h00</span></h5>
                         {% else %}
                             <h5><span class="badge badge-pill badge-success mb-2"> Ouvert aujourd'hui</span></h5>
                         {% endif %}
-
-                        <!--<h2 class="card-title">Featured Post Title</h2>-->
                         <p class="card-text">{{ establishment.description }}</p>
-                        <!-- <a class="btn btn-secondary" href="#!">A propos du establishment →</a> -->
                     </div>
                 </div>
 
@@ -68,28 +67,47 @@
                 <div class="row">
                     {% set newArray=[] %}
                     {% for servicetype in establishment.service.servicetype %}
-
-
                         <div class="col-lg-6">
-                            <!-- Blog post-->
                             <div class="card mb-4">
-                                <!--<a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
                                 <div class="card-body">
-                                    <div class="small text-muted">{{ establishment.service.name }}</div>
-                                    <div class="row">
-                                        <h2 class="card-title col-md-10 h5">{{ servicetype.name }}</h2>
-                                        <h5 class="card-text fst-italic"> {{ servicetype.price }}{{ 'EUR'|currency_symbol }}</h5>
-                                        <h7 class="card-subtitle offset-md-10 text-muted">{{ servicetype.time }}min
-                                        </h7>
+                                    <div class="row mb-3">
+                                        <div class="small text-muted">{{ establishment.service.name }}</div>
+                                        <div class="col-auto">
+                                            <h5 class="card-title">{{ servicetype.name }}</h5>
+                                        </div>
                                     </div>
-                                    <a type="submit" class="btn btn-outline-light mt-auto"
+
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                            <h6 class="card-title">Durée</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="card-subtitle text-muted float-end">
+                                                <i class="bi bi-clock-fill" style="color: #c2c2c5"></i>
+                                                {{ servicetype.time }}min
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                            <h6 class="card-title">Tarifs</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="card-subtitle text-muted float-end">
+                                                <i class="bi bi-cash-stack" style="color: #c2c2c5"></i>
+                                                {{ servicetype.price }} {{ 'EUR'|currency_symbol }}
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <a type="submit" class="btn text-light float-end"
                                        style="background-color: #FAAA80"
                                        href="{{ path('appointment', {'slugestablishment': establishment.slug, 'slugservice': establishment.service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir
                                         →</a>
                                 </div>
                             </div>
                         </div>
-
                     {% endfor %}
 
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Etablissements {% endblock %}
+{% block title %}Établissements {% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -18,36 +18,8 @@
             height: 200px;
             object-fit: cover;
         }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .card-text {
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            background-color: #FAAA80;
-            border-color: #FAAA80;
-        }
-
-        .btn:hover {
-            background-color: #d77945;
-            border-color: #d77945;
-        }
-
-        .btn-block {
-            border-radius: 25px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
     </style>
+
 {% endblock %}
 
 {% block body %}
@@ -67,14 +39,15 @@
         <div class="row gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for establishment in establishments %}
                 <div class="col-md-3 mb-5">
-                    <div class="card ">
+                    <div class="card">
                         <img class="card-img-top"
                              src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
                              alt="Barbier">
                         <div class="card-body">
-                            <h5 class="card-title">{{ establishment.name }}</h5>
-                            <p class="card-text">Ouvert aujourd'hui</p>
-                            <a type="submit" class="btn btn-primary btn-block"
+                            <h5 class="card-title fw-bold">{{ establishment.name }}</h5>
+                            <div class="text-secondary mb-4">Ouvert aujourd'hui</div>
+                            <a type="submit" class="btn text-light text-center text-uppercase"
+                               style="background-color:#FAAA80"
                                href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
                                 <i class="bi bi-shop"></i>
                                 Choisir</a>

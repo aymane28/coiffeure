@@ -64,10 +64,17 @@ class Establishment
      */
     private $service;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="establishments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $createdBy;
+
 
     public function __construct()
     {
         $this->calendar = new ArrayCollection();
+        $this->createdBy = new ArrayCollection();
     }
 
     public function getId(): int
@@ -199,5 +206,17 @@ class Establishment
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
     }
 }

@@ -2,37 +2,134 @@
 
 {% block title %}Inscription{% endblock %}
 
-{% block include_navbar %}{% endblock %}
+{% block navbar %}{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <section class="login py-5 border-top-1">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-8 align-item-center">
-                    <div class="border">
-                        {{ form_start(registrationForm) }}
-                        <h3 class="p-4" style="background-color: #FAAA80">S'enregistrer</h3>
-                            <fieldset class="p-4">
-                                {{ form_row(registrationForm.email) }}
-                                {{ form_row(registrationForm.plainPassword, {
-                                    label: 'Password'
-                                }) }}
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 col-lg-5 d-none d-md-block">
+                                <img src="https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    {{ form_start(registrationForm) }}
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <div class="d-flex align-items-center mb-3 pb-1">
+                                                <img src={{ asset('img/ciseaux_black.png') }} width="60" height="60">
+                                            </div>
+                                        </div>
 
-                                    {{ form_row(registrationForm.agreeTerms) }}
+                                        <div class="form-group col-md-6 d-flex align-items-center">
+                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                                                S'enregistrer</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form_row(registrationForm.firstName, {
+                                                "label": "Prénom",
+                                                "required": true,
+                                                "attr": {
+                                                    "placeholder": "Prénom"
+                                                },
+                                                "params": {
+                                                    "raw_label": true
+                                                }
+                                            }) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_row(registrationForm.lastName, {
+                                                "label": "Nom",
+                                                "required": true,
+                                                "attr": {
+                                                    "placeholder": "Nom"
+                                                },
+                                                "params": {
+                                                    "raw_label": true
+                                                }
+                                            }) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form_row(registrationForm.email, {
+                                                "help": "Exemple: aymane@gmail.com",
+                                                "label": "Adresse e-mail",
+                                                "required": true,
+                                                "attr": {
+                                                    "placeholder": "Adress e-mail"
+                                                },
+                                                "params": {
+                                                    "raw_label": true
+                                                }
+                                            }) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_row(registrationForm.phoneNumber, {
+                                                "help": "Exemple: 0711111111",
+                                                "label": "Téléphone",
+                                                "required": true,
+                                                "attr": {
+                                                    "placeholder": "Téléphone"
+                                                },
+                                                "params": {
+                                                    "raw_label": true
+                                                }
+                                            }) }}
+                                        </div>
+                                    </div>
 
-                                <button type="submit" class="btn font-weight-bold mt-3" style="background-color: #FAAA80">Se connecter</button>
-                                <a class="mt-3 d-block text-primary" href="#!">Mot de passe oublié?</a>
-                                Avez-vous un compte? <a class="mt-3 d-inline-block text-primary" href="{{ path('app_login') }}"> Se connecter</a>
-                            </fieldset>
-                        {{ form_end(registrationForm) }}
+                                    <div class="form-outline mb-4">
+                                        {{ form_row(registrationForm.plainPassword, {
+                                            "label": "Mot de passe",
+                                            "required": true,
+                                            "attr": {
+                                                "placeholder": "Mot de passe"
+                                            },
+                                            "params": {
+                                                "raw_label": true
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="loggedin-forgot">
+                                        {{ form_row(registrationForm.agreeTerms) }}
+                                    </div>
+                                    <div class="mb-4">
+                                        {{ form_widget(registrationForm.submit, {
+                                            'submit': "Senregistrer",
+                                            "attr": {
+                                                "class": "btn btn-dark btn-lg btn-block",
+                                            }}) }}
+                                    </div>
+                                    <p class="mb-0" style="color: #393f81;">Vous avez déjà un compte ?
+                                        <a href="{{ path('app_login') }}"
+                                           style="color: #393f81;">Se connecter</a></p>
+                                    {{ form_end(registrationForm) }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
 
 {% endblock %}

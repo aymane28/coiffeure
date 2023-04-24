@@ -25,7 +25,7 @@ class EtablissementDetailsController extends AbstractController
     }
 
     /**
-     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}", name="etablissement_details")
+     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}", name="etablisset")
      */
     public function etablissementDetail(EtablissementRepository $etablissementRepository, $slugetablissementtype, $slugetablissement): Response
     {
@@ -39,7 +39,7 @@ class EtablissementDetailsController extends AbstractController
 
 
     /**
-     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}/{slugservice}/{slugservicetype}", name="etablissement_rdv")
+     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}/{slugservice}/{slugservicetype}", name="etablissdv")
      */
     public function rendezvous(ServicetypeRepository $servicetypeRepository, CalendarRepository $calendarRepository, EtablissementRepository $etablissementRepository, $slugetablissement, $slugservice, $slugservicetype, Request $request, $slugetablissementtype): Response
     {
@@ -62,7 +62,7 @@ class EtablissementDetailsController extends AbstractController
 
 
     /**
-     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}/{slugservice}/{slugservicetype}/payement", name="payement_choice")
+     * @Route("/etablissements/{slugetablissementtype}/{slugetablissement}/{slugservice}/{slugservicetype}/payement", name="payemice")
      */
     public function payement(ServiceTypeRepository $servicetypeRepository, EtablissementRepository $etablissementRepository, $slugservice, $slugservicetype, Request $request, $slugetablissement, $slugetablissementtype): Response
     {

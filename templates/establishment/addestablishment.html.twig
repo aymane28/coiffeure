@@ -4,12 +4,13 @@
 
 {% block body %}
 
-    <section class="login py-5 border-top-1">
+    <section class="login py-5 border-top-1 min-vh-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-9 col-md-8 align-item-center">
                     <div class="border">
                         {{ form_start(form) }}
+                        {{ form_errors(form) }}
                         <h3 class="p-4" style="background-color: #FAAA80"><i class="bi bi-shop"></i> Ajouter votre
                             établissement</h3>
                         <fieldset class="p-4">
@@ -98,12 +99,15 @@
                                         "raw_label": true
                                     }
                                 }) }}</div>
-                            {{ form_widget(form.submit, {
-                                'submit': 'Click me',
-                                "attr": {
-                                    "class": "btn font-weight-bold mt-3",
-                                    "style": "background-color: #FAAA80"
-                                }}) }}
+                            <div class="float-right">
+                                {{ form_widget(form.submit, {
+                                    'label' : 'Ajouter',
+                                    'submit': 'Ajouter',
+                                    "attr": {
+                                        "class": "btn font-weight-bold mt-3",
+                                        "style": "background-color: #FAAA80"
+                                    }}) }}
+                            </div>
                         </fieldset>
                         {{ form_end(form) }}
                     </div>

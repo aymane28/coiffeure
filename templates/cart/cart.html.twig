@@ -8,65 +8,127 @@
 
 {% block body %}
 
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-2">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://picsum.photos/200/200" alt="..." /></div>
-                <div class="col-md-6">
-                    <div class="small mb-1">{{ servicetype.service.name }}</div>
-                    <h1 class="display-5 fw-bolder mb-5">{{ establishment.name }}</h1>
-                    <h5 class="fw-bolder mb-3">Service choisi: <span class="font-italic fw-light text-success"> {{ servicetype.name }}</span></h5>
-                    <div class="fs-5 mb-5">
-                        <!--<span class="text-decoration-line-through">$45.00</span>-->
-                        <h5 class="fw-bolder mb-3">Prix: <span class="font-italic fw-light text-success "> {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</span></h5>
-                        <h6> Pour le :</h6> <p  class="font-italic fw-light text-success">{{ rdvdate|format_datetime('full', 'none', locale='en') }}</p> <h6>à </h6><p class="font-italic fw-light text-success">{{ rdvtime }}</p>
+    {% if cart | length > 0 %}
+        {% for item in cart %}
+            <section class="py-2 min-vh-100">
+                <div class="container px-4 px-lg-5 my-1">
+                    <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+                        <h2 class="h5 mb-3 mb-lg-0">Mon rendez-vous</h2>
+                        <div class="hstack gap-3">
+                            <button class="btn btn-light btn-sm btn-icon-text"><i class="bi bi-x"></i> <span
+                                        class="text">Annuler</span></button>
+                        </div>
                     </div>
-                    <div class="d-flex">
-                        <form action="/checkout" method="POST">
-                            <button class="btn btn-outline-dark flex-shrink-0 mr-3" type="submit" id="checkout-button"> <i class="bi bi-credit-card"></i> Payer en ligne</button>
-                        </form>
-                        </a>
-                        <a class="btn btn-outline-dark flex-shrink-0" type="button" href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur place</a>
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+                        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
+                                                   src="https://i.pinimg.com/originals/a9/cd/dd/a9cddd579baa47976d2d60dc180fa86f.jpg"
+                                                   alt="..."/></div>
+                        <div class="col-md-6">
+                            <div class="small mb-1">{{ item.service.name }}</div>
+                            <h2 class="display-5 fw-bolder mb-5">{{ item.establishment.name }}</h2>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3 fw-bolder">
+                                    <h5>Service</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ item.serviceType.name }}
+                                    <div class="small mb-1 fw-light font-italic">{{ item.service.name }}</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3 fw-bolder">
+                                    <h5>Durée</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ item.serviceType.time }} min
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3 fw-bolder">
+                                    <h5>Tarifs</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ item.serviceType.price }} {{ 'EUR'|currency_symbol }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3 fw-bolder">
+                                    <h5>Pour le</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ item.rdvDate|format_datetime('full', 'none', locale='fr') }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-sm-3 fw-bolder">
+                                    <h5>Heure</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ item.rdvTime }}
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <form action="/checkout" method="POST">
+                                    <button class="btn btn-outline-dark flex-shrink-0 mr-3" type="submit"
+                                            id="checkout-button">
+                                        <i class="bi bi-credit-card"></i> Payer en ligne
+                                    </button>
+                                </form>
+                                </a>
+                                <a class="btn btn-outline-dark flex-shrink-0" type="button"
+                                   href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur
+                                    place</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
+            </section>
+        {% endfor %}
+    {% else %}
+        <h2 class="h5 mb-3 mb-lg-0">Vous n'avez pas de RDV</h2>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
 
-        {{ parent() }}
-        <script src="https://js.stripe.com/v3/"></script>
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+    {% if cart | length > 0 %}
+    {% for item in cart %}
+    <script>
+        const stripe = Stripe("pk_test_51LgyVyCBvyNjF9DbOT8IGbWgWnffaTcOr0LGmU7vu7vE1VL9qmpQAeWRcpEK3vBX4lbJ0nIVJFEmHrgo2JsjQO2200pMvtgeoW");
 
-        <script>
-            const stripe = Stripe("pk_test_51LgyVyCBvyNjF9DbOT8IGbWgWnffaTcOr0LGmU7vu7vE1VL9qmpQAeWRcpEK3vBX4lbJ0nIVJFEmHrgo2JsjQO2200pMvtgeoW");
-
-            var checkoutButton = document.getElementById("checkout-button");
-            checkoutButton.addEventListener("click", function () {
-                fetch("{{ path('checkout_session', {'name': servicetype.service.name}) }}", {
-                    method: "POST",
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            fetch("{{ path('checkout_session', {'name': item.service.name}) }}", {
+                method: "POST",
+            })
+                .then(function (response) {
+                    return response.json();
                 })
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (session) {
-                        return stripe.redirectToCheckout({ sessionId: session.id });
-                    })
-                    .then(function (result) {
-                        // If redirectToCheckout fails due to a browser or network
-                        // error, you should display the localized error message to your
-                        // customer using error.message.
-                        if (result.error) {
-                            alert(result.error.message);
-                        }
-                    })
-                    .catch(function (error) {
-                        console.error("Error:", error);
-                    });
-            });
-        </script>
+                .then(function (session) {
+                    return stripe.redirectToCheckout({sessionId: session.id});
+                })
+                .then(function (result) {
+                    // If redirectToCheckout fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using error.message.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+    {% endfor %}
+    {% endif %}
 
 {% endblock %}
 
