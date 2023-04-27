@@ -2,16 +2,14 @@
 
 {% block title %}Inscription{% endblock %}
 
-{% block navbar %}{% endblock %}
-
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <section class="vh-100">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class="vh-auto">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
@@ -22,20 +20,20 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
                                     {{ form_start(registrationForm) }}
-                                    <div class="form-row">
-                                        <div class="form-group">
+                                    <div class="row mb-4">
+                                        <div class="col-auto">
                                             <div class="d-flex align-items-center mb-3 pb-1">
                                                 <img src={{ asset('img/ciseaux_black.png') }} width="60" height="60">
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-6 d-flex align-items-center">
+                                        <div class="col d-flex align-items-center">
                                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
                                                 S'enregistrer</h5>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                    <div class="row mb-4">
+                                        <div class="col-6">
                                             {{ form_row(registrationForm.firstName, {
                                                 "label": "Prénom",
                                                 "required": true,
@@ -47,7 +45,7 @@
                                                 }
                                             }) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="col-6">
                                             {{ form_row(registrationForm.lastName, {
                                                 "label": "Nom",
                                                 "required": true,
@@ -60,8 +58,8 @@
                                             }) }}
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                    <div class="row mb-4">
+                                        <div class="col-6">
                                             {{ form_row(registrationForm.email, {
                                                 "help": "Exemple: aymane@gmail.com",
                                                 "label": "Adresse e-mail",
@@ -74,7 +72,7 @@
                                                 }
                                             }) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="col-6">
                                             {{ form_row(registrationForm.phoneNumber, {
                                                 "help": "Exemple: 0711111111",
                                                 "label": "Téléphone",
@@ -89,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-outline mb-4">
+                                    <div class="col-6 mb-4">
                                         {{ form_row(registrationForm.plainPassword, {
                                             "label": "Mot de passe",
                                             "required": true,
@@ -101,11 +99,13 @@
                                             }
                                         }) }}
                                     </div>
-                                    <div class="loggedin-forgot">
+
+                                    <div class="mb-2">
                                         {{ form_row(registrationForm.agreeTerms) }}
                                     </div>
                                     <div class="mb-4">
                                         {{ form_widget(registrationForm.submit, {
+                                            'placeholder' : "S'enregistrer",
                                             'submit': "Senregistrer",
                                             "attr": {
                                                 "class": "btn btn-dark btn-lg btn-block",
@@ -123,12 +123,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
 
 
 

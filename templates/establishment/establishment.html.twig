@@ -3,6 +3,7 @@
 {% block title %}Établissements {% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <style>
         .card {
             border: none;
@@ -35,30 +36,120 @@
 
 
     <!-- Page content-->
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {% for establishment in establishments %}
-                <div class="col-md-3 mb-5">
-                    <div class="card">
-                        <img class="card-img-top"
-                             src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
-                             alt="Barbier">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ establishment.name }}</h5>
-                            <div class="text-secondary mb-4">Ouvert aujourd'hui</div>
-                            <a type="submit" class="btn text-light text-center text-uppercase"
-                               style="background-color:#FAAA80"
-                               href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
-                                <i class="bi bi-shop"></i>
-                                Choisir</a>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Filtres</h5>
+                        <h7><i class="bi bi-shop"></i> Type d'établissement :</h7>
+                        <div class="d-flex flex-column align-items-center text-center mt-2 mb-4">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>Choisir type établissement</option>
+                                <option value="1">Barbier</option>
+                                <option value="2">Massage</option>
+                                <option value="3">Soin</option>
+                            </select>
+                        </div>
+                        <hr class="my-2">
+                        <h7><i class="bi bi-person"></i> Genre :</h7>
+                        <div class="d-flex flex-column align-items-center text-center mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #0b4877">Homme</span>
+                                </h7>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #c72061">Femme</span>
+                                </h7>
+                            </div>
+                        </div>
+                        <hr class="my-2">
+                        <h7><i class="bi bi-clock-history"></i> Ouverture :</h7>
+                        <div class="d-flex flex-column align-items-center text-center mt-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <h7 class="fw-bold"><span class="badge"
+                                                          style="background-color: #1cbb7e">Aujourd'hui</span>
+                                </h7>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <h7 class="fw-bold"><span class="badge"
+                                                          style="background-color: #39a64f">Cett semaine</span>
+                                </h7>
+                            </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
+
+            <div class="col">
+                <div class="row gx-lg-7 row-cols-md-3 row-cols-xl-3">
+                    {% for establishment in establishments %}
+                        <div class="col-md-3 mb-5">
+                            <div class="card hover-zoom">
+                                <img class="card-img-top "
+                                     src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
+                                     alt="Barbier">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="badge bg-gradient rounded-pill mb-2"
+                                                 style="background-color: #FAAA80">
+                                                {{ establishment.establishmentType.name }}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex col justify-content-end">
+                                            <i onclick="myFunction(this)" class="fa fa-bookmark-o"></i>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="card-title">{{ establishment.name }}</h5>
+                                    <p class="text-secondary fs-6">Ouvert aujourd'hui</p>
+                                    <h7 class="fw-bold"><span class="badge"
+                                                              style="background-color: #c72061">Femme</span>
+                                    </h7>
+                                    <h7 class="fw-bold"><span class="badge"
+                                                              style="background-color: #0b4877">Homme</span>
+                                    </h7>
+                                    <div class="row mt-4">
+                                        <div class="col-auto align-items-center h-100">
+                                            <p class="fs-6 fw-light">Avis (8)</p>
+                                        </div>
+
+                                        <div class="col d-flex justify-content-end">
+                                            <a type="submit" class="btn btn-dark text-light text-center text-uppercase"
+                                               href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
+                                                Choisir →</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center colo">
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link text-secondary" href="#">1</a></li>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 {% endblock %}
-
 
 
 

@@ -55,7 +55,7 @@
                         {% if establishment.opening == 'closed' %}
                             <h5><span class="badge badge-pill badge-danger mb-2">Fermé - ouvre à 10h00</span></h5>
                         {% else %}
-                            <h5><span class="badge badge-pill badge-success mb-2"> Ouvert aujourd'hui</span></h5>
+                            <h5><span class="badge rounded-pill text-bg-success mb-2"> Ouvert aujourd'hui</span></h5>
                         {% endif %}
                         <p class="card-text">{{ establishment.description }}</p>
                     </div>
@@ -63,6 +63,20 @@
 
                 <h3>Réservez en ligne pour un RDV</h3>
                 <h6 class="font-weight-light mb-4">Confirmation immédiate</h6>
+                    <div class="row mb-2">
+                        <div class="col-auto d-flex align-items-center">
+                            <h5>Filtres :</h5>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-outline btn-sm text-light fw-bold" style="background-color: #c72061">Femme</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-outline btn-sm text-light fw-bold" style="background-color: #0b4877">Homme</button>
+                        </div>
+                    </div>
+
+
+
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
                     {% set newArray=[] %}
@@ -101,8 +115,7 @@
                                         </div>
                                     </div>
 
-                                    <a type="submit" class="btn text-light float-end"
-                                       style="background-color: #FAAA80"
+                                    <a type="submit" class="btn btn-dark float-end"
                                        href="{{ path('appointment', {'slugestablishment': establishment.slug, 'slugservice': establishment.service.slug, 'slugservicetype': servicetype.slug}) }}">Choisir
                                         →</a>
                                 </div>
