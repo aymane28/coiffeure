@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230423135917 extends AbstractMigration
+final class Version20230427110220 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -34,25 +34,11 @@ final class Version20230423135917 extends AbstractMigration
         $this->addSql('ALTER TABLE establishment_calendar ADD CONSTRAINT FK_25D052748565851 FOREIGN KEY (establishment_id) REFERENCES establishment (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE establishment_calendar ADD CONSTRAINT FK_25D05274A40A2C8 FOREIGN KEY (calendar_id) REFERENCES calendar (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE service_type ADD CONSTRAINT FK_429DE3C5ED5CA9E6 FOREIGN KEY (service_id) REFERENCES service (id)');
-        $this->addSql('ALTER TABLE etablissement_service DROP FOREIGN KEY FK_E58C8511FF631228');
-        $this->addSql('DROP TABLE booking');
-        $this->addSql('DROP TABLE coiffeur');
-        $this->addSql('DROP TABLE etablissement_calendar');
-        $this->addSql('DROP TABLE etablissement_service');
-        $this->addSql('DROP TABLE etablissements');
-        $this->addSql('DROP TABLE servicetype');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, begin_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', end_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', title VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('CREATE TABLE coiffeur (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, description VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('CREATE TABLE etablissement_calendar (etablissement_id INT NOT NULL, calendar_id INT NOT NULL, INDEX IDX_6CC02353FF631228 (etablissement_id), INDEX IDX_6CC02353A40A2C8 (calendar_id), PRIMARY KEY(etablissement_id, calendar_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('CREATE TABLE etablissement_service (etablissement_id INT NOT NULL, service_id INT NOT NULL, INDEX IDX_E58C8511FF631228 (etablissement_id), INDEX IDX_E58C8511ED5CA9E6 (service_id), PRIMARY KEY(etablissement_id, service_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('CREATE TABLE etablissements (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, adresse VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, description VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, ouverture VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, slug VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, phonenumber VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('CREATE TABLE servicetype (id INT AUTO_INCREMENT NOT NULL, service_id INT DEFAULT NULL, name VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, price INT NOT NULL, time INT NOT NULL, slug VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, INDEX IDX_E3E53DA4ED5CA9E6 (service_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('ALTER TABLE etablissement_service ADD CONSTRAINT FK_E58C8511FF631228 FOREIGN KEY (etablissement_id) REFERENCES etablissements (id) ON UPDATE NO ACTION ON DELETE CASCADE');
         $this->addSql('ALTER TABLE establishment DROP FOREIGN KEY FK_DBEFB1EEB86BF9B6');
         $this->addSql('ALTER TABLE establishment DROP FOREIGN KEY FK_DBEFB1EEED5CA9E6');
         $this->addSql('ALTER TABLE establishment DROP FOREIGN KEY FK_DBEFB1EEB03A8386');
