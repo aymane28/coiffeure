@@ -9,7 +9,7 @@
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0">Choisir la date et l'heure du rendez-vous</h2>
                 <div class="hstack gap-3">
-                    <a class="btn btn-light btn-sm btn-icon-text" href="{{ path('establishment_details', {'slugestablishment': establishment.slug}) }}"><i class="bi bi-x"></i> <span
+                    <a class="btn btn-light text-light btn-sm btn-icon-text" style="background-color: #5d5252" href="{{ path('establishment_details', {'slugestablishment': establishment.slug}) }}"><i class="bi bi-x"></i> <span
                                 class="text">Annuler</span></a>
                 </div>
             </div>
@@ -38,12 +38,11 @@
                                 <i
                                         class="bi bi-clock float-end"></i></div>
                             <div class="card-body">
-                                <div class="row">
                                     <div class="row row-cols-xl-4 justify-content-center">
                                         {% for s in timeopen %}
                                             {% for i in 0..23 %}
                                                 {% if i >= (s.time) %}
-                                                    <input class="mb-1" type="radio" id="time" name="rdvTime"
+                                                    <input class="mb-3" type="radio" id="time" name="rdvTime"
                                                            value="{{ i }}h"
                                                            required>
                                                     <label for="10heure">{{ i }}h</label><br>
@@ -52,7 +51,6 @@
                                         {% endfor %}
 
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -92,11 +90,11 @@
                                         <h4>{{ establishment.name }} </h4>
                                         {% if establishment.opening == 'closed' %}
                                             <h5>
-                                                <span class="badge rounded-pill bg-success"> Fermé - ouvre à 10h00</span>
+                                                <span class="badge rounded-pill bg-danger"> Fermé - ouvre à 10h00</span>
                                             </h5>
                                         {% else %}
                                             <h6>
-                                                <span class="badge rounded-pill bg-danger"> Ouvert aujourd'hui</span>
+                                                <span class="badge rounded-pill bg-success"> Ouvert aujourd'hui</span>
                                             </h6>
                                         {% endif %}
                                     </div>
@@ -123,7 +121,7 @@
                                     <small class="mb-4"><i class="bi bi-cash-stack" style="color: #14860e"></i>
                                         {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</small>
                                 </div>
-                                <div class="float-right">
+                                <div class="d-flex justify-content-end">
                                     <button class="btn btn-dark" type="submit">Validez le RDV →
                                     </button>
                                 </div>

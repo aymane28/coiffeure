@@ -6,6 +6,7 @@ use App\Entity\Establishment;
 use App\Entity\Service;
 use App\Entity\ServiceType;
 use App\Repository\CalendarRepository;
+use App\Repository\EstablishmentTypeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,14 +38,16 @@ class AppointmentController extends AbstractController
      * @ParamConverter("service", options={"mapping": {"slugservice": "slug"}})
      * @ParamConverter("serviceType", options={"mapping": {"slugservicetype": "slug"}})
      */
-    public function addToCart(Establishment $establishment, ServiceType $serviceType, Service $service, Request $request, SessionInterface $session): Response
+    public function addToCart(EstablishmentTypeRepository $establishmentTypeRepository, Establishment $establishment, ServiceType $serviceType, Service $service, Request $request, SessionInterface $session): Response
     {
         $rdvDate = $request->request->get('rdvDate');
         $rdvTime = $request->request->get('rdvTime');
         $session->remove('cart');
+        $establishmentType = $establishmentTypeRepository->find($establishment);
 
         $cart = [
             $establishment->getId() => [
+                'establishmentType' => $establishmentType,
                 'establishment' => $establishment,
                 'serviceType' => $serviceType,
                 'service' => $service,

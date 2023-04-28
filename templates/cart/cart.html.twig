@@ -10,85 +10,125 @@
     <section class="py-2 min-vh-100">
         <div class="container px-4 px-lg-5 my-1">
             {% if cart | length > 0 %}
-            {% for item in cart %}
-            <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-                <h2 class="h5 mb-3 mb-lg-0">Mon rendez-vous</h2>
-                <div class="hstack gap-3">
-                    <a type="submit" href="{{ path('establishments') }}" class="btn btn-light btn-sm btn-icon-text"><i
-                                class="bi bi-x"></i> <span
-                                class="text">Annuler</span></a>
-                </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                                           src="https://i.pinimg.com/originals/a9/cd/dd/a9cddd579baa47976d2d60dc180fa86f.jpg"
-                                           alt="..."/></div>
-                <div class="col-md-6">
-                    <div class="small mb-1">{{ item.service.name }}</div>
-                    <h2 class="display-5 fw-bolder mb-5">{{ item.establishment.name }}</h2>
+                {% for item in cart %}
+                    <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+                        <h2 class="h5 mb-3 mb-lg-0">Mon rendez-vous</h2>
+                        <div class="hstack gap-3">
 
-                    <div class="row mb-3">
-                        <div class="col-sm-3 fw-bolder">
-                            <h5>Service</h5>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            {{ item.serviceType.name }}
-                            <div class="small mb-1 fw-light font-italic">{{ item.service.name }}</div>
+                            <a type="submit" href="{{ path('establishments') }}"
+                               class="btn btn-light text-light btn-sm btn-icon-text"
+                               style="background-color: #5d5252"><i
+                                        class="bi bi-x"></i> <span
+                                        class="text">Annuler</span></a>
                         </div>
                     </div>
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="card mb-4 rounded-3">
+                                <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+                                    <div class="carousel-inner rounded-3">
+                                        <div class="carousel-item active">
+                                            <img src="https://img.freepik.com/photos-gratuite/bel-homme-dans-salon-coiffure-coiffant-cheveux_1303-20978.jpg?w=740&t=st=1663192112~exp=1663192712~hmac=a2cba9a4a15c79497dd3f971b54a281df33f8216c493673c1d32619655ef752c"
+                                                 class="d-block w-100" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="https://img.freepik.com/photos-gratuite/femme-au-salon-coiffure_144627-8885.jpg?w=740&t=st=1663192149~exp=1663192749~hmac=f914e89551e7cebe7623fa94a4b1832efdab945ef46b0dc24ab589681486d55a"
+                                                 class="d-block w-100" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="https://img.freepik.com/photos-gratuite/salon-coiffure-feminine-faisant-coiffure-pour-femme-brune-dans-salon-beaute_176420-4465.jpg?w=740&t=st=1663192173~exp=1663192773~hmac=20333ab23ed07da5707aa75273867d8ac34cd4841fe90de42edb5d50101011d4"
+                                                 class="d-block w-100" alt="...">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleControls"
+                                            data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleControls"
+                                            data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-3 fw-bolder">
-                            <h5>Durée</h5>
+                            </div>
                         </div>
-                        <div class="col-sm-9 text-secondary">
-                            {{ item.serviceType.time }} min
-                        </div>
-                    </div>
+                        <div class="col-lg-6">
+                            <div class="badge bg-gradient rounded-pill"
+                                 style="background-color: #c55c1b">
+                                {{ item.establishmentType.name }}
+                            </div>
+                            <h3 class="fw-bolder mb-5">{{ item.establishment.name }}</h3>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-3 fw-bolder">
-                            <h5>Tarifs</h5>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            {{ item.serviceType.price }} {{ 'EUR'|currency_symbol }}
-                        </div>
-                    </div>
+                            <div class="row mb-3">
+                                <div class="col-3 fw-bolder">
+                                    <h6>Service</h6>
+                                </div>
+                                <div class="col-6 text-secondary">
+                                    {{ item.serviceType.name }}
+                                </div>
+                            </div>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-3 fw-bolder">
-                            <h5>Pour le</h5>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            {{ item.rdvDate|format_datetime('full', 'none', locale='en') }}
-                        </div>
-                    </div>
+                            <div class="row mb-3">
+                                <div class="col-3 fw-bolder">
+                                    <h6>Durée</h6>
+                                </div>
+                                <div class="col-6 text-secondary">
+                                    {{ item.serviceType.time }} min
+                                </div>
+                            </div>
 
-                    <div class="row mb-4">
-                        <div class="col-sm-3 fw-bolder">
-                            <h5>Heure</h5>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            {{ item.rdvTime }}
+                            <div class="row mb-3">
+                                <div class="col-3 fw-bolder">
+                                    <h6>Tarifs</h6>
+                                </div>
+                                <div class="col-6 text-secondary">
+                                    {{ item.serviceType.price }} {{ 'EUR'|currency_symbol }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-3 fw-bolder">
+                                    <h6>Pour le</h6>
+                                </div>
+                                <div class="col-6 text-secondary">
+                                    {{ item.rdvDate|format_datetime('full', 'none', locale='en') }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-3 fw-bolder">
+                                    <h6>Heure</h6>
+                                </div>
+                                <div class="col-6 text-secondary">
+                                    {{ item.rdvTime }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                <form action="/checkout" method="POST">
+                                    <a class="btn btn-dark flex-shrink-0 mr-3" type="submit"
+                                            id="checkout-button">
+                                        <i class="bi bi-credit-card"></i> Payer en ligne
+                                    </a>
+                                </form>
+                                </div>
+                                <div class="col-6">
+                                    <a class="btn btn-dark" type="button"
+                                       href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur
+                                        place</a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <form action="/checkout" method="POST">
-                            <button class="btn btn-outline-dark flex-shrink-0 mr-3" type="submit"
-                                    id="checkout-button">
-                                <i class="bi bi-credit-card"></i> Payer en ligne
-                            </button>
-                        </form>
-                        </a>
-                        <a class="btn btn-outline-dark flex-shrink-0" type="button"
-                           href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur
-                            place</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
             {% else %}
-                <h2 class="h5 mt-5 mb-3"><i class="bi bi-calendar-x"></i> Vous n'avez pas encore pris de rendez-vous</h2>
+                <h2 class="h5 mt-5 mb-3"><i class="bi bi-calendar-x"></i> Vous n'avez pas encore pris de rendez-vous
+                </h2>
                 <a class="btn btn-lg" href="{{ path('establishments') }}"
                    style="background-color: #FAAA80">Prenez RDV</a>
             {% endif %}

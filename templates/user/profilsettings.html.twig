@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <h5 class="d-flex align-items-center mb-3">
-                                    Mes établissements : 2</h5>
+                                    Mes établissements : {{ app.user.establishments|length }}</h5>
                             </div>
                             <div class="col">
                                 <i class="bi bi-shop float-end"></i>
@@ -88,11 +88,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-auto">
                                         <h5 class="d-flex align-items-center mb-3">
                                             Mes rendez-vous : 2</h5>
                                     </div>
-                                    <div class="col">
+                                    <div class="col d-flex justify-content-end">
                                         <i class="bi bi-calendar-week float-end"></i>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <span class="text-secondary float-end">03/02/2023</span>
+                                                    <span class="d-flex text-secondary justify-content-end">03/02/2023</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <span class="text-secondary float-right">24/04/2023</span>
+                                                    <span class="d-flex text-secondary justify-content-end">24/04/2023</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -207,12 +207,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-auto">
                                         <h5 class="d-flex align-items-center mb-3">
                                             Mes newsletters : 2</h5>
                                     </div>
-                                    <div class="col">
-                                        <i class="bi bi-bell-fill float-end"></i>
+                                    <div class="col d-flex justify-content-end">
+                                        <i class="bi bi-bell-fill"></i>
                                     </div>
                                 </div>
                                 <ul class="list-group list-group-flush mx-n2">

@@ -16,14 +16,14 @@
                     <a class="nav-link" href="{{ path('establishments') }}">Établissements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('add_etablissement') }}">Ajouter un établissement</a>
+                    <a class="nav-link" href="{{ path('add_etablissement_pricing') }}">Ajouter un établissement</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart') }}">Mon rendez-vous</a>
                 </li>
             </ul>
         </div>
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav">
             {% if app.user %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -31,8 +31,6 @@
                     <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="{{ path('cart') }}"><i class="bi bi-bag-check"></i> Mes
-                        rendez-vous</a>
                     <a class="dropdown-item" href="{{ path('profil_settings') }}"><i class="bi bi-gear"></i>
                         Paramètres</a>
                     <div class="dropdown-divider"></div>

@@ -26,20 +26,19 @@
 
 {% block body %}
     <!-- Header-->
-    <header class="py-3" style="background-color: #FAAA80">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Découvrez nos établissements</h1>
-                <p class="lead fw-normal text-white mb-0">Homme / Femme</p>
+    <header class="py-1 border-bottom mb-3" style="background-color: #FAAA80">
+        <div class="container px-4 px-lg-5 my-4">
+            <div class="text-center my-4">
+                <h1 class="fw-bolder text-white">Découvrez nos établissements</h1>
+                <p class="lead mb-0 text-white">Homme / Femme</p>
             </div>
         </div>
     </header>
 
-
     <!-- Page content-->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-3">Filtres</h5>
@@ -57,12 +56,12 @@
                         <div class="d-flex flex-column mt-2 mb-3">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #0b4877">Homme</span>
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #7e3910">Homme</span>
                                 </h7>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #c72061">Femme</span>
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #691e26">Femme</span>
                                 </h7>
                             </div>
                         </div>
@@ -86,6 +85,7 @@
                 </div>
             </div>
 
+
             <div class="col">
                 <div class="row gx-lg-7 row-cols-md-3 row-cols-xl-3">
                     {% for establishment in establishments %}
@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="badge bg-gradient rounded-pill mb-2"
-                                                 style="background-color: #FAAA80">
+                                                 style="background-color: #c55c1b">
                                                 {{ establishment.establishmentType.name }}
                                             </div>
                                         </div>
@@ -110,10 +110,10 @@
                                     <h5 class="card-title">{{ establishment.name }}</h5>
                                     <p class="text-secondary fs-6">Ouvert aujourd'hui</p>
                                     <h7 class="fw-bold"><span class="badge"
-                                                              style="background-color: #c72061">Femme</span>
+                                                              style="background-color: #691e26">Femme</span>
                                     </h7>
                                     <h7 class="fw-bold"><span class="badge"
-                                                              style="background-color: #0b4877">Homme</span>
+                                                              style="background-color: #7e3910">Homme</span>
                                     </h7>
                                     <div class="row mt-4">
                                         <div class="col-auto align-items-center h-100">
@@ -121,7 +121,7 @@
                                         </div>
 
                                         <div class="col d-flex justify-content-end">
-                                            <a type="submit" class="btn btn-dark text-light text-center text-uppercase"
+                                            <a type="submit" class="btn shadow-lg btn-dark text-light text-center text-uppercase"
                                                href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
                                                 Choisir →</a>
                                         </div>
@@ -151,7 +151,3 @@
         </nav>
     </div>
 {% endblock %}
-
-
-
-

@@ -88,9 +88,7 @@ class EtablissementDetailsController extends AbstractController
      */
     public function validPayement()
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
 
         return $this->render('validation_payment/validpayment.html.twig');
     }
