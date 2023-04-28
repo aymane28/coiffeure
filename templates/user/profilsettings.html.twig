@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container mt-4 min-vh-100">
-        <h5 class="mb-3">Paramètres</h5>
+        <h5 class="mb-3"><i class="bi bi-gear"></i> Paramètres</h5>
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
@@ -25,7 +25,7 @@
                                     Mes établissements : 2</h5>
                             </div>
                             <div class="col">
-                                <i class="bi bi-shop float-right"></i>
+                                <i class="bi bi-shop float-end"></i>
                             </div>
                         </div>
                         <ul class="list-group list-group-flush">
@@ -34,7 +34,7 @@
                                     <h6 class="mb-0 text-success">
                                         {{ establishment.name }}
                                     </h6>
-                                    <a type="submit" class="btn btn-outline-success btn-sm"
+                                    <a type="submit" class="btn btn-outline-success btn-sm float-end"
                                        href="{{ path('establishment_details', {'slugestablishment': establishment.slug}) }}">
                                         <i class="bi bi-eye"></i></a>
                                 </li>
@@ -78,7 +78,7 @@
                                 {{ app.user.phoneNumber }}
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning px-4 float-right" value="Modifier">
+                        <button type="button" class="btn btn-warning px-4 float-end" value="Modifier">
                             <i class="bi bi-pencil-fill"></i> Modifier
                         </button>
                     </div>
@@ -93,7 +93,7 @@
                                             Mes rendez-vous : 2</h5>
                                     </div>
                                     <div class="col">
-                                        <i class="bi bi-calendar-week float-right"></i>
+                                        <i class="bi bi-calendar-week float-end"></i>
                                     </div>
                                 </div>
 
@@ -112,7 +112,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <span class="text-secondary float-right">03/02/2023</span>
+                                                    <span class="text-secondary float-end">03/02/2023</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +212,7 @@
                                             Mes newsletters : 2</h5>
                                     </div>
                                     <div class="col">
-                                        <i class="bi bi-bell-fill float-right"></i>
+                                        <i class="bi bi-bell-fill float-end"></i>
                                     </div>
                                 </div>
                                 <ul class="list-group list-group-flush mx-n2">

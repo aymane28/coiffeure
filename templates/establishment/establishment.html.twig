@@ -5,14 +5,15 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        .card {
+        .card-establishment {
             border: none;
             transition: 0.3s;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .card:hover {
+        .card-establishment:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            transform: translate3D(0,-1px,0) scale(1.03);
         }
 
         .card-img-top {
@@ -53,7 +54,7 @@
                         </div>
                         <hr class="my-2">
                         <h7><i class="bi bi-person"></i> Genre :</h7>
-                        <div class="d-flex flex-column align-items-center text-center mb-3">
+                        <div class="d-flex flex-column mt-2 mb-3">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                 <h7 class="fw-bold"><span class="badge" style="background-color: #0b4877">Homme</span>
@@ -67,7 +68,7 @@
                         </div>
                         <hr class="my-2">
                         <h7><i class="bi bi-clock-history"></i> Ouverture :</h7>
-                        <div class="d-flex flex-column align-items-center text-center mt-2">
+                        <div class="d-flex flex-column mt-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                                 <h7 class="fw-bold"><span class="badge"
@@ -77,7 +78,7 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                                 <h7 class="fw-bold"><span class="badge"
-                                                          style="background-color: #39a64f">Cett semaine</span>
+                                                          style="background-color: #39a64f">Cette semaine</span>
                                 </h7>
                             </div>
                         </div>
@@ -89,8 +90,8 @@
                 <div class="row gx-lg-7 row-cols-md-3 row-cols-xl-3">
                     {% for establishment in establishments %}
                         <div class="col-md-3 mb-5">
-                            <div class="card hover-zoom">
-                                <img class="card-img-top "
+                            <div class="card card-establishment">
+                                <img class="card-img-top header-img hover-zoom"
                                      src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
                                      alt="Barbier">
                                 <div class="card-body">

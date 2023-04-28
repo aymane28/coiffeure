@@ -37,11 +37,11 @@
                                             {{ form_row(registrationForm.firstName, {
                                                 "label": "Prénom",
                                                 "required": true,
-                                                "attr": {
-                                                    "placeholder": "Prénom"
-                                                },
                                                 "params": {
                                                     "raw_label": true
+                                                },
+                                                "label_attr": {
+                                                    "class": "mb-2"
                                                 }
                                             }) }}
                                         </div>
@@ -49,11 +49,11 @@
                                             {{ form_row(registrationForm.lastName, {
                                                 "label": "Nom",
                                                 "required": true,
-                                                "attr": {
-                                                    "placeholder": "Nom"
-                                                },
                                                 "params": {
                                                     "raw_label": true
+                                                },
+                                                "label_attr": {
+                                                    "class": "mb-2"
                                                 }
                                             }) }}
                                         </div>
@@ -64,11 +64,11 @@
                                                 "help": "Exemple: aymane@gmail.com",
                                                 "label": "Adresse e-mail",
                                                 "required": true,
-                                                "attr": {
-                                                    "placeholder": "Adress e-mail"
-                                                },
                                                 "params": {
                                                     "raw_label": true
+                                                },
+                                                "label_attr": {
+                                                    "class": "mb-2"
                                                 }
                                             }) }}
                                         </div>
@@ -77,11 +77,11 @@
                                                 "help": "Exemple: 0711111111",
                                                 "label": "Téléphone",
                                                 "required": true,
-                                                "attr": {
-                                                    "placeholder": "Téléphone"
-                                                },
                                                 "params": {
                                                     "raw_label": true
+                                                },
+                                                "label_attr": {
+                                                    "class": "mb-2"
                                                 }
                                             }) }}
                                         </div>
@@ -91,21 +91,25 @@
                                         {{ form_row(registrationForm.plainPassword, {
                                             "label": "Mot de passe",
                                             "required": true,
-                                            "attr": {
-                                                "placeholder": "Mot de passe"
-                                            },
                                             "params": {
                                                 "raw_label": true
+                                            },
+                                            "label_attr": {
+                                                "class": "mb-2"
                                             }
                                         }) }}
                                     </div>
 
                                     <div class="mb-2">
-                                        {{ form_row(registrationForm.agreeTerms) }}
+                                        {{ form_row(registrationForm.agreeTerms, {
+                                            "label_attr": {
+                                                "class": "mb-2"
+                                            }
+                                        }) }}
                                     </div>
                                     <div class="mb-4">
                                         {{ form_widget(registrationForm.submit, {
-                                            'placeholder' : "S'enregistrer",
+                                            'label': "S'enregistrer",
                                             'submit': "Senregistrer",
                                             "attr": {
                                                 "class": "btn btn-dark btn-lg btn-block",
