@@ -3,6 +3,18 @@
 {% block body %}
     <div class="container mt-4 min-vh-100">
         <h5 class="mb-3"><i class="bi bi-gear"></i> Paramètres</h5>
+        <span {{ stimulus_controller('symfony/ux-typed', {
+            strings: [
+                'I ❤️ Confort Zone!',
+                'Confort Zone is the best website ever',
+                'I love this website',
+                'Confort Zone forever ❤',
+                'Get your RDV',
+            ],
+            loop: true,
+            showCursor: true,
+            cursorChar: '✨',
+        }) }}></span>
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
@@ -240,6 +252,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div

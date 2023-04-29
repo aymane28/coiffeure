@@ -7,7 +7,7 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <section class="vh-100">
+    <section class="vh-auto">
         <div class="container py-5">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-10">
@@ -74,6 +74,7 @@
                                         </div>
                                         <div class="col-6">
                                             {{ form_row(registrationForm.phoneNumber, {
+                                                'type': 'integer',
                                                 "help": "Exemple: 0711111111",
                                                 "label": "Téléphone",
                                                 "required": true,

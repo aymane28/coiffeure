@@ -3,7 +3,6 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-
     <section class="login py-5 border-top-1 min-vh-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -18,7 +17,7 @@
                                 <div class="col-md-6">
                                     {{ form_row(form.name, {
                                         "help": "Nom de votre établissement",
-                                        "label": "Nom",
+                                        "label": "Nom*",
                                         "required": true,
                                         "params": {
                                             "raw_label": true
@@ -30,7 +29,7 @@
                                 <div class="col-md-6">
                                     {{ form_row(form.address, {
                                         "help": "Adresse complete",
-                                        "label": "Adresse",
+                                        "label": "Adresse*",
                                         "required": true,
                                         "attr": {
                                             "placeholder": "8 avenue Opéra Paris 75008"
@@ -48,7 +47,7 @@
                                 <div class="col-md-6">
                                     {{ form_row(form.opening, {
                                         "help": "Heure d'ouverture",
-                                        "label": "Ouverture",
+                                        "label": "Ouverture*",
                                         "required": true,
                                         "attr": {
                                             "placeholder": "10h"
@@ -63,7 +62,7 @@
                                 <div class="col-md-6">
                                     {{ form_row(form.phoneNumber, {
                                         "help": "Exemple: 0711111111",
-                                        "label": "Numéro de téléphone",
+                                        "label": "Numéro de téléphone*",
                                         "required": true,
                                         "params": {
                                             "raw_label": true
@@ -77,7 +76,8 @@
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     {{ form_row(form.service, {
-                                        "label": "Service",
+                                        'type' : 'number',
+                                        "label": "Service*",
                                         "required": true,
                                         "params": {
                                             "raw_label": true
@@ -88,7 +88,7 @@
                                     }) }}</div>
                                 <div class="col-md-6">
                                     {{ form_row(form.establishmentType, {
-                                        "label": "Type d'établissement",
+                                        "label": "Type d'établissement*",
                                         "required": true,
                                         "params": {
                                             "raw_label": true

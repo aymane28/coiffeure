@@ -47,8 +47,8 @@ class AddEtablissementController extends AbstractController
             $entityManager->persist($establishment);
             $entityManager->flush();
             if ($establishment->getName() !== null) {
-                new RedirectResponse($this->generateUrl("establishment_details", [
-                    'slugestablishment' => $establishment
+                return new RedirectResponse($this->generateUrl("establishment_details", [
+                    'slugestablishment' => $establishment->getSlug()
                 ]));
             }
         }
