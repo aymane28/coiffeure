@@ -54,7 +54,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
         $this->notifier->send(new Notification('Flash sales has been started!', ['chat/myMercureChatter']));
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        return new RedirectResponse($this->urlGenerator->generate('home'));
 
         }
 

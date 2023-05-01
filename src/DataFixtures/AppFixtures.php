@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
 
             //etablissements
             $establishment= new Establishment();
-            $establishment->setName("Establishment numéro $i");
+            $establishment->setName("Establishment-$i");
             $establishment->setAddress("$i avenue d'opéra");
             $establishment->setDescription('Meilleur coiffeur de la ville, situé pas loin de la station de métro Opéra!');
             $establishment->setSlug($this->slugger->slug($establishment->getName()));

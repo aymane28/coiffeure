@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User\Registration;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -27,9 +27,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    /**
-     * @Route("/register", name="app_register")
-     */
+    #[Route("/register", name: "app_register")]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -55,7 +53,7 @@ class RegistrationController extends AbstractController
                     ->from(new Address('mailer@coiffure.com', 'Coiffure'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->htmlTemplate('user/registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
@@ -66,14 +64,12 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('user/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
 
-    /**
-     * @Route("/verify/email", name="app_verify_email")
-     */
+     #[Route("/verify/email", name: "app_verify_email")]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('accueil') }}">
+        <a class="navbar-brand" href="{{ path('home') }}">
             <img src="{{ asset('img/logo.png') }}" width="30" height="30"
                  class="d-inline-block align-top" alt="">
             Confort Zone
@@ -23,9 +23,9 @@
                         {% if app.session.get('cart') %}<i class="bi bi-cart-check-fill"
                                                            style="color: #3fc535"></i> {% endif %}</a>
                 </li>
-                {% if app.user %}
             </ul>
             <div class="navbar-nav nav-item dropdown">
+                {% if app.user %}
                 <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
                    aria-haspopup="true" aria-expanded="false">
                     <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
@@ -38,11 +38,9 @@
                         Se déconnecter</a>
                 </div>
                 {% else %}
-                <a class="nav-link" href="{{ path('app_register') }}"> Inscription
-                </a>
-                <a class="nav-link" href="{{ path('app_login') }}"> Connexion
+                <a class="nav-link" href="{{ path('app_register') }}"> Inscription</a>
+                <a class="nav-link" href="{{ path('app_login') }}"> Connexion</a>
                     {% endif %}
-                </a>
             </div>
         </div>
     </div>

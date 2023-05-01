@@ -8,11 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Country;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -29,7 +27,7 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new Type([
                         'type' => 'string',
-                        'message' => 'Votre prénom '.'n'.'est pas valide.'
+                        'message' => 'Votre prénom ' . 'n' . 'est pas valide.'
                     ]),
                 ]
             ])
@@ -37,7 +35,7 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new Type([
                         'type' => 'string',
-                        'message' => 'Votre nom '.'n'.'est pas valide.'
+                        'message' => 'Votre nom ' . 'n' . 'est pas valide.'
                     ]),
                 ]
             ])
@@ -48,10 +46,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('phoneNumber', TextType::class, [
                     'constraints' => [
-                        new Type([
-                            'type' => 'integer',
-                            'message' => 'Veuillez renseigner un numéro de téléphone valide.'
-                        ]),
                         new Regex([
                             'pattern' => '/^0[1-9](\d{8})$/',
                             'message' => 'Le numéro de téléphone doit être au format français et commencer par 0.'
