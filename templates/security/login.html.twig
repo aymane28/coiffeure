@@ -3,15 +3,16 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <section class="vh-100">
+    {{ stream_notifications() }}
+    {{ stream_notifications(['/my/topic/1', '/my/topic/2']) }}
+    <section class="vh-auto">
         <div class="container py-5">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+                            <div class="col-md-4 col-lg-5 d-none d-md-block"
+                                 style="background-image: url('https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); border-radius: 1rem 0 0 1rem">
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
@@ -45,13 +46,14 @@
                                                    autocomplete="email" required
                                                    autofocus>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-1">
                                             <label class="mb-2">Mot de passe</label>
                                             <input type="password" name="password" id="inputPassword"
                                                    class="form-control form-control-lg"
                                                    autocomplete="current-password" required>
                                         </div>
-                                        <div class="loggedin-forgot">
+                                        <a class="small text-muted" href="#!">Mot de passe oublié?</a>
+                                        <div class="loggedin-forgot mt-4">
                                             <input type="checkbox" id="keep-me-logged-in">
                                             <label for="keep-me-logged-in" class="pt-1 pb-2 mb-1">Rester
                                                 connecter</label>
@@ -61,7 +63,6 @@
                                         </div>
                                         <input type="hidden" name="_csrf_token"
                                                value="{{ csrf_token('authenticate') }}">
-                                        <a class="small text-muted" href="#!">Mot de passe oublié?</a>
                                         <p class="pb-lg-2" style="color: #393f81;">Vous n'avez pas de compte ?
                                             <a href="{{ path('app_register') }}"
                                                style="color: #393f81;">S'enregister</a></p>

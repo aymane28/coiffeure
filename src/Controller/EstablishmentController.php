@@ -15,6 +15,7 @@ class EstablishmentController extends AbstractController
     public function __invoke(EstablishmentRepository $establishmentRepository): Response
     {
         $establishments = $establishmentRepository->findAll();
+
         return $this->render('establishment/establishment.html.twig', [
             'establishments' => $establishments,
         ]);

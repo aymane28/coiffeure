@@ -56,18 +56,18 @@
                         <div class="d-flex flex-column mt-2 mb-3">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #7e3910">Homme</span>
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #204f7a">Homme</span>
                                 </h7>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #691e26">Femme</span>
+                                <h7 class="fw-bold"><span class="badge" style="background-color: #832c35">Femme</span>
                                 </h7>
                             </div>
                         </div>
                         <hr class="my-2">
                         <h7><i class="bi bi-clock-history"></i> Ouverture :</h7>
-                        <div class="d-flex flex-column mt-2">
+                        <div class="d-flex flex-column mt-2 mb-3">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                                 <h7 class="fw-bold"><span class="badge"
@@ -79,6 +79,18 @@
                                 <h7 class="fw-bold"><span class="badge"
                                                           style="background-color: #39a64f">Cette semaine</span>
                                 </h7>
+                            </div>
+                        </div>
+                        <hr class="my-2">
+                        <h7><i class="bi bi-geo-alt"></i> Lieu :</h7>
+                        <div class="d-flex flex-column mb-2">
+                            <div class="d-flex flex-column align-items-center text-center mt-2">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Choisir le lieu</option>
+                                    <option value="1">Paris</option>
+                                    <option value="2">Toulouse</option>
+                                    <option value="3">Nice</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -98,7 +110,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="badge bg-gradient rounded-pill mb-2"
-                                                 style="background-color: #c55c1b">
+                                                 style="background-color: #c5701b">
                                                 {{ establishment.establishmentType.name }}
                                             </div>
                                         </div>
@@ -107,14 +119,11 @@
                                         </div>
                                     </div>
 
-                                    <h5 class="card-title">{{ establishment.name }}</h5>
+                                    <h5>{{ establishment.name }}</h5>
                                     <p class="text-secondary fs-6">Ouvert aujourd'hui</p>
-                                    <h7 class="fw-bold"><span class="badge"
-                                                              style="background-color: #691e26">Femme</span>
-                                    </h7>
-                                    <h7 class="fw-bold"><span class="badge"
-                                                              style="background-color: #7e3910">Homme</span>
-                                    </h7>
+                                    <h6 class="mb-3"><i class="bi bi-geo-alt-fill"
+                                                        style="color: #FAAA80"></i> Paris
+                                    </h6>
                                     <div class="row mt-4">
                                         <div class="col-auto align-items-center h-100">
                                             <p class="fs-6 fw-light">Avis (8)</p>

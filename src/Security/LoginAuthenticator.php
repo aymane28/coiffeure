@@ -5,6 +5,8 @@ namespace App\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
@@ -22,9 +24,11 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private UrlGeneratorInterface $urlGenerator;
+    private NotifierInterface $notifier;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, NotifierInterface $notifier)
     {
+        $this->notifier = $notifier;
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -48,11 +52,11 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
+        $this->notifier->send(new Notification('Flash sales has been started!', ['chat/myMercureChatter']));
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('accueil'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-    }
+
+        }
 
     protected function getLoginUrl(Request $request): string
     {

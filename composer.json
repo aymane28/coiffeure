@@ -24,6 +24,7 @@
         "symfony/debug-bundle": "6.0.*",
         "symfony/doctrine-messenger": "6.0.*",
         "symfony/dotenv": "6.0.*",
+        "symfony/error-handler": "6.0.*",
         "symfony/expression-language": "6.0.*",
         "symfony/flex": "^1.17|^2",
         "symfony/form": "6.0.*",
@@ -48,6 +49,7 @@
         "symfony/string": "6.0.*",
         "symfony/translation": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
+        "symfony/ux-notify": "^2.7",
         "symfony/ux-typed": "^2.7",
         "symfony/validator": "6.0.*",
         "symfony/web-link": "6.0.*",
@@ -69,7 +71,8 @@
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
             "symfony/runtime": true,
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "disable-tls": true
         },
         "optimize-autoloader": true,
         "preferred-install": {

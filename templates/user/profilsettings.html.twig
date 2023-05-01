@@ -16,7 +16,7 @@
             cursorChar: '✨',
         }) }}></span>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
@@ -27,7 +27,7 @@
                                 <h4>{{ app.user.firstName }} {{ app.user.lastName|upper }}</h4>
                                 <p class="text-secondary mb-1">Membre depuis: {{ app.user.createdAt|date("Y") }}</p>
                                 <p class="text-muted font-size-sm">Adminstrateur</p>
-                                <button class="btn btn-outline-danger">Supprimer compte</button>
+                                <button class="btn btn-outline-danger shadow-sm">Supprimer compte</button>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -46,7 +46,7 @@
                                     <h6 class="mb-0 text-success">
                                         {{ establishment.name }}
                                     </h6>
-                                    <a type="submit" class="btn btn-outline-success btn-sm float-end"
+                                    <a type="submit" class="btn btn-outline-success btn-sm shadow-sm float-end"
                                        href="{{ path('establishment_details', {'slugestablishment': establishment.slug}) }}">
                                         <i class="bi bi-eye"></i></a>
                                 </li>
@@ -90,7 +90,7 @@
                                 {{ app.user.phoneNumber }}
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning px-4 float-end" value="Modifier">
+                        <button type="button" class="btn btn-warning px-4 shadow-sm float-end" value="Modifier">
                             <i class="bi bi-pencil-fill"></i> Modifier
                         </button>
                     </div>
@@ -111,11 +111,11 @@
 
 
                                 <div id="accordion">
-                                    <div class="card">
+                                    <div class="card mb-3" style="background-color: white">
                                         <div class="card-header" id="headingThree">
                                             <div class="row justify-content-between">
                                                 <div class="col">
-                                                    <button class="btn btn-link collapsed"
+                                                    <button class="btn collapsed"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#soin"
                                                             aria-expanded="false"
@@ -124,7 +124,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <span class="d-flex text-secondary justify-content-end">03/02/2023</span>
+                                                    <span class="d-flex text-secondary justify-content-end"><i
+                                                                class="bi text-dark bi-caret-down-fill"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,26 +134,34 @@
                                             <div class="card-body">
                                                 <div class="card-body">
                                                     <div class="row mb-3">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-6">
                                                             <h6 class="mb-0">Etablissement</h6>
                                                         </div>
-                                                        <div class="col-sm-9 text-secondary">
+                                                        <div class="col-6 text-secondary">
                                                             <h6>Etablissement-3</h6>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-6">
+                                                            <h6 class="mb-0">Date</h6>
+                                                        </div>
+                                                        <div class="col-6 text-secondary">
+                                                            <h6>03/02/2023</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col-6">
                                                             <h6 class="mb-0">Tarifs</h6>
                                                         </div>
-                                                        <div class="col-sm-9 text-secondary">
+                                                        <div class="col-6 text-secondary">
                                                             <h6>{{ '38'|format_currency('EUR') }}</h6>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-6">
                                                             <h6 class="mb-0">Payement</h6>
                                                         </div>
-                                                        <div class="col-sm-9 text-secondary">
+                                                        <div class="col-6 text-secondary">
                                                             <h6>Espèce</h6>
                                                         </div>
                                                     </div>
@@ -162,10 +171,9 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-header" id="headingThree">
-                                            <div class="row justify-content-between">
+                                            <div class="row">
                                                 <div class="col">
-
-                                                    <button class="btn btn-link collapsed "
+                                                    <button class="btn collapsed "
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#massage"
                                                             aria-expanded="false"
@@ -174,7 +182,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <span class="d-flex text-secondary justify-content-end">24/04/2023</span>
+                                                    <span class="d-flex text-secondary justify-content-end"><i
+                                                                class="bi text-dark bi-caret-down-fill"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,26 +191,34 @@
                                              data-bs-parent="#accordion">
                                             <div class="card-body">
                                                 <div class="row mb-3">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-6">
                                                         <h6 class="mb-0">Etablissement</h6>
                                                     </div>
-                                                    <div class="col-sm-9 text-secondary">
+                                                    <div class="col-6 text-secondary">
                                                         <h6>Etablissement-1</h6>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-6">
+                                                        <h6 class="mb-0">Date</h6>
+                                                    </div>
+                                                    <div class="col-6 text-secondary">
+                                                        <h6>01/01/2023</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
                                                         <h6 class="mb-0">Tarifs</h6>
                                                     </div>
-                                                    <div class="col-sm-9 text-secondary">
+                                                    <div class="col-6 text-secondary">
                                                         <h6>{{ '49'|format_currency('EUR') }}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-6">
                                                         <h6 class="mb-0">Payement</h6>
                                                     </div>
-                                                    <div class="col-sm-9 text-secondary">
+                                                    <div class="col-6 text-secondary">
                                                         <h6>Carte bancaire</h6>
                                                     </div>
                                                 </div>

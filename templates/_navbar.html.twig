@@ -19,14 +19,16 @@
                     <a class="nav-link" href="{{ path('add_etablissement_pricing') }}">Ajouter un établissement</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('cart') }}">Mon rendez-vous</a>
+                    <a class="nav-link" href="{{ path('cart') }}"> Mon rendez-vous
+                        {% if app.session.get('cart') %}<i class="bi bi-cart-check-fill"
+                                                           style="color: #3fc535"></i> {% endif %}</a>
                 </li>
             </ul>
         </div>
         <ul class="navbar-nav">
             {% if app.user %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
                    aria-haspopup="true" aria-expanded="false">
                     <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
                 </a>

@@ -2,8 +2,15 @@
 
 {% block title %}Choix payement{% endblock %}
 
-{% block scriptStripe %}
-    <script src="https://js.stripe.com/v3/"></script>
+{% block stylesheets%}
+    {{ parent() }}
+    <style>
+
+        .button-take-rdv:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            transform: translate3D(0,-1px,0) scale(1.03);
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -59,7 +66,7 @@
                         <div class="col-lg-6">
                             <div class="badge bg-gradient rounded-pill"
                                  style="background-color: #c55c1b">
-                                {{ item.establishmentType.name }}
+                                {{ item.service.name }}
                             </div>
                             <h3 class="fw-bolder mb-5">{{ item.establishment.name }}</h3>
 
@@ -129,7 +136,7 @@
             {% else %}
                 <h2 class="h5 mt-5 mb-3"><i class="bi bi-calendar-x"></i> Vous n'avez pas encore pris de rendez-vous
                 </h2>
-                <a class="btn btn-lg" href="{{ path('establishments') }}"
+                <a class="btn btn-lg button-take-rdv shadow-lg text-light" href="{{ path('establishments') }}"
                    style="background-color: #FAAA80">Prenez RDV</a>
             {% endif %}
         </div>
@@ -176,7 +183,11 @@
 {% endblock %}
 
 
+{% block scriptStripe %}
+    <script src="https://js.stripe.com/v3/"></script>
 
+
+{% endblock %}
 
 
 

@@ -1,5 +1,11 @@
 {
     "controllers": {
+        "@symfony/ux-notify": {
+            "notify": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+        },
         "@symfony/ux-typed": {
             "typed": {
                 "enabled": true,

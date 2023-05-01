@@ -14,10 +14,9 @@
                             établissement</h3>
                         <fieldset class="p-4">
                             <div class="row mb-4">
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-4">
                                     {{ form_row(form.name, {
-                                        "help": "Nom de votre établissement",
-                                        "label": "Nom*",
+                                        "label": "Nom de l'établissement*",
                                         "required": true,
                                         "params": {
                                             "raw_label": true
@@ -44,10 +43,9 @@
                             </div>
 
                             <div class="row mb-4">
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-4">
                                     {{ form_row(form.opening, {
-                                        "help": "Heure d'ouverture",
-                                        "label": "Ouverture*",
+                                        "label": "Heure d'ouverture*",
                                         "required": true,
                                         "attr": {
                                             "placeholder": "10h"
@@ -86,7 +84,7 @@
                                             "class": "mb-2"
                                         }
                                     }) }}</div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-4">
                                     {{ form_row(form.establishmentType, {
                                         "label": "Type d'établissement*",
                                         "required": true,
@@ -101,8 +99,7 @@
 
                             <div class="form-group">
                                 {{ form_row(form.description, {
-                                    "help": "Description de l'établissement",
-                                    "label": "Description",
+                                    "label": "Description de l'établissement",
                                     "required": true,
                                     "params": {
                                         "raw_label": true

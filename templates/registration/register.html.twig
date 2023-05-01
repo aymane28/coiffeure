@@ -13,9 +13,8 @@
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
-                            <div class="col-md-4 col-lg-5 d-none d-md-block">
-                                <img src="https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+                            <div class="col-md-4 col-lg-5 d-none d-md-block"
+                                 style="background-image: url('https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); border-radius: 1rem 0 0 1rem">
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
@@ -35,7 +34,7 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             {{ form_row(registrationForm.firstName, {
-                                                "label": "Prénom",
+                                                "label": "Prénom*",
                                                 "required": true,
                                                 "params": {
                                                     "raw_label": true
@@ -47,7 +46,7 @@
                                         </div>
                                         <div class="col-6">
                                             {{ form_row(registrationForm.lastName, {
-                                                "label": "Nom",
+                                                "label": "Nom*",
                                                 "required": true,
                                                 "params": {
                                                     "raw_label": true
@@ -61,11 +60,13 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             {{ form_row(registrationForm.email, {
-                                                "help": "Exemple: aymane@gmail.com",
-                                                "label": "Adresse e-mail",
+                                                "label": "Adresse e-mail*",
                                                 "required": true,
+                                                "attr": {
+                                                    "placeholder": "aymane@gmail.com",
+                                                },
                                                 "params": {
-                                                    "raw_label": true
+                                                    "raw_label": true,
                                                 },
                                                 "label_attr": {
                                                     "class": "mb-2"
@@ -76,7 +77,7 @@
                                             {{ form_row(registrationForm.phoneNumber, {
                                                 'type': 'integer',
                                                 "help": "Exemple: 0711111111",
-                                                "label": "Téléphone",
+                                                "label": "Téléphone*",
                                                 "required": true,
                                                 "params": {
                                                     "raw_label": true
@@ -90,7 +91,7 @@
 
                                     <div class="col-6 mb-4">
                                         {{ form_row(registrationForm.plainPassword, {
-                                            "label": "Mot de passe",
+                                            "label": "Mot de passe*",
                                             "required": true,
                                             "params": {
                                                 "raw_label": true
@@ -103,6 +104,7 @@
 
                                     <div class="mb-2">
                                         {{ form_row(registrationForm.agreeTerms, {
+                                            "label": "Accepter notre politique",
                                             "label_attr": {
                                                 "class": "mb-2"
                                             }
