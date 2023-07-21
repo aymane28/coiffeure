@@ -18,4 +18,12 @@ class CartController extends AbstractController
             'cart' => $cart,
         ]);
     }
+
+    #[Route("/delete-cart", name: "delete_cart")]
+    public function deleteCart(SessionInterface $session): Response
+    {
+        $session->remove('cart');
+
+        return $this->redirectToRoute('cart');
+    }
 }

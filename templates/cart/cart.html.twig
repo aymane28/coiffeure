@@ -22,13 +22,38 @@
                         <h2 class="h5 mb-3 mb-lg-0">Mon rendez-vous</h2>
                         <div class="hstack gap-3">
 
-                            <a type="submit" href="{{ path('establishments') }}"
+                            <a
+                               data-bs-toggle="modal" data-bs-target="#exampleModal"
                                class="btn btn-light text-light btn-sm btn-icon-text"
                                style="background-color: #5d5252"><i
                                         class="bi bi-x"></i> <span
                                         class="text">Annuler</span></a>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Annuler le rendez-vous</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez vous annuler votre rendez-vous?
+                                </div>
+                                <div class="modal-footer">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                       class="btn btn-outline-dark btn-sm btn-icon-text"
+                                       ><span class="text">Conserver</span></a>
+                                    <a type="submit" href="{{ path('delete_cart') }}"
+                                       class="btn btn-dark text-light btn-sm btn-icon-text"><i
+                                                class="bi bi-x"></i> <span
+                                                class="text">Annuler</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row gx-4 gx-lg-5 align-items-center">
                         <div class="col-lg-6">
                             <div class="card mb-4 rounded-3">
@@ -102,7 +127,7 @@
                                     <h6>Pour le</h6>
                                 </div>
                                 <div class="col-6 text-secondary">
-                                    {{ item.rdvDate|format_datetime('full', 'none', locale='en') }}
+                                    {{ item.rdvDate|format_datetime('full', 'none', locale='en')|capitalize }}
                                 </div>
                             </div>
 

@@ -26,13 +26,33 @@ class AppointmentController extends AbstractController
     public function __invoke(Establishment $establishment, Service $service, ServiceType $serviceType, CalendarRepository $calendarRepository, Request $request, SessionInterface $session): Response
     {
         $timeOpen = $calendarRepository->findAll();
+        $year = date('Y'); // Récupère l'année en cours
+        $datesOfYear = $this->generateDatesForYear($year);
 
         return $this->render('appointment/appointment.html.twig', [
             'servicetype' => $serviceType,
             'establishment' => $establishment,
-            'timeopen' => $timeOpen
+            'timeopen' => $timeOpen,
+            'dateOfYear' =>$datesOfYear
         ]);
     }
+
+
+    private function generateDatesForYear(int $year): array
+    {
+        $startDate = new \DateTime($year . '-01-01');
+        $endDate = new \DateTime($year . '-12-31');
+        $interval = new \DateInterval('P1D');
+        $datePeriod = new \DatePeriod($startDate, $interval, $endDate);
+
+        $dates = [];
+        foreach ($datePeriod as $date) {
+            $dates[] = $date;
+        }
+
+        return $dates;
+    }
+
 
     /**
      * @Route("/add-to-cart/{id}/{slugservicetype}/{slugservice}", name="add_to_cart")

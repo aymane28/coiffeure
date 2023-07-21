@@ -8,14 +8,11 @@
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0">Choisir la date et l'heure du rendez-vous</h2>
-                <div class="hstack gap-3">
-                    <a class="btn btn-light text-light btn-sm btn-icon-text" style="background-color: #5d5252" href="{{ path('establishment_details', {'slugestablishment': establishment.slug}) }}"><i class="bi bi-x"></i> <span
-                                class="text">Annuler</span></a>
-                </div>
+
             </div>
 
             <form method="post"
-                  action="{{ path('add_to_cart', {'id': establishment.id, 'slugservicetype': servicetype.slug, 'slugservice': servicetype.service.slug})}}">
+                  action="{{ path('add_to_cart', {'id': establishment.id, 'slugservicetype': servicetype.slug, 'slugservice': servicetype.service.slug}) }}">
                 <!-- Main content -->
                 <div class="row">
                     <!-- Right side -->
@@ -26,9 +23,37 @@
                                 Date<i
                                         class="bi bi-calendar4-week float-end"></i></div>
                             <div class="card-body">
-                                <div class="input-group">
-                                    <input type="date" id="start" name="rdvDate" class="form-control dateInput"
-                                           required>
+                                <div id="carouselExampleControls" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        {% for chunk in dateOfYear|batch(5) %}
+                                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                                <div class="d-flex flex-column align-items-center">
+                                                    {% for date in chunk %}
+                                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                                            <label class="btn btn-block mb-2" style="background-color: #f5d0bb">
+                                                                <input type="radio" name="rdvDate"
+                                                                       value="{{ date|date('l d F') }}"
+                                                                >
+                                                                {{ date|date('l d F')|format_datetime('full', 'none', locale='en')|capitalize }}
+                                                            </label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon btn btn-secondary"
+                                              aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon btn btn-secondary"
+                                              aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -38,19 +63,20 @@
                                 <i
                                         class="bi bi-clock float-end"></i></div>
                             <div class="card-body">
-                                    <div class="row row-cols-xl-4 justify-content-center">
-                                        {% for s in timeopen %}
-                                            {% for i in 0..23 %}
-                                                {% if i >= (s.time) %}
-                                                    <input class="mb-3" type="radio" id="time" name="rdvTime"
-                                                           value="{{ i }}h"
-                                                           required>
-                                                    <label for="10heure">{{ i }}h</label><br>
-                                                {% endif %}
-                                            {% endfor %}
+                                <div class="row row-cols-xl-3 justify-content-center">
+                                    {% for s in timeopen %}
+                                        {% for i in 0..22 %}
+                                            {% if i >= (s.time) %}
+                                                <div class="col-6"> {# Ajoutez la classe col-6 ici pour créer deux colonnes #}
+                                                    <label class="btn btn-block mb-2" style="background-color: #f5d0bb">
+                                                        <input class="mb-3" type="radio" id="time" name="rdvTime" value="{{ i }}h" required>
+                                                        <label for="10heure">{{ i }}h</label><br>
+                                                    </label>
+                                                </div>
+                                            {% endif %}
                                         {% endfor %}
-
-                                    </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +141,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <small class="mb-4"><i class="bi bi-clock-fill" style="color: #051246"></i>
-                                    {{ servicetype.time }}min</small>
+                                        {{ servicetype.time }}min</small>
                                 </div>
                                 <div class="mb-3">
                                     <small class="mb-4"><i class="bi bi-cash-stack" style="color: #14860e"></i>
