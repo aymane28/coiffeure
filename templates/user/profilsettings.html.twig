@@ -22,12 +22,12 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="{{ asset('img/profil.png') }}" alt="Admin"
                                  class="rounded-circle p-1" width="110">
-                            <a href="#"><p class="text-danger text-sm"><small>Modifier</small></p></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><p class="text-danger text-sm"><small>Modifier</small></p></a>
                             <div>
                                 <h4>{{ app.user.firstName }} {{ app.user.lastName|upper }}</h4>
                                 <p class="text-secondary mb-1">Membre depuis: {{ app.user.createdAt|date("Y") }}</p>
                                 <p class="text-muted font-size-sm">Adminstrateur</p>
-                                <button class="btn btn-outline-danger shadow-sm">Supprimer compte</button>
+                                <button class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Supprimer ce compte</button>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -90,7 +90,8 @@
                                 {{ app.user.phoneNumber }}
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning px-4 shadow-sm float-end" value="Modifier">
+                        <button type="button" class="btn btn-warning px-4 shadow-sm float-end" value="Modifier"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-pencil-fill"></i> Modifier
                         </button>
                     </div>
@@ -110,86 +111,65 @@
                                 </div>
 
 
-                                <div id="accordion">
-                                    <div class="card mb-3" style="background-color: white">
-                                        <div class="card-header" id="headingThree">
-                                            <div class="row justify-content-between">
-                                                <div class="col">
-                                                    <button class="btn collapsed"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#soin"
-                                                            aria-expanded="false"
-                                                            aria-controls="soin">
-                                                        <h6>Soin de visage</h6>
-                                                    </button>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" aria-expanded="false"
+                                                    data-bs-target="#collapseOne"
+                                                    aria-controls="collapseOne">
+                                                Soin de visage
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
+                                                        <h6 class="mb-0">Etablissement</h6>
+                                                    </div>
+                                                    <div class="col-6 text-secondary">
+                                                        <h6>Etablissement-3</h6>
+                                                    </div>
                                                 </div>
-                                                <div class="col">
-                                                    <span class="d-flex text-secondary justify-content-end"><i
-                                                                class="bi text-dark bi-caret-down-fill"></i></span>
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
+                                                        <h6 class="mb-0">Date</h6>
+                                                    </div>
+                                                    <div class="col-6 text-secondary">
+                                                        <h6>03/02/2023</h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div id="soin" class="collapse" aria-labelledby="headingThree"
-                                             data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <div class="card-body">
-                                                    <div class="row mb-3">
-                                                        <div class="col-6">
-                                                            <h6 class="mb-0">Etablissement</h6>
-                                                        </div>
-                                                        <div class="col-6 text-secondary">
-                                                            <h6>Etablissement-3</h6>
-                                                        </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
+                                                        <h6 class="mb-0">Tarifs</h6>
                                                     </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-6">
-                                                            <h6 class="mb-0">Date</h6>
-                                                        </div>
-                                                        <div class="col-6 text-secondary">
-                                                            <h6>03/02/2023</h6>
-                                                        </div>
+                                                    <div class="col-6 text-secondary">
+                                                        <h6>{{ '38'|format_currency('EUR') }}</h6>
                                                     </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-6">
-                                                            <h6 class="mb-0">Tarifs</h6>
-                                                        </div>
-                                                        <div class="col-6 text-secondary">
-                                                            <h6>{{ '38'|format_currency('EUR') }}</h6>
-                                                        </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
+                                                        <h6 class="mb-0">Payement</h6>
                                                     </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-6">
-                                                            <h6 class="mb-0">Payement</h6>
-                                                        </div>
-                                                        <div class="col-6 text-secondary">
-                                                            <h6>Espèce</h6>
-                                                        </div>
+                                                    <div class="col-6 text-secondary">
+                                                        <h6>Espèce</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingThree">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <button class="btn collapsed "
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#massage"
-                                                            aria-expanded="false"
-                                                            aria-controls="massage">
-                                                        <h6>Massage</h6>
-                                                    </button>
-                                                </div>
-                                                <div class="col">
-                                                    <span class="d-flex text-secondary justify-content-end"><i
-                                                                class="bi text-dark bi-caret-down-fill"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="massage" class="collapse" aria-labelledby="headingThree"
-                                             data-bs-parent="#accordion">
-                                            <div class="card-body">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                Massage
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
                                                 <div class="row mb-3">
                                                     <div class="col-6">
                                                         <h6 class="mb-0">Etablissement</h6>
@@ -271,5 +251,17 @@
                 </div>
             </div>
         </div>
-    </div
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Fonctionnalité en cours de dev</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

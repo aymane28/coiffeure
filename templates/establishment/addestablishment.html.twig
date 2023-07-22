@@ -10,7 +10,7 @@
                     <div class="border">
                         {{ form_start(form) }}
                         {{ form_errors(form) }}
-                        <h3 class="p-4" style="background-color: #FAAA80"><i class="bi bi-shop"></i> Ajouter votre
+                        <h3 class="p-4" style="background-color: #FAAA80"><i class="bi bi-shop"></i> Ajoutez votre
                             établissement</h3>
                         <fieldset class="p-4">
                             <div class="row mb-4">
@@ -74,7 +74,6 @@
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     {{ form_row(form.service, {
-                                        'type' : 'number',
                                         "label": "Service*",
                                         "required": true,
                                         "params": {
@@ -82,6 +81,10 @@
                                         },
                                         "label_attr": {
                                             "class": "mb-2"
+                                        },
+                                        'attr': {
+                                            'class': 'form-select',
+                                            'required': 'required'
                                         }
                                     }) }}</div>
                                 <div class="col-md-6 mb-4">
@@ -93,6 +96,10 @@
                                         },
                                         "label_attr": {
                                             "class": "mb-2"
+                                        },
+                                        'attr': {
+                                            'class': 'form-select',
+                                            'required': 'required'
                                         }
                                     }) }}</div>
                             </div>

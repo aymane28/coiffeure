@@ -2,7 +2,6 @@
 
 {% block title %}Etablissement détails{% endblock %}
 
-
 {% block body %}
 
     <header class="py-1 border-bottom mb-3" style="background-color: #FAAA80">
@@ -49,11 +48,20 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-3">
-                            <i class="bi bi-geo-alt-fill"
-                               style="color: #c21a1a"></i> {{ establishment.address }}
-                        </h6>
-                        <div class="mb-2"><i class="bi bi-telephone-fill"> 07 89 89 25 14</i></div>
+
+                        <div class="row mb-2">
+                            <div class="col">
+                                <i class="bi bi-geo-alt-fill"
+                                   style="color: #FAAA80"></i>
+                                {{ establishment.address }}
+                            </div>
+                            <div class="d-flex col justify-content-end">
+                                <i onclick="myFunction(this)" class="fa fa-bookmark-o"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-2"><i class="bi bi-telephone"> 07 89 89 25 14</i></div>
                         {% if establishment.opening == 'closed' %}
                             <h5><span class="badge badge-pill badge-danger mb-2">Fermé - ouvre à 10h00</span></h5>
                         {% else %}
@@ -151,19 +159,103 @@
 
                 </form>
                 <!-- Side widget-->
+
+
                 <div class="card mb-4">
-                    <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80">
-                        <div class="row">
-                            <div class="col-auto">
-                                Avis Utilisateurs
+                    <div class="card-body">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-home-tab" style="color: #FAAA80;"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">Personnels
+                                </button>
+                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                        style="color: #FAAA80;"
+                                        data-bs-target="#nav-profile" type="button" role="tab"
+                                        aria-controls="nav-profile" aria-selected="false">Infos générales
+                                </button>
+                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                        style="color: #FAAA80;"
+                                        data-bs-target="#nav-contact" type="button" role="tab"
+                                        aria-controls="nav-contact" aria-selected="false">Avis
+                                </button>
                             </div>
-                            <div class="col d-flex justify-content-end">
-                                <i class="bi bi-people "></i>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                 aria-labelledby="nav-home-tab" tabindex="0">
+                                <div class="row align-items-center mt-4 py-2">
+                                    <div class="col-2">
+                                        <img title="profile image" width="80" height="80" class="rounded-circle p-1" src="{{ asset('img/profil.png') }}">
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="ms-3">Aymane Afd</h6>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center py-2">
+                                    <div class="col-2">
+                                        <img title="profile image" width="80" height="80"
+                                                class="rounded-circle p-1"
+                                                src="{{ asset('img/profil.png') }}">
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="ms-3">Aymane Afd</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                 aria-labelledby="nav-profile-tab" tabindex="0">
+
+                                <div class="mt-4">
+                                    <div class="fw-bolder h6">
+                                        <i class="bi bi-clock"></i> Horaires d'ouverture :
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <h6>Lundi - Vendredi</h6>
+                                        <h7>9h00 - 18h00</h7>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>Samedi</h6>
+                                        <h7>9h00 - 17h00</h7>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <h6>Dimanche</h6>
+                                        <h7>Fermé</h7>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                 aria-labelledby="nav-contact-tab" tabindex="0">
+                                <div class="row mt-4">
+                                    <div class="col-auto align-items-center h-100">
+                                        <p><i class="bi bi-star-fill"></i> 5,0</p>
+                                    </div>
+                                    <div class="col d-flex justify-content-end">
+                                        <p class="text-secondary fs-6">28/06/2023</p>
+                                    </div>
+                                    <h7>Je recommande ce salon !</h7>
+                                </div>
+                                <hr class="my-4">
+                                <div class="row mt-4">
+                                    <div class="col-auto align-items-center h-100">
+                                        <p><i class="bi bi-star-fill"></i> 5,0</p>
+                                    </div>
+                                    <div class="col d-flex justify-content-end">
+                                        <p class="text-secondary fs-6">04/05/2022</p>
+                                    </div>
+                                    <h7>Le personnel est très gentil et à l'écoute.</h7>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-disabled" role="tabpanel"
+                                 aria-labelledby="nav-disabled-tab" tabindex="0">...
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to
-                        use, and feature the Bootstrap 5 card component!
                     </div>
                 </div>
             </div>

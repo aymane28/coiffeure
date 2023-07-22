@@ -13,7 +13,7 @@
 
         .card-establishment:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            transform: translate3D(0,-1px,0) scale(1.03);
+            transform: translate3D(0, -1px, 0) scale(1.03);
         }
 
         .card-img-top {
@@ -42,9 +42,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-3">Filtres</h5>
-                        <h7><i class="bi bi-shop"></i> Type d'établissement :</h7>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h7><i class="bi bi-shop"></i> Type d'établissement :</h7>
+                            <span id="resetSelectEstablishment" style="cursor: pointer; display: none;">
+                                <i class="bi bi-x-circle"></i>
+                            </span>
+                        </div>
                         <div class="d-flex flex-column align-items-center text-center mt-2 mb-4">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" id="selectEstablishment"
+                                    aria-label=".form-select-sm example">
                                 <option selected>Choisir type établissement</option>
                                 <option value="1">Barbier</option>
                                 <option value="2">Massage</option>
@@ -52,17 +58,26 @@
                             </select>
                         </div>
                         <hr class="my-2">
-                        <h7><i class="bi bi-person"></i> Genre :</h7>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h7><i class="bi bi-shop"></i> Genre :</h7>
+                            <span id="resetSelectGender" style="cursor: pointer; display: none;">
+                                <i class="bi bi-x-circle"></i>
+                            </span>
+                        </div>
                         <div class="d-flex flex-column mt-2 mb-3">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #204f7a">Homme</span>
-                                </h7>
+                                <input class="form-check-input" type="checkbox" id="selectGenderOption1"
+                                       value="option1">
+                                <label class="form-check-label fw-bold" for="selectGenderOption1">
+                                    <span class="badge" style="background-color: #204f7a">Homme</span>
+                                </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <h7 class="fw-bold"><span class="badge" style="background-color: #832c35">Femme</span>
-                                </h7>
+                                <input class="form-check-input" type="checkbox" id="selectGenderOption2"
+                                       value="option2">
+                                <label class="form-check-label fw-bold" for="selectGenderOption2">
+                                    <span class="badge" style="background-color: #832c35">Femme</span>
+                                </label>
                             </div>
                         </div>
                         <hr class="my-2">
@@ -102,7 +117,8 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -142,11 +158,12 @@
                                     </h6>
                                     <div class="row mt-4">
                                         <div class="col-auto align-items-center h-100">
-                                            <p class="fs-6 fw-light">Avis (8)</p>
+                                            <p class="fs-6 fw-light"> <i class="bi bi-star-fill"></i> Avis (8)</p>
                                         </div>
 
                                         <div class="col d-flex justify-content-end">
-                                            <a type="submit" class="btn shadow-lg btn-dark text-light text-center text-uppercase"
+                                            <a type="submit"
+                                               class="btn shadow-lg btn-dark text-light text-center text-uppercase"
                                                href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
                                                 Choisir →</a>
                                         </div>
@@ -175,4 +192,46 @@
             </ul>
         </nav>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.getElementById('selectEstablishment').addEventListener('change', function () {
+            document.getElementById('resetSelectEstablishment').style.display = 'inline-block';
+        });
+
+        document.getElementById('resetSelectEstablishment').addEventListener('click', function () {
+            document.getElementById('selectEstablishment').selectedIndex = 0;
+            document.getElementById('resetSelectEstablishment').style.display = 'none';
+        });
+
+        //genre
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        const resetIcon = document.getElementById('resetSelectGender');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                resetIcon.style.display = 'inline-block';
+            });
+        });
+
+        resetIcon.addEventListener('click', function () {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            resetIcon.style.display = 'none';
+        });
+
+
+        document.getElementById('selectGender').addEventListener('change', function () {
+            document.getElementById('resetSelectGender').style.display = 'inline-block';
+        });
+
+        document.getElementById('resetSelectGender').addEventListener('click', function () {
+            document.getElementById('resetSelectGender').selectedIndex = 0;
+            document.getElementById('resetSelectGender').style.display = 'none';
+        });
+    </script>
+
 {% endblock %}
