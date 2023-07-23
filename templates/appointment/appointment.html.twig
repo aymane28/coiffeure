@@ -96,6 +96,81 @@
                     </div>
 
                     <div class="col-lg-8">
+
+                        <div class="card mb-4">
+                            <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80">
+                                Musique
+                                <i class="bi bi-music-note-beamed float-end"></i>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <!-- Column for the image, occupying 8/12 of the available width on medium and larger screens -->
+                                        <img src="{{ asset('img/image_music_logo.jpg') }}"
+                                             class="img-fluid rounded-3 shadow-sm w-100 h-100 object-fit-cover object-position-center"
+                                             alt="Image">
+                                    </div>
+                                    <div class="col">
+                                        <!-- Column for the text, occupying 4/12 of the available width on medium and larger screens -->
+                                        <h6 class="mb-3">Écoutez votre musique préférée lors de votre visite chez cet
+                                            établissement</h6>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                           id="flexRadioDefault1" value="1" required>
+                                                    <label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault1">
+                                                        <small>Insérer ma playlist</small>
+                                                        <i class="bi bi-music-note-list"></i>
+                                                    </label>
+                                                    <!-- Bloc de saisie de la playlist -->
+                                                    <div class="mt-2">
+                                                        <small class="fs-6 text-secondary d-none" id="playlistLabel">Ajoutez votre playlist ci-dessous :</small>
+                                                        <div class="input-group mb-3 mt-1 d-none" >
+                                                            <input type="text" class="form-control" placeholder="Lien playlist"
+                                                                   aria-label="Playlist link" aria-describedby="button-addon2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                           id="flexRadioDefault2" value="2">
+                                                    <label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault2">
+                                                        <small>Choisir par défaut XSCAPE de Michael Jackson</small>
+                                                        <i class="bi bi-play-fill"></i>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                           id="flexRadioDefault3" value="3">
+                                                    <label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault3">
+                                                        <small>Je n'ai pas de préférence</small>
+                                                        <i class="bi bi-music-player-fill"></i>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                           id="flexRadioDefault4" value="4">
+                                                    <label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault4">
+                                                        <small>Je ne souhaite pas écouter de la musique</small>
+                                                        <i class="bi bi-volume-mute-fill"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 mb-3 mt-5 gap-4">
+                                                <img src="https://img.freepik.com/icones-gratuites/youtube_318-183441.jpg?w=360" alt="Youtube" width="30" height="30">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Spotify" width="30" height="30">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Apple_Music_icon.svg/2048px-Apple_Music_icon.svg.png" alt="AppleMusic" width="30" height="30">
+                                                <img src="https://boost.latelierdecedric.com/wp-content/uploads/2017/12/deezer-logo-circle.png" alt="Deezer" width="30" height="30">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card mb-4">
                             <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80">
                                 Notification
@@ -132,7 +207,7 @@
                                         <h4 class="mb-2 <small>">{{ establishment.name }} </h4>
                                         <div class="mb-2">
                                             <small><i class="bi bi-geo-alt-fill"
-                                                                                    style="color: #FAAA80"></i> {{ establishment.address }}
+                                                      style="color: #FAAA80"></i> {{ establishment.address }}
                                             </small>
                                         </div>
 
@@ -162,12 +237,14 @@
                                 </div>
                                 <div class="d-flex justify-content-end gap-3">
                                     <div class="btn-group dropup" role="group">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
+                                        <button type="button"
+                                                class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="bi bi-pencil"></i> Modifier
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a></li>
+                                            <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a>
+                                            </li>
                                             <li><a class="dropdown-item"
                                                    href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
                                                     Service</a></li>
@@ -200,6 +277,31 @@
                 block: "start"
             });
         }
+
+        const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
+        radioButtons.forEach(button => {
+            button.addEventListener('change', handleRadioButtonChange);
+        });
+
+        // Fonction pour gérer le changement de sélection des boutons radio
+        function handleRadioButtonChange(event) {
+            const playlistLabel = document.getElementById('playlistLabel');
+            const playlistInput = document.querySelector('.input-group');
+
+            // Masquer le bloc de saisie de la playlist
+            playlistLabel.classList.add('d-none');
+            playlistInput.classList.add('d-none');
+
+            // Vérifier si le premier bouton radio est sélectionné
+            const firstRadioButton = document.getElementById('flexRadioDefault1');
+            if (firstRadioButton.checked) {
+                // Afficher le bloc de saisie de la playlist uniquement pour le premier bouton radio
+                playlistLabel.classList.remove('d-none');
+                playlistInput.classList.remove('d-none');
+            }
+        }
+
+
     </script>
 
 

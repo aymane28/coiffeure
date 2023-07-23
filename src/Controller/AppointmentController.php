@@ -64,6 +64,7 @@ class AppointmentController extends AbstractController
         $rdvDate = $request->request->get('rdvDate');
         $rdvTime = $request->request->get('rdvTime');
         $rdvCollab = $request->request->get('rdvCollab');
+        $flexRadioDefault = $request->request->get('flexRadioDefault');
         $session->remove('cart');
         $establishmentType = $establishmentTypeRepository->find(10);
 
@@ -75,7 +76,8 @@ class AppointmentController extends AbstractController
                 'service' => $service,
                 'rdvDate' => $rdvDate,
                 'rdvTime' => $rdvTime,
-                'rdvCollab' => $rdvCollab
+                'rdvCollab' => $rdvCollab,
+                'flexRadioDefault' => $flexRadioDefault
             ]
         ];
         $session->set('cart', $cart);
