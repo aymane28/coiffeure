@@ -2,13 +2,13 @@
 
 {% block title %}Choix payement{% endblock %}
 
-{% block stylesheets%}
+{% block stylesheets %}
     {{ parent() }}
     <style>
 
         .button-take-rdv:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            transform: translate3D(0,-1px,0) scale(1.03);
+            transform: translate3D(0, -1px, 0) scale(1.03);
         }
     </style>
 {% endblock %}
@@ -18,25 +18,43 @@
         <div class="container px-4 px-lg-5 my-1">
             {% if cart | length > 0 %}
                 {% for item in cart %}
-                    <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-                        <h2 class="h5 mb-3 mb-lg-0">Mon rendez-vous</h2>
-                        <div class="hstack gap-3">
-
-                            <a
-                               data-bs-toggle="modal" data-bs-target="#exampleModal"
-                               class="btn btn-light text-light btn-sm btn-icon-text"
-                               style="background-color: #5d5252"><i
-                                        class="bi bi-x"></i> <span
-                                        class="text">Annuler</span></a>
-                        </div>
+                    <div class="py-3">
+                            <h2 class="h5">Mon rendez-vous</h2>
                     </div>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="d-flex justify-content-end align-items-center gap-3 mb-3">
+                        <!-- Use justify-content-end to move the buttons to the right -->
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-pencil"></i> Modifier
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a></li>
+                                <li><a class="dropdown-item"
+                                       href="{{ path('establishment_details', {'slugestablishment': item.establishment.slug }) }}">
+                                        Service</a></li>
+                                <li><a class="dropdown-item" href="{{ path('appointment', {'slugestablishment': item.establishment.slug, 'slugservice': item.service.slug, 'slugservicetype': item.serviceType.slug}) }}">
+                                        Date/heure & Collaborateur</a></li>
+                            </ul>
+                        </div>
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                           class="btn btn-light text-light btn-sm btn-icon-text" style="background-color: #5d5252">
+                            <i class="bi bi-x"></i>
+                            <span class="text">Annuler</span>
+                            <!-- Hide the "Annuler" text on small and medium screens (lg and below) -->
+                        </a>
+                    </div>
+
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Annuler le rendez-vous</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     Voulez vous annuler votre rendez-vous?
@@ -44,7 +62,7 @@
                                 <div class="modal-footer">
                                     <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                        class="btn btn-outline-dark btn-sm btn-icon-text"
-                                       ><span class="text">Conserver</span></a>
+                                    ><span class="text">Conserver</span></a>
                                     <a type="submit" href="{{ path('delete_cart') }}"
                                        class="btn btn-dark text-light btn-sm btn-icon-text"><i
                                                 class="bi bi-x"></i> <span
@@ -93,68 +111,68 @@
                                  style="background-color: #c55c1b">
                                 {{ item.service.name }}
                             </div>
-                            <h3 class="fw-bolder mb-5">{{ item.establishment.name }}</h3>
+                            <h3 class="fw-bolder mb-4">{{ item.establishment.name }}</h3>
 
                             <div class="row mb-3">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Service</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.serviceType.name }}
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Durée</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.serviceType.time }} min
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Tarifs</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.serviceType.price }} {{ 'EUR'|currency_symbol }}
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Pour le</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.rdvDate|format_datetime('full', 'none', locale='en')|capitalize }}
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Heure</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.rdvTime }}
                                 </div>
                             </div>
                             <div class="row mb-4">
-                                <div class="col-3 fw-bolder">
+                                <div class="col-4 fw-bolder">
                                     <h6>Collaborateur</h6>
                                 </div>
-                                <div class="col-6 text-secondary">
+                                <div class="col text-secondary">
                                     {{ item.rdvCollab }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-auto">
-                                <form action="/checkout" method="POST">
-                                    <button class="btn btn-dark flex-shrink-0 mr-3" type="submit"
-                                            id="checkout-button">
-                                        <i class="bi bi-credit-card"></i> Payer en ligne
-                                    </button>
-                                </form>
+                                    <form action="/checkout" method="POST">
+                                        <button class="btn btn-dark flex-shrink-0 mr-3" type="submit"
+                                                id="checkout-button">
+                                            <i class="bi bi-credit-card"></i> Payer en ligne
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="col-6">
                                     <a class="btn btn-dark" type="button"

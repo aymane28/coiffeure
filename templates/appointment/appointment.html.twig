@@ -19,10 +19,11 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-header fw-bolder text-white h6" style="background-color: #FAAA80">
-                                Choix du collaborateur
+                                Collaborateur
                                 <i class="bi bi-person float-end"></i></div>
                             <div class="card-body">
-                                <select class="form-select" aria-label="Default select example" name="rdvCollab" id="firstRequiredField" required>
+                                <select class="form-select" aria-label="Default select example" name="rdvCollab"
+                                        id="firstRequiredField" required>
                                     <option value="" selected disabled>Choix collaborateur</option>
                                     <option value="Aymane">Aymane</option>
                                     <option value="Laure">Laure</option>
@@ -125,19 +126,19 @@
                         </div>
 
                         <div class="card mb-4">
-                            <div class="card-header fw-bolder h6">
+                            <div class="card-header h6">
                                 <div class="row align-items-center">
                                     <div class="col-6">
-                                        <h4>{{ establishment.name }} </h4>
-                                        {% if establishment.opening == 'closed' %}
-                                            <h5>
-                                                <span class="badge rounded-pill bg-danger"> Fermé - ouvre à 10h00</span>
-                                            </h5>
-                                        {% else %}
-                                            <h6>
-                                                <span class="badge rounded-pill bg-success"> Ouvert aujourd'hui</span>
-                                            </h6>
-                                        {% endif %}
+                                        <h4 class="mb-2 <small>">{{ establishment.name }} </h4>
+                                        <div class="mb-2">
+                                            <small><i class="bi bi-geo-alt-fill"
+                                                                                    style="color: #FAAA80"></i> {{ establishment.address }}
+                                            </small>
+                                        </div>
+
+                                        <small class="mb-3"><i class="bi bi-telephone"></i> 07
+                                            89 89 25 14
+                                        </small>
                                     </div>
                                     <div class="col-6">
                                         <a class="pull-right"><img title="profile image" width="80" height="80"
@@ -147,23 +148,33 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-3"><i class="bi bi-geo-alt-fill"
-                                                    style="color: #FAAA80"></i> {{ establishment.address }}
-                                </h6>
                                 <div class="mb-3">
-                                    <small class="mb-4"><i class="bi bi-telephone"></i> 07
-                                        89 89 25 14</small>
+                                    <h6 class="mb-4"><i class="bi bi-arrow-right-short"></i>
+                                        {{ servicetype.name }}</h6>
                                 </div>
                                 <div class="mb-3">
-                                    <small class="mb-4"><i class="bi bi-clock-history"></i>
-                                        {{ servicetype.time }} min</small>
+                                    <h6 class="mb-4"><i class="bi bi-clock-history"></i>
+                                        {{ servicetype.time }} min</h6>
                                 </div>
-                                <div class="mb-3">
-                                    <small class="mb-4"><i class="bi bi-cash-stack" style="color: #14860e"></i>
-                                        {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</small>
+                                <div class="mb-4">
+                                    <h6><i class="bi bi-cash-stack" style="color: #14860e"></i>
+                                        {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</h6>
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-dark" type="submit" onclick="scrollToFirstRequiredField()">Validez le RDV →
+                                <div class="d-flex justify-content-end gap-3">
+                                    <div class="btn-group dropup" role="group">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-pencil"></i> Modifier
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
+                                                    Service</a></li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-dark" type="submit" onclick="scrollToFirstRequiredField()">
+                                        Validez le RDV →
                                     </button>
                                 </div>
                             </div>
@@ -177,7 +188,7 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
     <script>
         function scrollToFirstRequiredField() {
             // Get the first required input field (or any element with the "required" attribute)
