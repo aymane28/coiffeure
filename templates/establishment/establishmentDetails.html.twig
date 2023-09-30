@@ -73,22 +73,8 @@
 
                 <h3>Réservez en ligne pour un RDV</h3>
                 <h6 class="font-weight-light mb-4">Confirmation immédiate</h6>
-                <div class="row mb-2">
-                    <div class="col-auto d-flex align-items-center">
-                        <h5>Filtres :</h5>
-                    </div>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-outline btn-sm text-light fw-bold"
-                                style="background-color: #832c35">Femme
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-outline btn-sm text-light fw-bold"
-                                style="background-color: #204f7a">Homme
-                        </button>
-                    </div>
-                </div>
 
+                {% include "establishment/filter-establisment.html.twig" %}
 
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
@@ -150,13 +136,9 @@
                 {% set newArray = newArray|merge([service]) %}
                 <form method="post"
                       action="{{ path('appointment', {'slugestablishment': establishment.slug, 'slugservice': service.slug, 'slugservicetype': servicetype.slug, 'servicetypetime': servicetype.time}) }}">
-
                     {% endfor %}
                     {% endfor %}
-
                     <!-- Search widget-->
-
-
                 </form>
                 <!-- Side widget-->
 
@@ -262,11 +244,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <img  src={{ asset('img/image_localisation_establishment.jpg') }} width="300" height="300"
+                             class="img-fluid d-block w-100" alt="...">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 {% endblock %}
+
 
 
 
