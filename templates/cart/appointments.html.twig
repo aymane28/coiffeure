@@ -17,50 +17,68 @@
                             <td>
                                 <div>
                                     <h6 class="font-size-18 text-dark">Establishment numéro 3</h6>
-                                    <p class="text-muted mb-1 text-truncate">
-                                        <i class="bi bi-geo-alt-fill"
-                                           style="color: #FAAA80"></i> 0 avenue d'opéra
-                                    </p>
-                                    <p class="text-muted mb-1 text-truncate">
-                                        <i class="bi bi-telephone"> 07 11 11 11 11 </i>
-                                    </p>
+                                    <button class="btn btn-link btn-sm p-0" style="color: #FAAA80" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#detailsEstablishmentCollapse"
+                                            aria-expanded="false">
+                                        Voir plus
+                                    </button>
+                                    <!-- Paragraphe de détails (initiallement caché) -->
+                                    <div class="collapse mt-2" id="detailsEstablishmentCollapse">
+                                        <p class="text-muted mb-1">
+                                            <i class="bi bi-geo-alt-fill" style="color: #FAAA80"></i> 0 avenue d'opéra
+                                        </p>
+                                        <p class="text-muted mb-1">
+                                            <i class="bi bi-telephone"></i>
+                                            07 11 11 11 11
+                                        </p>
+                                    </div>
                                 </div>
                             </td>
 
+
                             <td>
                                 <ul class="list-unstyled ps-0 mb-0">
-                                    <li><p class="text-muted mb-1 text-truncate"><i
-                                                    class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
-                                            <i class="bi bi-arrow-right-short"></i> Couleur Stylist</p></li>
-                                    <li><p class="text-muted mb-1 text-truncate"><i
-                                                    class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
-                                            <i class="bi bi-person"></i> Aymane</p></li>
-                                    <li><p class="text-muted mb-1 text-truncate"><i
-                                                    class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
-                                            <i class="bi bi-calendar4-event"></i> Mardi 9 janvier 2024 à 11h</p></li>
-                                    <li><p class="text-muted mb-1 text-truncate"><i
-                                                    class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
-                                            <i class="bi bi-music-note"></i> Je ne souhaite pas écouter de la musique
-                                        </p></li>
+                                    <li><p class="text-muted mb-1 text-truncate">
+                                            <i class="bi bi-calendar4-event"></i> Mardi 9 janvier 2024 à 11h</p>
+                                    </li>
+                                    <button class="btn btn-link btn-sm p-0" style="color: #FAAA80" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#detailsServiceCollapse"
+                                            aria-expanded="false">
+                                        Voir plus
+                                    </button>
+                                    <div class="collapse mt-2" id="detailsServiceCollapse">
+                                        <li><p class="text-muted mb-1 text-truncate">
+                                                <i class="bi bi-arrow-right-short"></i> Couleur Stylist</p>
+                                        </li>
+                                        <li><p class="text-muted mb-1 text-truncate">
+                                                <i class="bi bi-person"></i> Aymane</p></li>
+
+                                        <li><p class="text-muted mb-1 text-truncate">
+                                                <i class="bi bi-music-note"></i> Je ne souhaite pas écouter de la
+                                                musique
+                                            </p></li>
+                                    </div>
+
                                 </ul>
                             </td>
 
-                            <td style="width: 180px;">
+                            <td class="col-md-2">
                                 <p><i class="bi bi-clock-history"></i> 30 min</p>
                             </td>
 
-                            <td style="width: 220px;">
-                                <h4 class="mb-1"><span class="text-muted"></span>45 €</h4>
+                            <td class="col-md-2">
+                                <h5 class="mb-1"><span class="text-muted"></span>45 €</h5>
                                 <p class="text-muted mb-1 text-truncate">Payement sur place</p>
                             </td>
 
                             <td>
                                 <div class="dropdown float-end">
                                     <ul class="list-unstyled ps-0 mb-2">
-                                        <li class="mb-3"><a class="text-muted custom-dropdown-toggle h6 font-size-20" href="#"
-                                               data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                               role="button"
-                                               aria-haspopup="true">
+                                        <li class="mb-3"><a class="text-muted custom-dropdown-toggle h6 font-size-20"
+                                                            href="#"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                            role="button"
+                                                            aria-haspopup="true">
                                                 <i class="bi bi-share-fill"></i>
                                             </a>
                                         </li>
@@ -70,7 +88,8 @@
                                                 <i class="bi bi-three-dots-vertical"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-x"></i> Annuler</a>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal"><i class="bi bi-x"></i> Annuler RDV</a>
                                             </div>
                                         </li>
                                     </ul>

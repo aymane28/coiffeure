@@ -20,6 +20,11 @@
             height: 200px;
             object-fit: cover;
         }
+
+        .button-take-rdv:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            transform: translate3D(0, -1px, 0) scale(1.03);
+        }
     </style>
 
 {% endblock %}
@@ -36,7 +41,17 @@
     </header>
 
     <!-- Page content-->
-    <div class="container mt-5">
+    <div class="container mt-4">
+        <div class="row gx-5 justify-content-center">
+        <div class="col-lg-6 mb-5">
+            <form class="form-inline">
+                <div class="input-group">
+                    <input class="form-control form-control" type="search" placeholder="Rechercher un établissement ..." aria-label="Chercher">
+                    <a type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn button-take-rdv text-light" style="background-color: #FAAA80">Recherche</a>
+                </div>
+            </form>
+        </div>
+        </div>
         <div class="row">
             <div class="col-lg-3 mb-4">
                 <div class="card">

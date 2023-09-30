@@ -16,60 +16,78 @@
 {% block body %}
     <section class="py-2">
         <div class="container px-4 px-lg-5 my-1">
-            <div class="py-3 pb-0">
+            {% if app.user %}
+            <div class="py-3">
                 <h2 class="h5">Prochain rendez-vous</h2>
+                <div class="mt-0">
+                <h7 ><i class="bi bi-check2"></i> Confirmé</h7>
+                </div>
             </div>
             {% include 'cart/appointments.html.twig' %}
+            {% endif %}
             {% if cart | length > 0 %}
                 {% for item in cart %}
                     <div class="d-flex justify-content-between align-items-center gap-3 mb-3 mt-5">
                         <div>
                             <h2 class="h5">Nouveau rendez-vous</h2>
                         </div>
-                        <!-- Use justify-content-end to move the buttons to the right -->
-                        <div class="btn-group ms-auto" role="group">
-                            <button type="button" class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-pencil"></i> Modifier
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ path('establishment_details', {'slugestablishment': item.establishment.slug }) }}">
-                                        Service</a></li>
-                                <li><a class="dropdown-item" href="{{ path('appointment', {'slugestablishment': item.establishment.slug, 'slugservice': item.service.slug, 'slugservicetype': item.serviceType.slug}) }}">
-                                        Date/heure & Collaborateur</a></li>
-                            </ul>
+                        <!-- Buttons and Icon Container -->
+                        <div class="d-flex align-items-center">
+                            <!-- Icône navbar-toggler -->
+                            <!-- Boutons -->
+                            <div class="collapse me-3" id="collapseDropdown">
+                                <div class="btn-group ms-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm btn-icon-text dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-pencil"></i> Modifier
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ path('establishments') }}">Etablissement</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="{{ path('establishment_details', {'slugestablishment': item.establishment.slug }) }}">
+                                                Service</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="{{ path('appointment', {'slugestablishment': item.establishment.slug, 'slugservice': item.service.slug, 'slugservicetype': item.serviceType.slug}) }}">
+                                                Date/heure & Collaborateur</a></li>
+                                    </ul>
+                                </div>
+                                <a data-bs-toggle="modal" data-bs-target="#cancelModal"
+                                   class="btn btn-light text-light btn-sm btn-icon-text" style="background-color: #5d5252">
+                                    <i class="bi bi-x"></i>
+                                    <span class="text">Supprimer RDV</span>
+                                    <!-- Hide the "Annuler" text on small and medium screens (lg and below) -->
+                                </a>
+                            </div>
+                            <div class="navbar-toggler">
+                                <a class="text-muted custom-dropdown-toggle h5 font-size-20" href="#" role="button"
+                                   data-bs-toggle="collapse" data-bs-target="#collapseDropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                           class="btn btn-light text-light btn-sm btn-icon-text" style="background-color: #5d5252">
-                            <i class="bi bi-x"></i>
-                            <span class="text">Annuler</span>
-                            <!-- Hide the "Annuler" text on small and medium screens (lg and below) -->
-                        </a>
                     </div>
 
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Annuler le rendez-vous</h1>
+                                    <h1 class="modal-title fs-5" id="cancelModalLabel">Supprimer le rendez-vous</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Voulez vous annuler votre rendez-vous?
+                                    Voulez vous supprimer votre rendez-vous?
                                 </div>
                                 <div class="modal-footer">
-                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    <a data-bs-toggle="modal" data-bs-target="#cancelModal"
                                        class="btn btn-outline-dark btn-sm btn-icon-text"
                                     ><span class="text">Conserver</span></a>
                                     <a type="submit" href="{{ path('delete_cart') }}"
                                        class="btn btn-dark text-light btn-sm btn-icon-text"><i
                                                 class="bi bi-x"></i> <span
-                                                class="text">Annuler</span></a>
+                                                class="text">Supprimer RDV</span></a>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +217,7 @@
                 <!--<h2 class="h5 mt-5 mb-3"><i class="bi bi-calendar-x"></i> Vous n'avez pas encore pris de rendez-vous
                 </h2>-->
                 <div class="py-3 mt-4">
-                    <h2 class="h5">Nouveau rendez-vous</h2>
+                        <h2 class="h5">Nouveau rendez-vous</h2>
                 </div>
                 <a class="btn btn-lg button-take-rdv shadow-lg text-light" href="{{ path('establishments') }}"
                    style="background-color: #FAAA80">Prenez RDV</a>

@@ -16,31 +16,28 @@
                     <a class="nav-link" href="{{ path('establishments') }}">Établissements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('add_etablissement_pricing') }}">Ajouter un établissement</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart') }}"> Mes rendez-vous
                         {% if app.session.get('cart') %}<i class="bi bi-calendar-check"
                                                            style="color: #3fc535"></i> {% endif %}</a>
                 </li>
             </ul>
             <div class="navbar-nav nav-item dropdown">
+                <a class="nav-link me-2" href="{{ path('professional') }}">Espace professionnel </a>
                 {% if app.user %}
-                <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="{{ path('profil_settings') }}"><i class="bi bi-gear"></i>
-                        Paramètres</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href=" {{ path('app_logout') }}"><i class="bi bi-door-open"></i>
-                        Se déconnecter</a>
-                </div>
+                    <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="{{ path('profil_settings') }}"><i class="bi bi-gear"></i>
+                            Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href=" {{ path('app_logout') }}"><i class="bi bi-door-open"></i>
+                            Se déconnecter</a>
+                    </div>
                 {% else %}
-                <a class="nav-link" href="{{ path('app_register') }}"> Inscription</a>
-                <a class="nav-link" href="{{ path('app_login') }}"> Connexion</a>
-                    {% endif %}
+                    <a class="nav-link" href="{{ path('app_login') }}"> Se connecter</a>
+                {% endif %}
             </div>
         </div>
     </div>

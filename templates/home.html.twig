@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets%}
-{{ parent() }}
-<style>
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
 
-    .button-take-rdv:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        transform: translate3D(0,-1px,0) scale(1.03);
-    }
-</style>
+        .button-take-rdv:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            transform: translate3D(0, -1px, 0) scale(1.03);
+        }
+    </style>
 {% endblock %}
 {% block body %}
     {{ stream_notifications(['/demo/notifier']) }}
@@ -22,22 +22,32 @@
                             <h1 class="display-5 fw-bolder text-white mb-2">Vos rendez-vous de beauté en ligne</h1>
                             <p class="lead fw-normal text-white-50 mb-4">SIMPLE - IMMÉDIAT - 24H/24</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                <a class="btn button-take-rdv btn-lg text-light px-4 shadow-lg fw-bold me-sm-3" href="{{ path('establishments') }}"
+                                <a class="btn button-take-rdv btn-lg text-light px-4 shadow-lg fw-bold me-sm-3"
+                                   href="{{ path('establishments') }}"
                                    style="background-color: #FAAA80">Prenez RDV</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 shadow-lg my-5"
-                                                                                       src="https://www.cma-hautsdefrance.fr/wp-content/uploads/2020/08/coiffeur-salon-1.jpg"
-                                                                                       alt="..."/></div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img
+                                class="img-fluid rounded-3 shadow-lg my-5"
+                                src="https://www.cma-hautsdefrance.fr/wp-content/uploads/2020/08/coiffeur-salon-1.jpg"
+                                alt="..."/></div>
                 </div>
             </div>
         </header>
 
         <!-- Blog preview section-->
-        <section class="py-5">
+        <section class="py-2">
             <div class="container px-5 my-5">
                 <div class="row gx-5 justify-content-center">
+                    <div class="row col-lg-8 mb-5">
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input class="form-control form-control" type="search" placeholder="Prestations, établissements, ..." aria-label="Chercher">
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn button-take-rdv text-light" style="background-color: #FAAA80" type="submit">Recherche</a>
+                            </div>
+                        </form>
+                    </div>
                     <div class="col-lg-8 col-xl-6">
                         <div class="text-center">
                             <h2 class="fw-bolder">Les salons favoris de nos clients</h2>
@@ -158,4 +168,16 @@
             </div>
         </div>
     </main>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Fonctionnalité en cours de dev</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

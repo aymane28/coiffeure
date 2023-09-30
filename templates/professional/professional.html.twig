@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissement détails{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="title-box text-center">
+                <h3 class="title-heading mt-4">Espace Professionel</h3>
+                <p class="text-muted f-17 mt-3">Bienvenue sur notre plateforme de réservation de beauté. Vous êtes un professionnel de la beauté et souhaitez utiliser nos services pour gérer vos rendez-vous et attirer de nouveaux clients.</p>
+            </div>
+        </div>
+    </div>
+<div class="container mt-3 bg-light p-4 rounded mb-5">
+    <header>
+        <div class="row mb-4">
+            <div class="col-auto d-flex align-items-center">
+                <div class="mb-3 pb-1">
+                    <img src="{{ asset('img/ciseaux_black.png') }}" width="50" height="50">
+                </div>
+            </div>
+            <div class="col col-md-6 d-flex align-items-center">
+                <h3 class="mb-3 pb-3 text-center" style="letter-spacing: 1px;">
+                    Confort Zone
+                </h3>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <h3 class="fw-normal mt-4">Abonnement Mensuel</h3>
+        <p>Pour profiter pleinement de notre service, nous proposons un abonnement mensuel flexible. En tant que membre premium, vous bénéficiez des avantages suivants :</p>
+        <ul>
+            <li>Accès complet à notre système de gestion de rendez-vous en ligne.</li>
+            <li>Publication de votre établissement dans notre répertoire de beauté.</li>
+            <li>Possibilité d'accepter des réservations en ligne 24/7.</li>
+            <li>Outils de gestion de clientèle avancés.</li>
+            <li>Assistance technique et support client dédié.</li>
+        </ul>
+        <p>Vous pouvez choisir parmi différentes formules d'abonnement pour répondre à vos besoins spécifiques. L'abonnement mensuel vous offre la flexibilité nécessaire pour adapter notre service à votre entreprise.</p>
+    </section>
+
+    <section>
+        <h3 class="fw-normal mt-4">Comment S'Abonner</h3>
+        <p>Le processus d'abonnement est simple :</p>
+        <ol>
+            <li>Créez un compte professionnel en fournissant les informations requises.</li>
+            <li>Choisissez le plan d'abonnement qui vous convient le mieux.</li>
+            <li>Procédez au paiement en toute sécurité.</li>
+            <li>Commencez à gérer vos rendez-vous et à attirer de nouveaux clients !</li>
+        </ol>
+        <p>Si vous avez des questions ou avez besoin d'aide pour vous abonner, n'hésitez pas à nous contacter. Notre équipe est là pour vous aider à démarrer.</p>
+    </section>
+
+    <footer class="text-center mt-5">
+        <p>Pour en savoir plus sur nos offres d'abonnement et commencer à utiliser notre service, cliquez sur le bouton ci-dessous :</p>
+        <!-- Bouton pour rediriger vers la page des offres -->
+        <a href="{{ path('add_etablissement_pricing') }}" class="btn btn-dark btn-rounded">Voir les Offres</a>
+    </footer>
+</div>
+
+{% endblock %}
