@@ -18,7 +18,7 @@
         <div class="container px-4 px-lg-5 my-1">
             {% if app.user %}
                 <div class="py-3">
-                    <h2 class="h5">Prochain rendez-vous</h2>
+                    <h2 class="h5">Prochains rendez-vous (1)</h2>
                     <div class="mt-0">
                         <h7><i class="bi bi-check2"></i> Confirmé</h7>
                     </div>
@@ -187,19 +187,11 @@
                                     <h6>Pour le</h6>
                                 </div>
                                 <div class="col text-secondary">
-                                    {{ item.rdvDate|format_datetime('full', 'none', locale='en')|capitalize }}
+                                    {{ item.rdvDate|format_datetime('full', 'none', locale='en')|capitalize }} à {{ item.rdvTime }}
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-4 fw-bolder">
-                                    <h6>Heure</h6>
-                                </div>
-                                <div class="col text-secondary">
-                                    {{ item.rdvTime }}
-                                </div>
-                            </div>
-                            <div class="row mb-4">
                                 <div class="col-4 fw-bolder">
                                     <h6>Collaborateur</h6>
                                 </div>

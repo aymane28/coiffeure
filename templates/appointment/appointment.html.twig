@@ -2,6 +2,37 @@
 
 {% block title %}RDV détails{% endblock %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+    <style>
+        .custom-radio-input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .custom-radio-input-date {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .custom-active-label {
+            background-color: #FAAA80;
+            /*color: #your-active-text-color;*/
+            /* Autres styles personnalisés pour l'état actif */
+        }
+
+        /* CSS personnalisé pour l'état inactif */
+        .custom-inactive-label {
+            background-color: transparent;
+            border: 2px solid #f5d0bb;
+            /*background-color: #your-inactive-color;*/
+            /*color: #your-inactive-text-color;*/
+            /* Autres styles personnalisés pour l'état inactif */
+        }
+    </style>
+
+{% endblock %}
 {% block body %}
     <div class="container-fluid">
         <div class="container mt-4 min-vh-100">
@@ -24,7 +55,7 @@
                             <div class="card-body">
                                 <select class="form-select" aria-label="Default select example" name="rdvCollab"
                                         id="firstRequiredField" required>
-                                    <option value="" selected disabled>Choix collaborateur</option>
+                                    <option value="" selected>Sans préférence</option>
                                     <option value="Aymane">Aymane</option>
                                     <option value="Laure">Laure</option>
                                 </select>
@@ -42,9 +73,10 @@
                                                 <div class="d-flex flex-column align-items-center">
                                                     {% for date in chunk %}
                                                         <div class="d-grid gap-2 col-6 mx-auto">
-                                                            <label class="btn btn-block mb-2"
-                                                                   style="background-color: #f5d0bb">
-                                                                <input type="radio" name="rdvDate"
+                                                            <label class="custom-radio-label-date btn custom-inactive-label mb-2"
+                                                            >
+                                                                <input class="custom-radio-input-date" type="radio"
+                                                                       name="rdvDate" id="day{{ date|date('l d F') }}"
                                                                        value="{{ date|date('l d F') }}"
                                                                 >
                                                                 {{ date|date('l d F')|format_datetime('full', 'none', locale='en')|capitalize }}
@@ -80,11 +112,11 @@
                                     {% for s in timeopen %}
                                         {% for i in 0..22 %}
                                             {% if i >= (s.time) %}
-                                                <div class="col-6"> {# Ajoutez la classe col-6 ici pour créer deux colonnes #}
-                                                    <label class="btn btn-block mb-2" style="background-color: #f5d0bb">
-                                                        <input class="mb-3" type="radio" id="time" name="rdvTime"
-                                                               value="{{ i }}h" required>
-                                                        <label for="10heure">{{ i }}h</label><br>
+                                                <div class="col-6">
+                                                    <label class="custom-radio-label btn custom-inactive-label mb-2">
+                                                        <input class="custom-radio-input" type="radio" id="time{{ i }}"
+                                                               name="rdvTime" value="{{ i }}h" required>
+                                                        {{ i }}h<br>
                                                     </label>
                                                 </div>
                                             {% endif %}
@@ -138,7 +170,8 @@
                                                 </div>
                                                 <div class="form-check mb-2">
                                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                           id="flexRadioDefault2" value="Choisir par défaut XSCAPE de Michael Jackson">
+                                                           id="flexRadioDefault2"
+                                                           value="Choisir par défaut XSCAPE de Michael Jackson">
                                                     <label class="form-check-label d-flex justify-content-between align-items-center"
                                                            for="flexRadioDefault2">
                                                         <small>Choisir par défaut XSCAPE de Michael Jackson</small>
@@ -156,7 +189,8 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                           id="flexRadioDefault4" value="Je ne souhaite pas écouter de la musique">
+                                                           id="flexRadioDefault4"
+                                                           value="Je ne souhaite pas écouter de la musique">
                                                     <label class="form-check-label d-flex justify-content-between align-items-center"
                                                            for="flexRadioDefault4">
                                                         <small>Je ne souhaite pas écouter de la musique</small>
@@ -314,6 +348,44 @@
             }
         }
 
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const radioInputs = document.querySelectorAll(".custom-radio-input");
+
+            radioInputs.forEach(function (radioInput) {
+                radioInput.addEventListener("change", function () {
+                    // Réinitialisez la classe de tous les labels à custom-inactive-label
+                    document.querySelectorAll(".custom-radio-label").forEach(function (label) {
+                        label.classList.remove("custom-active-label");
+                        label.classList.add("custom-inactive-label");
+                    });
+
+                    // Mettez à jour la classe du label du radio actuel en custom-active-label
+                    const label = this.closest(".custom-radio-label");
+                    label.classList.remove("custom-inactive-label");
+                    label.classList.add("custom-active-label");
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const radioInputs = document.querySelectorAll(".custom-radio-input-date");
+
+            radioInputs.forEach(function (radioInput) {
+                radioInput.addEventListener("change", function () {
+                    // Réinitialisez la classe de tous les labels à custom-inactive-label
+                    document.querySelectorAll(".custom-radio-label-date").forEach(function (label) {
+                        label.classList.remove("custom-active-label");
+                        label.classList.add("custom-inactive-label");
+                    });
+
+                    // Mettez à jour la classe du label du radio actuel en custom-active-label
+                    const label = this.closest(".custom-radio-label-date");
+                    label.classList.remove("custom-inactive-label");
+                    label.classList.add("custom-active-label");
+                });
+            });
+        });
 
     </script>
 

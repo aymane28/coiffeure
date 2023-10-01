@@ -22,12 +22,15 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="{{ asset('img/profil.png') }}" alt="Admin"
                                  class="rounded-circle p-1" width="110">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><p class="text-danger text-sm"><small>Modifier</small></p></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><p
+                                        class="text-danger text-sm"><small>Modifier</small></p></a>
                             <div>
                                 <h4>{{ app.user.firstName }} {{ app.user.lastName|upper }}</h4>
                                 <p class="text-secondary mb-1">Membre depuis: {{ app.user.createdAt|date("Y") }}</p>
                                 <p class="text-muted font-size-sm">Adminstrateur</p>
-                                <button class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Supprimer ce compte</button>
+                                <button class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Supprimer ce compte
+                                </button>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -102,7 +105,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <h5 class="d-flex align-items-center mb-3">
+                                        <h5 class="d-flex align-items-center mb-2">
                                             Mes rendez-vous : 2</h5>
                                     </div>
                                     <div class="col d-flex justify-content-end">
@@ -110,8 +113,15 @@
                                     </div>
                                 </div>
 
+                                {% if cart | length > 0 %}
+                                    {% for item in cart %}
+                                        <p class="text-muted font-size-sm d-inline ">Vous avez un RDV à valider
+                                            <a type="submit" href="{{ path('cart') }}" class="btn btn-link btn-sm"
+                                               style="color: #FAAA80"> (voir)</a></p>
+                                    {% endfor %}
+                                {% endif %}
 
-                                <div class="accordion" id="accordionExample">
+                                <div class="accordion mt-2" id="accordionExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
