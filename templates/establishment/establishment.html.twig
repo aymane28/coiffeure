@@ -25,6 +25,17 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             transform: translate3D(0, -1px, 0) scale(1.03);
         }
+
+        .custom-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /*background-color: rgba(0, 0, 0, 0.4);*/
+            color: #ffffff;
+            padding: 1rem; /* Ajustez la valeur de remplissage selon vos besoins */
+            text-align: right; /* Pour centrer le texte horizontalement */
+        }
     </style>
 
 {% endblock %}
@@ -43,14 +54,16 @@
     <!-- Page content-->
     <div class="container mt-3">
         <div class="row gx-5 justify-content-center">
-        <div class="col-lg-6 mb-4">
-            <form class="form-inline">
-                <div class="input-group">
-                    <input class="form-control form-control" type="search" placeholder="Rechercher un établissement ..." aria-label="Chercher">
-                    <a type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn button-take-rdv text-light" style="background-color: #FAAA80">Recherche</a>
-                </div>
-            </form>
-        </div>
+            <div class="col-lg-6 mb-4">
+                <form class="form-inline">
+                    <div class="input-group">
+                        <input class="form-control form-control" type="search"
+                               placeholder="Rechercher un établissement ..." aria-label="Chercher">
+                        <a type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                           class="btn button-take-rdv text-light" style="background-color: #FAAA80">Recherche</a>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-3 mb-4">
@@ -101,13 +114,15 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="selectTimeOption1" value="option2">
                                 <label class="form-check-label fw-bold" for="selectTimeOption1">
-                                    <span role="button" class="badge" style="background-color: #1cbb7e">Aujourd'hui</span>
+                                    <span role="button" class="badge"
+                                          style="background-color: #1cbb7e">Aujourd'hui</span>
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="selectTimeOption2" value="option2">
                                 <label class="form-check-label fw-bold" for="selectTimeOption2">
-                                    <span role="button" class="badge" style="background-color: #39a64f">Cette semaine</span>
+                                    <span role="button" class="badge"
+                                          style="background-color: #39a64f">Cette semaine</span>
                                 </label>
                             </div>
                         </div>
@@ -150,11 +165,21 @@
                     {% for establishment in establishments %}
                         <div class="col-md-3 mb-5">
                             <div class="card card-establishment">
-                                <img class="card-img-top header-img hover-zoom"
-                                     src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
-                                     alt="Barbier">
+                                <div class="card">
+                                    <img class="card-img-top header-img hover-zoom"
+                                         src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
+                                         alt="Barbier">
+                                        <div class="p-2 d-block custom-overlay text-white">
+                                            <i class="bi bi-heart" style="cursor: pointer"></i>
+                                        </div>
+                                    <!--<div class="card-img-overlay d-flex align-items-end pb-0">
+                                        <div class="p-2 d-block custom-overlay text-white">
+                                            <i class="bi bi-bookmark"></i>
+                                        </div>
+                                    </div>-->
+                                </div>
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row mb-1">
                                         <div class="col">
                                             <div class="badge bg-gradient rounded-pill mb-2"
                                                  style="background-color: #c5701b">
@@ -162,8 +187,8 @@
                                             </div>
                                         </div>
                                         <div class="d-flex col justify-content-end">
-                                            <span id="favori-icon" style="cursor: pointer">
-                                                <i class="bi bi-bookmark"></i>
+                                            <span id="favori-icon">
+                                                <i class="bi bi-star-fill"></i> 5
                                             </span>
                                         </div>
                                     </div>
@@ -174,10 +199,6 @@
                                                         style="color: #FAAA80"></i> Paris
                                     </h6>
                                     <div class="row mt-4">
-                                        <div class="col-auto align-items-center h-100">
-                                            <p class="fs-6"><i class="bi bi-star-fill"></i> 5 &middot; (8 avis)</p>
-                                        </div>
-
                                         <div class="col d-flex justify-content-end">
                                             <a type="submit"
                                                class="btn shadow-lg btn-dark text-light text-center text-uppercase"

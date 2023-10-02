@@ -8,6 +8,21 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             transform: translate3D(0, -1px, 0) scale(1.03);
         }
+
+        .round-element {
+            width: 50px;
+            height: 50px;
+            background-color: #FAAA80;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon {
+            /*font-size: 36px;*/
+            color: white;
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -38,26 +53,29 @@
 
         <!-- Blog preview section-->
         <section class="py-2">
-            <div class="container px-5 my-5">
+            <div class="container px-5 my-5 mb-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="row col-lg-8 mb-5">
                         <form class="form-inline">
                             <div class="input-group">
-                                <input class="form-control form-control" type="search" placeholder="Prestations, établissements, ..." aria-label="Chercher">
-                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn button-take-rdv text-light" style="background-color: #FAAA80" type="submit">Recherche</a>
+                                <input class="form-control form-control" type="search"
+                                       placeholder="Prestations, établissements, ..." aria-label="Chercher">
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                   class="btn button-take-rdv text-light" style="background-color: #FAAA80"
+                                   type="submit">Recherche</a>
                             </div>
                         </form>
                     </div>
                     <div class="col-lg-8 col-xl-6">
                         <div class="text-center">
                             <h2 class="fw-bolder">Les salons favoris de nos clients</h2>
-                            <p class="lead fw-normal text-muted mb-5">Nous avons choisi les 3 meilleurs salons préférés
+                            <p class="lead fw-normal text-muted mb-4">Nous avons choisi les 3 meilleurs salons préférés
                                 de nos clients!</p>
                         </div>
                     </div>
                 </div>
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5">
+                <div class="row gx-5 mb-5">
+                    <div class="col-lg-4">
                         <div class="card h-100 shadow border-0">
                             <img class="card-img-top"
                                  src="https://img.freepik.com/photos-gratuite/beaute-spa_144627-46202.jpg?w=740&t=st=1663458259~exp=1663458859~hmac=9de11013a5b7b5f0bc103292b871ef4d4d8ec9041047824ada679e2ec164a3f8"
@@ -71,9 +89,7 @@
                                 <p class="card-text mb-0">Nos praticiennes ont toutes en commun l’inspiration et la
                                     transmission, elles adaptent les manœuvres selon vos besoins pour détentre au mieux
                                     vos tensions.Nous utilisons des huiles bios avec des ingrédients nobles et précieux
-                                    sélectionnées aux quatres coins du monde, actifs puissants choisis avec soin pour
-                                    des effets visibles sur la peau. Réservez un massage aux huiles naturelles à
-                                    Paris.</p>
+                                    sélectionnées aux quatres coins (...)</p>
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                 <div class="d-flex align-items-end justify-content-between">
@@ -87,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-5">
+                    <div class="col-lg-4">
                         <div class="card h-100 shadow border-0">
                             <img class="card-img-top"
                                  src="https://img.freepik.com/photos-gratuite/bel-homme-au-salon-coiffure-barbe-rasage_1303-26258.jpg?w=740&t=st=1663458348~exp=1663458948~hmac=64dc29e09f6c0a772a84a8394b8af110d7202fc9f6f7c25b29dcdc7ceca98801"
@@ -115,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-5">
+                    <div class="col-lg-4">
                         <div class="card h-100 shadow border-0">
                             <img class="card-img-top"
                                  src="https://img.freepik.com/photos-gratuite/femme-au-cosmetologue-ayant-traitement-beaute_1303-28052.jpg?w=740&t=st=1663458365~exp=1663458965~hmac=8f82f7fd57e964ea3850d89d7533775024f7af063bc684a37753e298dd1c68db"
@@ -143,16 +159,84 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="container px-5 mb-4">
+                <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6 ">
+                    <div class="text-center">
+                        <h2 class="fw-bolder mb-5">Nos fonctionnalités</h2>
+                    </div>
+                </div>
+                </div>
+                <div class="row gx-5">
+                    <div class="col-lg-4">
+                        <div class="card shadow border-0">
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="row justify-content-center me-1">
+                                    <div class="col-auto">
+                                        <div class="round-element">
+                                            <i class="bi bi-cash-stack icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="#!">
+                                        <h5 class="card-title mb-3 text-dark">Payment</h5>
+                                    </a>
+                                    <p class="card-text mb-0">Payment en ligne ou sur place</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow border-0">
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="row justify-content-center me-1">
+                                    <div class="col-auto">
+                                        <div class="round-element">
+                                            <i class="bi bi-music-note-beamed icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="#!">
+                                        <h5 class="card-title mb-3 text-dark">Musique</h5>
+                                    </a>
+                                    <p class="card-text mb-0">Ecouter de la musique dans certains établissements</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card h-100 shadow border-0">
 
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="row justify-content-center me-1">
+                                    <div class="col-auto">
+                                        <div class="round-element">
+                                            <i class="bi bi-headset icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="#!">
+                                        <h5 class="card-title mb-3 text-dark">Service client</h5>
+                                    </a>
+                                    <p class="card-text mb-0">Service client toujours à votre disponibilité</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <div class="py-5 bg-light">
-            <div class="container px-5 my-5">
+            <div class="container px-5 my-4">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-10 col-xl-7">
                         <div class="text-center">
-                            <div class="fs-4 mb-4 fst-italic">"Prenez rendez-vous chez des instituts soigneusement
+                            <div class="fs-4 mb-3 fst-italic">"Prenez rendez-vous chez des instituts soigneusement
                                 choisis par notre équipe. Notre plateforme garantit la rapidité de réservation."
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
