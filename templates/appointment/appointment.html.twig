@@ -250,15 +250,21 @@
                                 <div class="row align-items-center">
                                     <div class="col-6">
                                         <h4 class="mb-2 <small>">{{ establishment.name }} </h4>
-                                        <div class="mb-2">
-                                            <small><i class="bi bi-geo-alt-fill"
-                                                      style="color: #FAAA80"></i> {{ establishment.address }}
-                                            </small>
+                                        <button class="btn btn-link btn-sm" style="color: #FAAA80" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#detailsEstablishment2Collapse"
+                                                aria-expanded="false">
+                                            Voir plus
+                                        </button>
+                                        <!-- Paragraphe de détails (initiallement caché) -->
+                                        <div class="collapse mt-2" id="detailsEstablishment2Collapse">
+                                            <p class="text-muted mb-1">
+                                                <i class="bi bi-geo-alt-fill" style="color: #FAAA80"></i> 0 avenue d'opéra
+                                            </p>
+                                            <p class="text-muted mb-1">
+                                                <i class="bi bi-telephone"></i>
+                                                07 11 11 11 11
+                                            </p>
                                         </div>
-
-                                        <small class="mb-3"><i class="bi bi-telephone"></i> 07
-                                            89 89 25 14
-                                        </small>
                                     </div>
                                     <div class="col-6">
                                         <a class="pull-right"><img title="profile image" width="80" height="80"
