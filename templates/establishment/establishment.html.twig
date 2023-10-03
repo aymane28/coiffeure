@@ -36,6 +36,20 @@
             padding: 1rem; /* Ajustez la valeur de remplissage selon vos besoins */
             text-align: right; /* Pour centrer le texte horizontalement */
         }
+
+        .like-icon {
+            /*font-size: 12px; */
+            transition: transform 0.3s ease-in-out; /* Effet de transition au survol */
+            border-color: #0a53be;
+            color: rgba(0, 0, 0, 0.5);
+            text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+        }
+
+        .like-icon:hover {
+            transform: scale(1.2) translateY(-5px) !important; /* Agrandissement de l'icône au survol */
+            color: red;
+            cursor: pointer;
+        }
     </style>
 
 {% endblock %}
@@ -170,7 +184,7 @@
                                          src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
                                          alt="Barbier">
                                     <div class="p-2 d-block custom-overlay text-white">
-                                        <i class="bi bi-heart" style="cursor: pointer"></i>
+                                        <i class="bi bi-heart-fill like-icon"></i>
                                     </div>
                                     <!--<div class="card-img-overlay d-flex align-items-end pb-0">
                                         <div class="p-2 d-block custom-overlay text-white">
@@ -185,6 +199,10 @@
                                                  style="background-color: #c5701b">
                                                 {{ establishment.establishmentType.name }}
                                             </div>
+                                                <div class="badge bg-gradient rounded-pill mb-2"
+                                                     style="background-color: #FAAA80">
+                                                    <i class="bi bi-music-note-beamed"></i>
+                                                </div>
                                         </div>
                                         <div class="d-flex col justify-content-end">
                                             <p id="favori-icon"><small>

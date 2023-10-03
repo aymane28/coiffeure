@@ -8,6 +8,20 @@
         .custom-accordion-header {
             height: 40px; /* Vous pouvez ajuster la hauteur selon vos besoins */
         }
+
+        .like-icon {
+            /*font-size: 12px; */
+            transition: transform 0.3s ease-in-out; /* Effet de transition au survol */
+            color: rgba(255, 255, 255, 0.5);
+            text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+        }
+
+        .like-icon:hover {
+            transform: scale(1.2) translateY(-2px) !important; /* Agrandissement de l'icône au survol */
+            color: red;
+            text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+            cursor: pointer;
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -56,17 +70,16 @@
                         </button>
                     </div>
                     <div class="card-body">
-
                         <div class="row mb-2">
-                            <div class="col h6">
-                                <i class="bi bi-geo-alt-fill"
-                                   style="color: #FAAA80"></i>
-                                {{ establishment.address }}, Paris
+                            <div class="col-8 d-flex align-items-center">
+                                <i class="bi bi-geo-alt-fill" style="color: #FAAA80"></i>
+                                <h6 class="mb-0 m-lg-1">{{ establishment.address }}, Paris</h6>
                             </div>
-                            <div class="d-flex col justify-content-end">
-                                <i onclick="myFunction(this)" class="bi bi-heart"></i>
+                            <div class="col-4 d-flex justify-content-end align-items-center">
+                                <i class="bi bi-heart-fill like-icon"></i>
                             </div>
                         </div>
+
                         <p class="card-text">{{ establishment.description }}</p>
                     </div>
                 </div>
@@ -90,7 +103,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
+                                    <div class="row">
                                         <div class="col-auto">
                                             <p class="fw-normal">Durée</p>
                                         </div>
@@ -111,6 +124,12 @@
                                                 <i class="bi bi-cash-stack" style="color: #c2c2c5"></i>
                                                 {{ servicetype.price }} {{ 'EUR'|currency_symbol }}
                                             </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                        <span class="badge" style="background-color: #832c35">Femme</span>
+                                        <span class="badge" style="background-color: #204f7a"> Homme</span>
                                         </div>
                                     </div>
 
@@ -220,7 +239,7 @@
 
                                 <div class="my-3">
                                     <div class="h6">
-                                        <i class="bi bi-telephone"></i> 07 89 89 25 14
+                                        <i class="bi bi-telephone"></i> 07 11 11 11 11
                                     </div>
                                 </div>
                                 <hr class="my-1">
@@ -238,6 +257,16 @@
                                     </div>
                                 </div>
 
+                                <hr class="my-1">
+                                <div class="mt-4">
+                                    <h6><i class="bi bi-music-note-beamed icon"></i> Musique</h6>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="row mt-3">
+                                        <p><small>Cet établissement autorise le choix de musique.</small></p>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                  aria-labelledby="nav-contact-tab" tabindex="0">
@@ -246,19 +275,21 @@
                                 </div>
 
                                 <div class="row mt-3">
-                                    <div class="col-auto align-items-center h-100">
-                                        <p id="favori-icon"><small>
-                                                <i class="bi bi-star-fill"></i> 5</small>
-                                        </p>
+                                    <div class="row mb-0">
+                                        <div class="col-auto align-items-center">
+                                            <p id="favori-icon"><small>
+                                                    <i class="bi bi-star-fill"></i> 5</small>
+                                            </p>
+                                        </div>
+                                        <div class="col d-flex justify-content-end">
+                                            <p class="me-2"><small class="text-secondary">28/06/2023</small></p>
+                                        </div>
                                     </div>
-                                    <div class="col d-flex justify-content-end">
-                                        <p class="me-2"><small class="text-secondary">28/06/2023</small></p>
-                                    </div>
-                                    <p><small>Je recommande ce salon !</small></p>
+                                    <p class="mt-0"><small>Je recommande ce salon !</small></p>
                                 </div>
                                 <hr class="my-2">
                                 <div class="row">
-                                    <div class="col-auto align-items-center h-100">
+                                    <div class="col-auto align-items-center">
                                         <p id="favori-icon"><small>
                                                 <i class="bi bi-star-fill"></i> 5</small>
                                         </p>
