@@ -24,32 +24,32 @@
 
                                         {% if app.user %}
                                             <div class="mb-3">
-                                                You are logged in as {{ app.user.email }}, <a
+                                                Vous etes connecté avec : {{ app.user.email }}, <a
                                                         href="{{ path('app_logout') }}">Logout</a>
                                             </div>
                                         {% endif %}
                                         <div class="row mb-4">
                                             <div class="col-auto d-flex align-items-center">
                                                 <div class=" mb-3 pb-1">
-                                                    <img src={{ asset('img/ciseaux_black.png') }} width="60" height="60">
+                                                    <img src={{ asset('img/main_logo.png') }} width="60" height="60">
                                                 </div>
                                             </div>
                                             <div class="col col-md-6 d-flex align-items-center">
-                                                <h5 class="fw-normal mb-3 pb-3 align-text-center" style="letter-spacing: 1px;">
+                                                <h5 class="mb-3 pb-3 align-text-center" style="letter-spacing: 1px;">
                                                     Se connecter</h5>
                                             </div>
                                             <h6>Identifiant démo: <strong>email0@gmail.com</strong> | <strong>password</strong></h6>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="mb-2">Adresse e-mail</label>
-                                            <input type="email" value="{{ last_username }}" name="email"
-                                                   id="inputEmail" class="form-control form-control-lg"
+                                            <input type="email" value="{{ last_username }}" name="_username"
+                                                   id="username" class="form-control form-control-lg"
                                                    autocomplete="email" required
                                                    autofocus>
                                         </div>
                                         <div class="form-outline mb-1">
                                             <label class="mb-2">Mot de passe</label>
-                                            <input type="password" name="password" id="inputPassword"
+                                            <input type="password" name="_password" id="inputPassword"
                                                    class="form-control form-control-lg"
                                                    autocomplete="current-password" required>
                                         </div>

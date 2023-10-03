@@ -13,7 +13,7 @@ class ProfilSettings extends AbstractController
     #[Route("/settings", name: "profil_settings")]
     public function view(SessionInterface $session): Response
     {
-
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         $cart = $session->get('cart', []);
 
         return $this->render('user/profilsettings.html.twig', [
