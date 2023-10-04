@@ -2,38 +2,6 @@
 
 {% block title %}Confort Zone | Établissements {% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .card-establishment {
-            border: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .card-establishment:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            transform: translate3D(0, -1px, 0) scale(1.03);
-        }
-
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .custom-overlay {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            /*background-color: rgba(0, 0, 0, 0.4);*/
-            color: #ffffff;
-            padding: 1rem;
-            text-align: right;
-        }
-    </style>
-
-{% endblock %}
-
 {% block body %}
     {% include 'user/_demand-login.html.twig' %}
     <!-- Header-->
@@ -158,7 +126,6 @@
                 </div>
             </div>
 
-
             <div class="col">
                 <div class="row gx-lg-7 row-cols-md-3 row-cols-xl-3">
                     {% for establishment in establishments %}
@@ -170,14 +137,13 @@
                                          alt="Barbier">
                                     <div class="p-2 custom-overlay text-white">
                                         <div class="row">
-                                            <i class="bi bi-heart-fill like-icon icon-liked-establishment"
-                                               data-bs-toggle="modal"
                                                     {% if app.user %}
-                                                        data-bs-target=""
+                                                        <i class="bi bi-heart-fill like-icon icon-liked-establishment"
+                                                           data-bs-toggle="modal"  data-bs-target="" ></i>
                                                     {% else %}
-                                                        data-bs-target="#demandLogin"
+                                                        <i class="bi bi-heart-fill like-icon"
+                                                           data-bs-toggle="modal" data-bs-target="#demandLogin"></i>
                                                     {% endif %}
-                                            ></i>
                                         </div>
                                     </div>
                                     <!--<div class="card-img-overlay d-flex align-items-end pb-0">
@@ -189,8 +155,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <div class="badge bg-gradient rounded-pill mb-2"
-                                                 style="background-color: #c5701b">
+                                            <div class="badge bg-gradient rounded-pill mb-2 badge-type-establishment">
                                                 {{ establishment.establishmentType.name }}
                                             </div>
                                             <div class="badge bg-gradient rounded-pill mb-2 main-color-background">
@@ -217,7 +182,7 @@
                                     <div class="row">
                                         <div class="col d-flex justify-content-end">
                                             <a type="submit"
-                                               class="btn shadow-lg btn-dark text-light text-center text-uppercase"
+                                               class="btn shadow-lg btn-dark text-center text-uppercase"
                                                href="{{ path('establishment_details', {'slugestablishment': establishment.slug }) }}">
                                                 Choisir →</a>
                                         </div>

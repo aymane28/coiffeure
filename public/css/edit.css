@@ -8,7 +8,7 @@
 }
 
 .badge-type-establishment{
-    background-color: #c55c1b;
+    background-color: rgb(241, 133, 72);
 }
 
 /*navbar*/
@@ -81,4 +81,31 @@
 
 .red-heart {
     color: red; /* Changez la couleur comme vous le souhaitez */
+}
+
+/*establishment*/
+.card-establishment {
+    border: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-establishment:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transform: translate3D(0, -1px, 0) scale(1.03);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    color: #ffffff;
+    padding: 1rem;
+    text-align: right;
 }

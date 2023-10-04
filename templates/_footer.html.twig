@@ -1,17 +1,47 @@
-<footer class="bg-dark py-4 mt-auto">
-    <div class="container px-5">
-        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="col-auto">
-                <div class="small m-0 text-white">Copyright © Site développé par Aymane</div>
+<footer class="bg-dark mt-auto">
+    <div class="container mt-5 px-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <img class="mb-2" src="{{ asset('img/main_logo.png') }}" alt="" width="40" height="40">
+                <small class="d-block mb-3 text-muted">&copy; 2022 - 2023</small>
             </div>
-            <div class="col-auto">
-                <!--<a class="link-light small text-success" href="https://www.instagram.com/aymane_afd/">Instagram</a>
-                <span class="text-white mx-1">&middot;</span>
-                <a class="link-light small text-success" href="https://twitter.com/aymane_afd">Twitter</a>-->
-                <a href="https://www.linkedin.com/in/aymane-afdari/"><span class="mx-1" style="color: #0288D1"><i class="bi bi-linkedin"></i></span></a>
-                <a class="h5 link-light small text-light"
-                   href="https://www.linkedin.com/in/aymane-afdari/">Linkedin</a>
+            <div class="col-6 col-md">
+                <h5 class="main-color">Fonctionnalités</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted text-decoration-none" href="#">Payment</a></li>
+                    <li><a class="text-muted text-decoration-none" href="{{ path('music') }}">Musique</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Service client</a></li>
+                    <li><a class="text-muted text-decoration-none" href="{{ path('professional')}}">Espace professionnel</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="main-color">Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted text-decoration-none" href="#">Symfony</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Bootstrap</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Stripe</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Herokuapp</a></li>
+
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="main-color">À propos</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted text-decoration-none" href="#">Equipe</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Localisation</a></li>
+                    <li><a class="text-muted text-decoration-none" href="#">Confidentialité</a></li>
+                    <li> <a
+                                class="btn text-white btn-floating m-1"
+                                style="background-color: #0082ca; border-radius: 50%;"
+                                href="https://www.linkedin.com/in/aymane-afdari/"
+                                role="button"
+                        ><i class="bi bi-linkedin"></i></a></li>
+                </ul>
             </div>
         </div>
+    </div>
+    <div class="p-3 text-center text-muted" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-muted" href="https://confort-zone.herokuapp.com/">confort-zone.herokuapp.com</a>
     </div>
 </footer>

@@ -22,13 +22,18 @@
             /* Autres styles personnalisés pour l'état actif */
         }
 
+        .custom-inactive-label:hover {
+            background-color: #FAAA80;
+        }
+
+        .custom-active-label:hover {
+            background-color: #FAAA80;
+        }
+
         /* CSS personnalisé pour l'état inactif */
         .custom-inactive-label {
-            background-color: transparent;
-            border: 2px solid #f5d0bb;
-            /*background-color: #your-inactive-color;*/
-            /*color: #your-inactive-text-color;*/
-            /* Autres styles personnalisés pour l'état inactif */
+            background-color: rgba(250, 170, 128, 0.2);
+            /*background-color: rgba(0, 0, 0, 0.08);*/
         }
     </style>
 
@@ -248,21 +253,9 @@
                                 <div class="row align-items-center">
                                     <div class="col-6">
                                         <h4>{{ establishment.name }} </h4>
-                                        <button class="btn btn-link btn-sm main-color" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#detailsEstablishment2Collapse"
-                                                aria-expanded="false">
-                                            Voir plus
-                                        </button>
-                                        <!-- Paragraphe de détails (initiallement caché) -->
-                                        <div class="collapse mt-2" id="detailsEstablishment2Collapse">
                                             <p class="text-muted mb-1">
                                                 <i class="bi bi-geo-alt-fill main-color"></i> 0 avenue d'opéra
                                             </p>
-                                            <p class="text-muted mb-1">
-                                                <i class="bi bi-telephone"></i>
-                                                07 11 11 11 11
-                                            </p>
-                                        </div>
                                     </div>
                                     <div class="col-6">
                                         <a class="pull-right"><img title="profile image" width="80" height="80"
@@ -284,8 +277,6 @@
                                     <h6><i class="bi bi-cash-stack" style="color: #14860e"></i>
                                         {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</h6>
                                 </div>
-
-
                                 <div class="d-flex justify-content-end gap-3">
                                     <div class="btn-group dropup" role="group">
                                         <button type="button"
@@ -301,7 +292,7 @@
                                                     Service</a></li>
                                         </ul>
                                     </div>
-                                    <button class="btn btn-dark" type="submit" onclick="scrollToFirstRequiredField()">
+                                    <button class="btn btn-dark shadow-lg" type="submit" onclick="scrollToFirstRequiredField()">
                                         Validez le RDV →
                                     </button>
                                 </div>

@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confort Zone | Musique{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-box text-center">
+                    <div class="col d-flex mt-5 justify-content-center align-items-center">
+                        <div class="round-element-home main-color-background me-2">
+                            <i class="bi bi-music-note-beamed text-white"></i>
+                        </div>
+                        <div class="col">
+                            <h3 class="title-heading">Musique</h3>
+                        </div>
+                    </div>
+                    <h6 class="my-4">Découvrez une expérience immersive lors de votre visite dans nos établissements en
+                        écoutant votre musique préférée, que vous avez soigneusement sélectionnée pour une ambiance
+                        captivante.</h6>
+                    <p>Afin de savoir si l'établissement propose ce genre de service, il suffit de voir la présence de
+                        ce badge :</p>
+                    <div class="badge bg-gradient rounded-pill main-color-background">
+                        <i class="bi bi-music-note-beamed text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container p-4 rounded mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4">
+                <div class="card card-establishment">
+                    <div class="card">
+                        <img class="card-img-top header-img hover-zoom"
+                             src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
+                             alt="Barbier">
+                        <div class="p-2 custom-overlay text-white">
+                            <div class="row">
+                                <i class="bi bi-heart-fill like-icon"
+                                   data-bs-toggle="modal" data-bs-target="#demandLogin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="badge bg-gradient rounded-pill mb-2 badge-type-establishment">
+                                    Barbier
+                                </div>
+                                <div class="badge bg-gradient rounded-pill mb-2 main-color-background">
+                                    <i class="bi bi-music-note-beamed"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex col justify-content-end">
+                                <p id="favori-icon"><small>
+                                        <i class="bi bi-star-fill"></i> 5</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-8"></span>
+                                </h5>
+                                <h5 class="card-title placeholder-glow mb-3">
+                                    <span class="placeholder col-6"></span>
+                                </h5>
+                                <h6 class="card-title placeholder-glow mb-3">
+                                    <span class="placeholder col-4"></span>
+                                </h6>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <a type="submit"
+                                   class="btn shadow-lg btn-dark text-center text-uppercase disabled placeholder col-6"
+                                   href=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="text-center mt-5">
+            <p>Prenez rendez-vous chez les établissements qui proposent ce service</p>
+            <a href="{{ path('establishments') }}" class="btn btn-dark btn-rounded shadow-lg">Prendre RDV</a>
+        </footer>
+    </div>
+
+{% endblock %}
