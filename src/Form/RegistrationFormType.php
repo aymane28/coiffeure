@@ -29,6 +29,10 @@ class RegistrationFormType extends AbstractType
                         'type' => 'string',
                         'message' => 'Votre prénom ' . 'n' . 'est pas valide.'
                     ]),
+                    new Regex([
+                        'pattern' => "/^[A-Za-zÀ-ÿ\s'-]+$/",
+                        'message' => 'Votre prénom ' . 'n' . 'est pas valide.'
+                    ]),
                 ]
             ])
             ->add('lastName', TextType::class, [
@@ -36,6 +40,10 @@ class RegistrationFormType extends AbstractType
                     new Type([
                         'type' => 'string',
                         'message' => 'Votre nom ' . 'n' . 'est pas valide.'
+                    ]),
+                    new Regex([
+                        'pattern' => "/^[A-Za-zÀ-ÿ\s'-]+$/",
+                        'message' => 'Votre prénom ' . 'n' . 'est pas valide.'
                     ]),
                 ]
             ])
@@ -57,7 +65,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous de devez accpeter nos termes.',
+                        'message' => 'Vous devez accpeter nos termes.',
                     ]),
                 ],
             ])

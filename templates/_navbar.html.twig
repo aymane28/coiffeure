@@ -11,34 +11,70 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('establishments') }}">Établissements</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ path('professional') }}">Espace professionnel </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart') }}"> Mes rendez-vous
-                        {% if app.session.get('cart') %}<i class="bi bi-calendar-check"
-                                                           style="color: #3fc535"></i> {% endif %}</a>
+                        {% if app.session.get('cart') %}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-1-circle-fill main-color" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002H7.971L6.072 5.385v1.271l1.834-1.318h.065V12h1.312V4.002Z"/>
+                        </svg> {% endif %}</a>
                 </li>
             </ul>
+
             <div class="navbar-nav nav-item dropdown">
-                <a class="nav-link me-2" href="{{ path('professional') }}">Espace professionnel </a>
-                {% if app.user %}
-                    <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ path('profil_settings') }}"><i class="bi bi-gear"></i>
-                            Paramètres</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href=" {{ path('app_logout') }}"><i class="bi bi-door-open"></i>
-                            Se déconnecter</a>
-                    </div>
-                {% else %}
-                    <a class="nav-link" href="{{ path('app_login') }}"> Se connecter</a>
-                {% endif %}
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <div class="round-element-navbar me-3" id="searchButton" style="cursor: pointer">
+                            <a href="#" title="Recherche" class="text-light hidden-arrow" style="font-size: 18px;">
+                                <i class="bi bi-search icon-search-navbar"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        {% if app.user %}
+                            <a class="nav-link dropdown-toggle pe-2 p-0" data-bs-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ asset('img/profil.png') }}" width="40" height="40" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="{{ path('profil_settings') }}"><i class="bi bi-gear"></i>
+                                    Paramètres</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href=" {{ path('app_logout') }}"><i class="bi bi-door-open"></i>
+                                    Se déconnecter</a>
+                            </div>
+                        {% else %}
+                            <a class="nav-link" href="{{ path('app_login') }}"> Se connecter</a>
+                        {% endif %}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </nav>
+
+<header class="bg-dark my-0" id="container-search">
+    <div class="container px-4 mb-3">
+        <form class="form-inline">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="input-group me-3">
+                    <input class="form-control form-control" type="search"
+                           placeholder="Prestations, établissements, ..." aria-label="Chercher">
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            class="btn button-take-rdv text-light main-color-background"
+                            type="button">Recherche</button>
+                </div>
+                <div class="round-element-close-research-bar me-3">
+                    <a href="#" id="closeResearchBar" title="Fermer" class="text-light hidden-arrow" style="font-size: 14px;">
+                        <i class="bi bi-x"></i>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</header>

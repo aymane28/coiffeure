@@ -75,8 +75,10 @@
                                         </div>
                                         <div class="col-6">
                                             {{ form_row(registrationForm.phoneNumber, {
-                                                'type': 'integer',
-                                                "help": "Exemple: 0711111111",
+                                                'type': 'text',
+                                                'attr': {
+                                                    'maxlength': '10'
+                                                },
                                                 "label": "Téléphone*",
                                                 "required": true,
                                                 "params": {
@@ -89,7 +91,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6 mb-4">
+                                    <div class="col-6 mb-3">
                                         {{ form_row(registrationForm.plainPassword, {
                                             "label": "Mot de passe*",
                                             "required": true,
@@ -102,7 +104,7 @@
                                         }) }}
                                     </div>
 
-                                    <div class="mb-2">
+                                    <div class="mb-3">
                                         {{ form_row(registrationForm.agreeTerms, {
                                             "label": "Accepter notre politique",
                                             "label_attr": {

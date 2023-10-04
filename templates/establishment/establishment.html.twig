@@ -21,64 +21,45 @@
             object-fit: cover;
         }
 
-        .button-take-rdv:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            transform: translate3D(0, -1px, 0) scale(1.03);
-        }
-
         .custom-overlay {
             position: absolute;
             bottom: 0;
-            left: 0;
             right: 0;
             /*background-color: rgba(0, 0, 0, 0.4);*/
             color: #ffffff;
-            padding: 1rem; /* Ajustez la valeur de remplissage selon vos besoins */
-            text-align: right; /* Pour centrer le texte horizontalement */
-        }
-
-        .like-icon {
-            /*font-size: 12px; */
-            transition: transform 0.3s ease-in-out; /* Effet de transition au survol */
-            border-color: #0a53be;
-            color: rgba(0, 0, 0, 0.5);
-            text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
-        }
-
-        .like-icon:hover {
-            transform: scale(1.2) translateY(-5px) !important; /* Agrandissement de l'icône au survol */
-            color: red;
-            cursor: pointer;
+            padding: 1rem;
+            text-align: right;
         }
     </style>
 
 {% endblock %}
 
 {% block body %}
+    {% include 'user/_demand-login.html.twig' %}
     <!-- Header-->
-    <header class="py-1 border-bottom mb-3" style="background-color: #FAAA80">
+    <header class="border-bottom mb-3 main-color-background">
         <div class="container px-4 px-lg-5 my-4">
             <div class="text-center my-4">
                 <h2 class="fw-bolder text-white">Découvrez nos établissements</h2>
-                <!--<p class="lead mb-0 text-white">Homme / Femme</p>-->
             </div>
         </div>
     </header>
 
     <!-- Page content-->
     <div class="container mt-3">
-        <div class="row gx-5 justify-content-center">
+        <!--<div class="row gx-5 justify-content-center">
             <div class="col-lg-6 mb-4">
                 <form class="form-inline">
                     <div class="input-group">
                         <input class="form-control form-control" type="search"
-                               placeholder="Rechercher un établissement ..." aria-label="Chercher">
-                        <a type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                           class="btn button-take-rdv text-light" style="background-color: #FAAA80">Recherche</a>
+                               placeholder="Rechercher un établissement ..." aria-label="Chercher" id="searchInput">
+                        <a href="#" class="btn button-take-rdv text-light" style="background-color: #FAAA80" id="searchButton">
+                            Recherche
+                        </a>
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
         <div class="row">
             <div class="col-lg-3 mb-4">
                 <div class="card">
@@ -144,7 +125,8 @@
                         <h7><i class="bi bi-geo-alt"></i> Lieu :</h7>
                         <div class="d-flex flex-column mb-4">
                             <div class="d-flex flex-column align-items-center text-center mt-2">
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                        id="selectPlace">
                                     <option selected>Choisir le lieu</option>
                                     <option value="1">Paris</option>
                                     <option value="2">Toulouse</option>
@@ -153,6 +135,9 @@
                             </div>
                         </div>
                         <div class="col d-flex justify-content-end">
+                            <button class="btn btn-link text-dark btn-sm me-2" type="button" id="resetFilter">
+                                <h7>Tout effacer</h7>
+                            </button>
                             <a type="submit" class="btn shadow-lg btn-dark text-light text-center text-uppercase"
                                data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Filtrer</a>
@@ -183,8 +168,17 @@
                                     <img class="card-img-top header-img hover-zoom"
                                          src="https://ocdn.eu/images/pulscms/ZDc7MDA_/b794206dde2def36af96abf3475ccacb.jpg"
                                          alt="Barbier">
-                                    <div class="p-2 d-block custom-overlay text-white">
-                                        <i class="bi bi-heart-fill like-icon"></i>
+                                    <div class="p-2 custom-overlay text-white">
+                                        <div class="row">
+                                            <i class="bi bi-heart-fill like-icon icon-liked-establishment"
+                                               data-bs-toggle="modal"
+                                                    {% if app.user %}
+                                                        data-bs-target=""
+                                                    {% else %}
+                                                        data-bs-target="#demandLogin"
+                                                    {% endif %}
+                                            ></i>
+                                        </div>
                                     </div>
                                     <!--<div class="card-img-overlay d-flex align-items-end pb-0">
                                         <div class="p-2 d-block custom-overlay text-white">
@@ -199,28 +193,26 @@
                                                  style="background-color: #c5701b">
                                                 {{ establishment.establishmentType.name }}
                                             </div>
-                                                <div class="badge bg-gradient rounded-pill mb-2"
-                                                     style="background-color: #FAAA80">
-                                                    <i class="bi bi-music-note-beamed"></i>
-                                                </div>
+                                            <div class="badge bg-gradient rounded-pill mb-2 main-color-background">
+                                                <i class="bi bi-music-note-beamed"></i>
+                                            </div>
                                         </div>
                                         <div class="d-flex col justify-content-end">
                                             <p id="favori-icon"><small>
-                                                <i class="bi bi-star-fill"></i> 5</small>
+                                                    <i class="bi bi-star-fill"></i> 5</small>
                                             </p>
                                         </div>
                                     </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <h6>{{ establishment.name }}</h6>
-                                                <p class="text-secondary mb-3"><small>Ouvert aujourd'hui</small></p>
-                                                <h6 class="mb-3">
-                                                    <i class="bi bi-geo-alt-fill" style="color: #FAAA80"></i>
-                                                    Paris
-                                                </h6>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>{{ establishment.name }}</h6>
+                                            <p class="text-secondary mb-3"><small>Ouvert aujourd'hui</small></p>
+                                            <h6 class="mb-3">
+                                                <i class="bi bi-geo-alt-fill main-color"></i>
+                                                Paris
+                                            </h6>
                                         </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col d-flex justify-content-end">
@@ -239,15 +231,15 @@
         </div>
 
         <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center colo">
+            <ul class="pagination justify-content-center col main-color">
                 <li class="page-item">
-                    <a class="page-link" aria-label="Previous">
+                    <a class="page-link main-color" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="page-item"><a class="page-link text-secondary" href="#">1</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
                 <li class="page-item">
-                    <a class="page-link" aria-label="Next">
+                    <a class="page-link main-color" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -259,42 +251,21 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        document.getElementById('selectEstablishment').addEventListener('change', function () {
-            document.getElementById('resetSelectEstablishment').style.display = 'inline-block';
-        });
-
-        document.getElementById('resetSelectEstablishment').addEventListener('click', function () {
+        document.getElementById('resetFilter').addEventListener('click', function () {
             document.getElementById('selectEstablishment').selectedIndex = 0;
-            document.getElementById('resetSelectEstablishment').style.display = 'none';
+            document.getElementById('selectPlace').selectedIndex = 0;
         });
 
         //genre
         const checkboxes = document.querySelectorAll('.form-check-input');
-        const resetIcon = document.getElementById('resetSelectGender');
+        const resetIcon = document.getElementById('resetFilter');
 
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                resetIcon.style.display = 'inline-block';
-            });
-        });
 
         resetIcon.addEventListener('click', function () {
             checkboxes.forEach(checkbox => {
                 checkbox.checked = false;
             });
-            resetIcon.style.display = 'none';
         });
-
-
-        document.getElementById('selectGender').addEventListener('change', function () {
-            document.getElementById('resetSelectGender').style.display = 'inline-block';
-        });
-
-        document.getElementById('resetSelectGender').addEventListener('click', function () {
-            document.getElementById('resetSelectGender').selectedIndex = 0;
-            document.getElementById('resetSelectGender').style.display = 'none';
-        });
-
 
     </script>
 

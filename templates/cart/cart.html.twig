@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block body %}
+    {% include 'user/_demand-login.html.twig' %}
     <section class="py-2">
         <div class="container px-4 px-lg-5 my-1">
             {% if app.user %}
@@ -209,17 +210,29 @@
                             </div>
                             <div class="row">
                                 <div class="col-auto">
-                                    <form action="/checkout" method="POST">
-                                        <button class="btn btn-dark flex-shrink-0 mr-3" type="submit"
-                                                id="checkout-button">
-                                            <i class="bi bi-credit-card"></i> Payer en ligne
-                                        </button>
-                                    </form>
+                                    {% if app.user %}
+                                        <form action="/checkout" method="POST">
+                                            <button class="btn btn-dark flex-shrink-0 mr-3" type="submit"
+                                                    id="checkout-button">
+                                                <i class="bi bi-credit-card"></i> Payer en ligne
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                            <button class="btn btn-dark flex-shrink-0 mr-3" type="submit" data-bs-toggle="modal" data-bs-target="#demandLoginPaymentOnLine">
+                                                <i class="bi bi-credit-card"></i> Payer en ligne
+                                            </button>
+                                    {% endif %}
                                 </div>
                                 <div class="col-6">
-                                    <a class="btn btn-dark" type="button"
-                                       href="{{ path('app_validation_payment') }}"><i class="bi bi-shop"></i> Payer sur
-                                        place</a>
+                                    {% if app.user %}
+                                        <a class="btn btn-dark" type="button" href="{{ path('app_validation_payment') }}"
+                                        ><i class="bi bi-shop"></i> Payer sur
+                                            place</a>
+                                    {% else %}
+                                        <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#demandLoginPaymentOnSite"
+                                        ><i class="bi bi-shop"></i> Payer sur
+                                            place</button>
+                                    {% endif %}
                                 </div>
 
                             </div>
@@ -237,7 +250,6 @@
             {% endif %}
         </div>
     </section>
-
 
 {% endblock %}
 

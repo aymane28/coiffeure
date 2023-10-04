@@ -9,24 +9,12 @@
             height: 40px; /* Vous pouvez ajuster la hauteur selon vos besoins */
         }
 
-        .like-icon {
-            /*font-size: 12px; */
-            transition: transform 0.3s ease-in-out; /* Effet de transition au survol */
-            color: rgba(255, 255, 255, 0.5);
-            text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
-        }
-
-        .like-icon:hover {
-            transform: scale(1.2) translateY(-2px) !important; /* Agrandissement de l'icône au survol */
-            color: red;
-            text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
-            cursor: pointer;
-        }
     </style>
 {% endblock %}
 {% block body %}
+    {% include 'user/_demand-login.html.twig' %}
 
-    <header class="py-1 border-bottom mb-3" style="background-color: #FAAA80">
+    <header class="py-1 border-bottom mb-3 main-color-background">
         <div class="container">
             <div class="text-center my-3">
                 <h2 class="fw-bolder text-white">{{ establishment.name }}</h2>
@@ -72,11 +60,17 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-8 d-flex align-items-center">
-                                <i class="bi bi-geo-alt-fill" style="color: #FAAA80"></i>
+                                <i class="bi bi-geo-alt-fill main-color"></i>
                                 <h6 class="mb-0 m-lg-1">{{ establishment.address }}, Paris</h6>
                             </div>
                             <div class="col-4 d-flex justify-content-end align-items-center">
-                                <i class="bi bi-heart-fill like-icon"></i>
+                                <i class="bi bi-heart-fill like-icon icon-liked-establishment" data-bs-toggle="modal"
+                                        {% if app.user %}
+                                            data-bs-target=""
+                                        {% else %}
+                                            data-bs-target="#demandLogin"
+                                        {% endif %}
+                                ></i>
                             </div>
                         </div>
 
@@ -166,18 +160,16 @@
                     <div class="card-body">
                         <nav>
                             <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                                <button class="nav-link active flex-fill" id="nav-home-tab" style="color: #FAAA80;"
+                                <button class="btn nav-link active flex-fill main-color" id="nav-home-tab"
                                         data-bs-toggle="tab"
                                         data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
                                         aria-selected="true">Personnels
                                 </button>
-                                <button class="nav-link flex-fill" id="nav-profile-tab" data-bs-toggle="tab"
-                                        style="color: #FAAA80;"
+                                <button class="btn nav-link flex-fill main-color" id="nav-profile-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-profile" type="button" role="tab"
                                         aria-controls="nav-profile" aria-selected="false">Infos générales
                                 </button>
-                                <button class="nav-link flex-fill" id="nav-contact-tab" data-bs-toggle="tab"
-                                        style="color: #FAAA80;"
+                                <button class="btn nav-link flex-fill main-color" id="nav-contact-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-contact" type="button" role="tab"
                                         aria-controls="nav-contact" aria-selected="false">Avis (2)
                                 </button>
@@ -317,6 +309,28 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.getElementById('resetFilter').addEventListener('click', function () {
+            document.getElementById('selectEstablishment').selectedIndex = 0;
+            document.getElementById('selectPlace').selectedIndex = 0;
+        });
+
+        //genre
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        const resetIcon = document.getElementById('resetFilter');
+
+
+        resetIcon.addEventListener('click', function () {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+    </script>
 
 {% endblock %}
 

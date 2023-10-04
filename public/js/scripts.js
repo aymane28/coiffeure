@@ -36,7 +36,8 @@ window.addEventListener('DOMContentLoaded', event => {
             target: '#mainNav',
             offset: 74,
         });
-    };
+    }
+    ;
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -51,4 +52,32 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+});
+
+/*Header research bar*/
+$(document).ready(function () {
+
+    $("#searchButton").click(function () {
+        $("#searchInput").show();
+        $("#container-search").show();
+    });
+
+    $("#closeResearchBar").click(function () {
+        $("#container-search").hide();
+    });
+
+    /*animate button like */
+    $(document).ready(function () {
+        $(".like-icon").click(function () {
+            $(this).toggleClass("ani");
+        });
+    });
+});
+
+const likeIcons = document.querySelectorAll('.icon-liked-establishment');
+
+likeIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+        icon.classList.toggle('red-heart');
+    });
 });
