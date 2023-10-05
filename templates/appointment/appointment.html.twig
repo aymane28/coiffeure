@@ -269,13 +269,10 @@
                                     <h6><i class="bi bi-arrow-right-short"></i>
                                         {{ servicetype.name }}</h6>
                                 </div>
-                                <div class="mb-3">
-                                    <h6><i class="bi bi-clock-history"></i>
-                                        {{ servicetype.time }} min</h6>
-                                </div>
-                                <div class="mb-3">
-                                    <h6><i class="bi bi-cash-stack" style="color: #14860e"></i>
-                                        {{ servicetype.price }} {{ 'EUR'|currency_symbol }}</h6>
+                                <div class="mb-3 d-flex align-items-center">
+                                    <p><strong>{{ servicetype.price }} {{ 'EUR'|currency_symbol }}</strong></p>
+                                    <p class="mx-2 text-secondary">&bull;</p>
+                                    <p class="text-secondary ml-2">{{ servicetype.time }} min</p>
                                 </div>
                                 <div class="d-flex justify-content-end gap-3">
                                     <div class="btn-group dropup" role="group">

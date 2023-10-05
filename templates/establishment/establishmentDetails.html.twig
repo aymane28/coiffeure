@@ -90,34 +90,25 @@
                         <div class="col-lg-6">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="small text-muted">{{ establishment.service.name }}</div>
+                                    <div class="row my-2">
                                         <div class="col-auto">
                                             <h6 class="card-title">{{ servicetype.name }}</h6>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-auto">
-                                            <p class="fw-normal">Durée</p>
-                                        </div>
                                         <div class="col">
-                                            <h6 class="text-muted float-end">
-                                                <i class="bi bi-clock-fill" style="color: #c2c2c5"></i>
-                                                {{ servicetype.time }} min
-                                            </h6>
+                                            <p class="float-end mb-0">
+                                                <strong>{{ servicetype.price }} {{ 'EUR'|currency_symbol }}</strong>
+                                            </p>
                                         </div>
                                     </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-auto">
-                                            <p class="fw-normal">Tarifs</p>
-                                        </div>
                                         <div class="col">
-                                            <h6 class="text-muted float-end">
-                                                <i class="bi bi-cash-stack" style="color: #c2c2c5"></i>
-                                                {{ servicetype.price }} {{ 'EUR'|currency_symbol }}
-                                            </h6>
+                                            <p class="text-secondary float-end">
+                                                <small>{{ servicetype.time }} min</small>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row mb-3">

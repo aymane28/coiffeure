@@ -13,13 +13,13 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('establishments') }}">Établissements</a>
+                    <a class="nav-link" style="color: {% if app.request.attributes.get('_route') == 'establishments' %}white{% endif %}" href="{{ path('establishments') }}">Établissements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('professional') }}">Espace professionnel </a>
+                    <a class="nav-link" style="color: {% if app.request.attributes.get('_route') == 'professional' %}white{% endif %}" href="{{ path('professional') }}">Espace professionnel </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('cart') }}"> Mes rendez-vous
+                    <a class="nav-link" style="color: {% if app.request.attributes.get('_route') == 'cart' %}white{% endif %}" href="{{ path('cart') }}"> Mes rendez-vous
                         {% if app.session.get('cart') %}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-1-circle-fill main-color" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002H7.971L6.072 5.385v1.271l1.834-1.318h.065V12h1.312V4.002Z"/>
                         </svg> {% endif %}</a>
@@ -49,7 +49,7 @@
                                     Se déconnecter</a>
                             </div>
                         {% else %}
-                            <a class="nav-link" href="{{ path('app_login') }}"> Se connecter</a>
+                            <a class="nav-link" style="color: {% if app.request.attributes.get('_route') == 'app_login' %}white{% endif %}" href="{{ path('app_login') }}"> Se connecter</a>
                         {% endif %}
                     </li>
                 </ul>

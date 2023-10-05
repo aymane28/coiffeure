@@ -81,3 +81,4 @@ likeIcons.forEach((icon) => {
         icon.classList.toggle('red-heart');
     });
 });
+
