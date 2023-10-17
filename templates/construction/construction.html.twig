@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confort Zone | Construction {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+   <style>
+       .text-desc {
+           display: none;
+           color: #000000;
+           font-family: "Helvetica Neue", sans-serif;
+           font-size: 14px;
+       }
+
+       .icon:hover + .text-desc {
+           display: block;
+       }
+
+       .rounded-circle:hover {
+           transform: scale(1.2) translateY(-2px) !important; /* Agrandissement de l'icône au survol */
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+       }
+
+       </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row my-5">
+            <div class="col position-relative">
+                <img src="{{ asset('img/renovation.jpg') }}" class="img-fluid image rounded" alt="Image d'exemple">
+                <div class="position-absolute rounded-circle p-3" style="background-color: #e0d9fc; top: 30%; left: 18%; cursor: pointer">
+                    <i class="bi bi-bricks icon position-absolute" style="transform: translate(-50%, -50%);"></i>
+                    <h7 class="position-absolute text-desc" style="top: 100%; left: 0; width: 100%; text-align: center;">
+                        Mur
+                    </h7>
+                </div>
+                <div class="position-absolute rounded-circle p-3" style="background-color: #e0d9fc; top: 80%; left: 45%; cursor: pointer;">
+                    <i class="bi bi-aspect-ratio icon position-absolute" style="transform: translate(-50%, -50%);"></i>
+                    <h7 class="position-absolute text-desc" style="top: 100%; left: 0; width: 100%; text-align: center;">
+                        Sol
+                    </h7>
+                </div>
+
+                <div class="position-absolute rounded-circle p-3" style="background-color: #e0d9fc; top: 40%; left: 33%; cursor: pointer;">
+                    <i class="bi bi-shop-window icon position-absolute" style="transform: translate(-50%, -50%);"></i>
+                    <h7 class="position-absolute text-desc" style="top: 100%; left: 0; width: 100%; text-align: center;">
+                        Fenêtre
+                    </h7>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
