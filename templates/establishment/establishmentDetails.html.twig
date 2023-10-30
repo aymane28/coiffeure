@@ -61,7 +61,7 @@
                         <div class="row mb-2">
                             <div class="col-8 d-flex align-items-center">
                                 <i class="bi bi-geo-alt-fill main-color"></i>
-                                <h6 class="mb-0 m-lg-1">{{ establishment.address }}, Paris</h6>
+                                <h6 class="mb-0 m-lg-1">{{ establishment.address }}, 75001 Paris</h6>
                             </div>
                             <div class="col-4 d-flex justify-content-end align-items-center">
                                 {% if app.user %}
@@ -107,7 +107,14 @@
                                     <div class="row mb-2">
                                         <div class="col">
                                             <p class="text-secondary float-end">
-                                                <small>{{ servicetype.time }} min</small>
+                                                <small>
+                                                    {% if servicetype.time < 60 %}
+                                                        {{ servicetype.time ~ ' min' }}
+                                                    {% else %}
+                                                        {{ (servicetype.time // 60) ~ 'h ' ~ (servicetype.time % 60) ~ 'min' }}
+                                                    {% endif %}
+                                                </small>
+
                                             </p>
                                         </div>
                                     </div>
@@ -323,6 +330,7 @@
                 checkbox.checked = false;
             });
         });
+
     </script>
 
 {% endblock %}
